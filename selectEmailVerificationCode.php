@@ -5,9 +5,7 @@ $email="";
 $code="";
 
 session_start();
-
 $id= $_SESSION["staffID"];
-
 
 
 

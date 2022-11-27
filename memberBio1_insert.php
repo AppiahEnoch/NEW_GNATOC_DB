@@ -17,7 +17,12 @@ $ghanaCard= cleanInput( $_POST[$v4]);
 
 
 
+session_start();
+$code=createRandomPassword();
 
+$_SESSION["staffID"]=$staffID;
+$_SESSION["email"]=$email;
+$_SESSION["code"]=$code;
 
 // array to test post and set status of vital variables
 $arrayOfAllNames=[$v1,$v2,$v3,$v4];
@@ -87,7 +92,7 @@ function inputsAreCorrect( $arrayOfAllNames) {
   }
 
 
-  session_start();
+
 
 
 
@@ -101,11 +106,6 @@ $stmt->bind_param("ssss", $staffID, $email, $mobile,$ghanaCard);
 echo 1;
  $stmt->execute();
 
-$code=createRandomPassword();
-
-$_SESSION["staffID"]=$staffID;
-$_SESSION["email"]=$email;
-$_SESSION["code"]=$code;
 
  $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
  VALUES (?, ?, ?)");
