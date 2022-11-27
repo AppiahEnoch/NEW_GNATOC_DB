@@ -116,7 +116,6 @@ echo 2;
 $stmt->close();
 $conn->close();
 
-
     
 }
 catch(Exception $e){
