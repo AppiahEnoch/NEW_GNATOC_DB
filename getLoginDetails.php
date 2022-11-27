@@ -54,7 +54,7 @@ $real="";
 
 
 
-$sql = "SELECT * FROM memberPassword WHERE staffID=?";
+$sql = "SELECT * FROM memberpassword WHERE staffID=?";
 $stmt = $conn->prepare($sql); 
 $stmt->bind_param("s", $id);
 $stmt->execute();
@@ -66,7 +66,7 @@ if ($row = $result->fetch_assoc()) {
 }
 
 
-$sql = "SELECT * FROM memberBio WHERE staffID=?";
+$sql = "SELECT * FROM memberbio WHERE staffID=?";
 $stmt = $conn->prepare($sql); 
 $stmt->bind_param("s", $id);
 $stmt->execute();

@@ -105,7 +105,7 @@ try{
     
 
 
-    $sql = "UPDATE memberBio SET admissionNumber=?, ssnitNumber=?, voterNumber=?
+    $sql = "UPDATE memberbio SET admissionNumber=?, ssnitNumber=?, voterNumber=?
     WHERE staffID=?";
     $stmt = $conn->prepare($sql); 
     $stmt->bind_param("ssss", $admission,$ssnit,$voter,$staffID);

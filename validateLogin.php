@@ -172,7 +172,7 @@ $id=$_SESSION["staffID"];
 
 
   
-  $sql = "SELECT * FROM memberBio WHERE staffID=?";
+  $sql = "SELECT * FROM memberbio WHERE staffID=?";
   $stmt = $conn->prepare($sql); 
   $stmt->bind_param("s", $id);
   $stmt->execute();

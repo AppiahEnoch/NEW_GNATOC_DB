@@ -104,7 +104,7 @@ $_SESSION["staffID"]=$staffID;
 $_SESSION["email"]=$email;
 $_SESSION["code"]=$code;
 
- $stmt = $conn->prepare("INSERT INTO emailVerification (staffID, email,code)
+ $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
  VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $staffID, $email,$code);
 

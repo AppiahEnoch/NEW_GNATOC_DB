@@ -36,7 +36,7 @@
       
 // prepare and bind
 try{
-    $sql = "UPDATE memberBio SET gender=? WHERE staffID=?";
+    $sql = "UPDATE memberbio SET gender=? WHERE staffID=?";
     
     $stmt = $conn->prepare($sql); 
     $stmt->bind_param("ss", $value,$staffID);

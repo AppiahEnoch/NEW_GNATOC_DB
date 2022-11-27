@@ -9,7 +9,7 @@ $id=$_POST["staffID"];
 
 
 
-$sql = "SELECT * FROM memberPassword WHERE staffID=?";
+$sql = "SELECT * FROM memberpassword WHERE staffID=?";
 $stmt = $conn->prepare($sql); 
 $stmt->bind_param("s", $id);
 $stmt->execute();

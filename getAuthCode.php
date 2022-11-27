@@ -99,7 +99,7 @@ try{
 
 
 
-  $stmt = $conn->prepare("SELECT * FROM memberBio WHERE 
+  $stmt = $conn->prepare("SELECT * FROM memberbio WHERE 
   staffID = ?");
   $stmt->bind_param("s", $staffID);
   $stmt->execute();

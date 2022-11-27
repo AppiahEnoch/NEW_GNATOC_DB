@@ -60,13 +60,8 @@ try {
       $fSsnit = $row['ssnitCard'];
       $fAdmission = $row['admission'];
   
-  
- 
 
-  
-   
-
-
+      
       $return_arr[] = array(
         "mobile" => $mobile,
         "fullName" => $fullName,
@@ -91,14 +86,6 @@ try {
         "fSsnit" => $fSsnit,
         "fMatricula" => $fMatricula,
         "fAdmission" => $fAdmission,
-
-
-
-
-
-
-
-
         "email" => $email
       );
     }

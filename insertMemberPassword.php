@@ -88,7 +88,7 @@ function inputsAreCorrect( $arrayOfAllNames) {
 // prepare and bind
 try{
 
-$stmt = $conn->prepare("INSERT INTO memberPassword (staffID, username, password) VALUES (?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO memberpassword (staffID, username, password) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $staffID, $username, $password);
 
 
