@@ -16,10 +16,7 @@ $mobile= cleanInput( $_POST[$v3]);
 $ghanaCard= cleanInput( $_POST[$v4]);
 
 
-session_start();
-$_SESSION["staffID"]=$staffID;
-$_SESSION["email"]=$email;
-$_SESSION["code"]=$code;
+
 
 
 // array to test post and set status of vital variables
@@ -89,6 +86,11 @@ function inputsAreCorrect( $arrayOfAllNames) {
     exit();
   }
 
+
+  session_start();
+$_SESSION["staffID"]=$staffID;
+$_SESSION["email"]=$email;
+$_SESSION["code"]=$code;
 
 
 // prepare and bind
