@@ -17,7 +17,7 @@ if ($row = $result->fetch_assoc()) {
 }
 else{
 
-     $sql = "DELETE FROM memberBio WHERE staffID=?";
+     $sql = "DELETE FROM memberbio WHERE staffID=?";
      $stmt = $conn->prepare($sql); 
      $stmt->bind_param("s", $id);
      $stmt->execute();
