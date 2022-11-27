@@ -24,8 +24,10 @@ $username = "root";
 $password = "ismm28lwOe2ySW0pZhpq";
 $database = "railway";
 $port = "6385";
+$conn = mysqli_connect($hostname, $username, $password, $database,$port) or die("Database connection failed");
+
 //*/
 
-$conn = mysqli_connect($hostname, $username, $password, $database,$port) or die("Database connection failed");
+  // $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 
 ?>
