@@ -104,7 +104,7 @@ $stmt = $conn->prepare("INSERT INTO memberbio (staffID, email , mobile,ghanaCard
 $stmt->bind_param("ssss", $staffID, $email, $mobile,$ghanaCard);
 
 echo 1;
- $stmt->execute();
+ //$stmt->execute();
 
 
  $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
