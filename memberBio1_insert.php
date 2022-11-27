@@ -110,9 +110,9 @@ echo 1;
  $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
  VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $staffID, $email,$code);
-
-
 $stmt->execute();
+echo 2;
+
 $stmt->close();
 $conn->close();
 
