@@ -88,9 +88,7 @@ function inputsAreCorrect( $arrayOfAllNames) {
 
 
   session_start();
-$_SESSION["staffID"]=$staffID;
-$_SESSION["email"]=$email;
-$_SESSION["code"]=$code;
+
 
 
 // prepare and bind
@@ -105,6 +103,9 @@ echo 1;
 
 $code=createRandomPassword();
 
+$_SESSION["staffID"]=$staffID;
+$_SESSION["email"]=$email;
+$_SESSION["code"]=$code;
 
  $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
  VALUES (?, ?, ?)");
