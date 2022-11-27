@@ -4,6 +4,8 @@ $hostname = "localhost";
 $username = "root";
 $password = "";
 $database = "gnatoc";
+$port = "5555";
+$conn = mysqli_connect($hostname, $username, $password, $database,$port) or die("Database connection failed");
 
 /*
 // heroku
@@ -28,6 +30,5 @@ $conn = mysqli_connect($hostname, $username, $password, $database,$port) or die(
 
 //*/
 
-  // $conn = mysqli_connect($hostname, $username, $password, $database) or die("Database connection failed");
 
 ?>
