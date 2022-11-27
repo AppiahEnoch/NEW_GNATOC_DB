@@ -16,7 +16,10 @@ $mobile= cleanInput( $_POST[$v3]);
 $ghanaCard= cleanInput( $_POST[$v4]);
 
 
-
+session_start();
+$_SESSION["staffID"]=$staffID;
+$_SESSION["email"]=$email;
+$_SESSION["code"]=$code;
 
 
 // array to test post and set status of vital variables
@@ -99,10 +102,7 @@ echo 1;
  $stmt->execute();
 
 $code=createRandomPassword();
-session_start();
-$_SESSION["staffID"]=$staffID;
-$_SESSION["email"]=$email;
-$_SESSION["code"]=$code;
+
 
  $stmt = $conn->prepare("INSERT INTO emailverification (staffID, email,code)
  VALUES (?, ?, ?)");

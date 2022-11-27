@@ -8,6 +8,9 @@ session_start();
 
 $id= $_SESSION["staffID"];
 
+
+
+
 $sql = "SELECT * FROM emailverification WHERE staffID=?";
 $stmt = $conn->prepare($sql); 
 $stmt->bind_param("s", $id);
