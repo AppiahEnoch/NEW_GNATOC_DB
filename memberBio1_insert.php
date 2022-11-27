@@ -103,7 +103,7 @@ $stmt = $conn->prepare("INSERT INTO memberbio (staffID, email , mobile,ghanaCard
  VALUES (?, ?, ?, ?)");
 $stmt->bind_param("ssss", $staffID, $email, $mobile,$ghanaCard);
 
-echo 1;
+//echo 1;
  //$stmt->execute();
 
 
