@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: "Merriweather Sans", sans-serif;
+}
+html{
+  height:100%;
+  width:100%;
+  margin:0;
+
+}
+
+
+
+ body {
+  background-color: #b0dbee;
+  height:100%;
+  width:100%;
+  margin:0;
+  display:flex;
+
+
+
+  
+
+
+
+  #form {
+    color: white;
+    background-color: #009edf;
+    border-radius: 0.3rem;
+    width: 25rem;
+    padding: 2.5rem;
+    margin:auto;
+   
+    
+
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+
+    p {
+      font-size: 0.9em;
+    }
+
+    img {
+      width: 1em;
+    
+    }
+
+  
+
+    button {
+      width: 100%;
+      text-align: center;
+      color: grey;
+      margin-top: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      background-color: #59359a;
+    }
+
+
+
+    button:hover {
+      width: 100%;
+      text-align: center;
+      color: white;
+      margin-top: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      font-weight: bold;
+      background-color: #432874;
+    }
+
+    .form-group {
+      margin: 15px auto;
+
+      label {
+        font-weight: bold;
+        font-size: 0.9em;
+      }
+
+      .input-group {
+        border-radius: 5px;
+        -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+        -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+        box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+
+        .input-group-addon {
+          border: none;
+          border-right: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        input {
+          padding-left: 10px;
+        }
+
+        i {
+          color: #009edf;
+         
+        }
+      }
+
+      input {
+        padding: 3px;
+        width: 100%;
+        border: none;
+        border-radius: 0 5px 5px 0;
+      }
+
+    }
+    #sp {
+      margin-left: -2rem;
+      cursor: pointer;
+      position: absolute;
+      z-index: 2000;
+      float: right;
+    }
+
+    .errorString {
+      color: whitesmoke;
+      font-weight: bold;
+      font-style: italic;
+      visibility: visible;
+    }
+    input[type="text"] {
+    
+      font-weight: bold;
+    }
+  }
+}
+
+#gnatocImage{
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+
+}

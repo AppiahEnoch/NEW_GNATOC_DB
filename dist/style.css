@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #b0dbee;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+}
+body #form {
+  color: white;
+  background-color: #009edf;
+  border-radius: 0.3rem;
+  width: 25rem;
+  padding: 2.5rem;
+  margin: auto;
+  box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+}
+body #form p {
+  font-size: 0.9em;
+}
+body #form img {
+  width: 1em;
+}
+body #form button {
+  width: 100%;
+  text-align: center;
+  color: grey;
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: #59359a;
+}
+body #form button:hover {
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+  background-color: #432874;
+}
+body #form .form-group {
+  margin: 15px auto;
+}
+body #form .form-group label {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+body #form .form-group .input-group {
+  border-radius: 5px;
+  box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+}
+body #form .form-group .input-group .input-group-addon {
+  border: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+body #form .form-group .input-group input {
+  padding-left: 10px;
+}
+body #form .form-group .input-group i {
+  color: #009edf;
+}
+body #form .form-group input {
+  padding: 3px;
+  width: 100%;
+  border: none;
+  border-radius: 0 5px 5px 0;
+}
+body #form #sp {
+  margin-left: -2rem;
+  cursor: pointer;
+  position: absolute;
+  z-index: 2000;
+  float: right;
+}
+body #form .errorString {
+  color: whitesmoke;
+  font-weight: bold;
+  font-style: italic;
+  visibility: visible;
+}
+body #form input[type=text] {
+  font-weight: bold;
+}
+
+#gnatocImage {
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
+}/*# sourceMappingURL=style.css.map */

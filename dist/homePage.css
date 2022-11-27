@@ -1,0 +1,17 @@
+body {
+  line-height: 1.7;
+  background-color: #031633;
+  background-image: url("devImage/gnatocDatabase.png");
+}
+
+h1 .display-4, h2 .display-4, h3 .display-4, h4 .display-4, h5 .display-4, h6 .display-4 {
+  background-color: #031633;
+  text-decoration: none;
+}
+
+.hero {
+  background-image: url("devImage/gnatocDatabase.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}/*# sourceMappingURL=homePage.css.map */

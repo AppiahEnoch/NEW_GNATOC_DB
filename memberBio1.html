@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GNATOC-AAMUSTED</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather+Sans"
+      rel="stylesheet"
+    />
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/c1db89cf54.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="dist/style.css" />
+  </head>
+
+  <body>
+    <!-- BEGIN SCRIPT -->
+    <script>
+      var staffIDIsUsed = true;
+      var emailIsUsed = true;
+      var mobileIsUsed = true;
+      var ghanaCardWrong = true;
+
+      var aeModelTitle = "";
+      var aeModelBody = "";
+
+      $(document).ready(function () {
+        hideChecks();
+
+        // FORM SUBMIT BEGINS
+        $("#form").submit(function (e) {
+          e.preventDefault();
+
+          if (staffIDIsUsed) {
+            $("#mdExist").modal("show");
+
+            return false;
+          }
+          if (emailIsUsed) {
+            $("#mdExist2").modal("show");
+
+            return false;
+          }
+          if (mobileIsUsed) {
+            $("#mdExist3").modal("show");
+            return false;
+          }
+
+          if (ghanaCardWrong) {
+            $("#mdExist4").modal("show");
+
+            return false;
+          }
+
+          if (staffID == "" || email == "" || mobile == "" || ghanaCard == "") {
+            return false;
+          }
+
+          $.ajax({
+            url: "memberBio1_insert.php",
+            type: "post",
+            data: {
+              staffID: staffID,
+              email: email,
+              mobile: mobile,
+              ghanaCard: ghanaCard,
+            },
+            success: function (data) {
+              try {
+                var n = data.trim();
+
+                if (n == "1") {
+                  window.location = "emailVerification.html";
+                }
+              } catch (error) {}
+            },
+          });
+        });
+
+        //END FORM SUBMIT
+
+        // GHANA Card
+        $("#ghanaCard").keyup(function () {
+          if (!validateGhanaCard()) {
+            showErrorVisibility(message);
+            ghanaCardWrong = true;
+
+            if (ghanaCard.length < 1) {
+              hideErrorVisibility();
+              return false;
+            }
+
+            return false;
+          } else {
+            hideErrorVisibility();
+            ghanaCardWrong = false;
+          }
+        });
+
+        // BEGIN STAFF ID EVENT
+
+        var thisIDExist = 0;
+
+        $("#staffID").keyup(function () {
+          staffID = $("#staffID").val();
+          staffIDIsUsed = false;
+
+          try {
+            var n = staffID.trim();
+            staffID = n;
+          } catch (error) {
+            staffID = "";
+            return false;
+          }
+          if (staffID.length > 3) {
+            //$.ajaxSetup({async: false});
+
+            $.post(
+              "selectStaffID_Bio1.php",
+              {
+                staffID: staffID,
+              },
+              function (data, status) {
+                var n = data;
+
+                // alert(data)
+
+                // return false;
+
+                try {
+                  var nn = n.trim();
+                  if (nn.length > 1) {
+                    staffID = " ";
+
+                    $("#staffID").css({
+                      "background-color": "white",
+                    });
+                    $("#staffIDCheck").hide();
+                    staffID = "";
+                    message = "Your Staff ID already exists.";
+                    showErrorVisibility(message);
+
+                    $("#mdExist").modal("show");
+
+                    staffIDIsUsed = true;
+                  } else {
+                    staffIDIsUsed = false;
+
+                    $("#staffID").css({
+                      "background-color": "#009edf",
+                    });
+                    $("#staffIDCheck").show();
+                    hideErrorVisibility();
+                  }
+                } catch (error) {
+                  staffID = "";
+                  return false;
+                }
+              }
+            );
+          } else {
+            staffID = "";
+            $("#staffID").css({
+              "background-color": "white",
+            });
+            $("#staffIDCheck").hide();
+            staffID = "";
+            message = "Invalid staff ID";
+            showErrorVisibility(message);
+          }
+        });
+
+        //end of staffID event
+
+        // BEGIN STAFF ID EVENT
+        var email = "";
+        var thisIDExist = 0;
+        $("#email").keyup(function () {
+          email = $("#email").val();
+          emailIsUsed = false;
+
+          try {
+            var n = email.trim();
+            email = n;
+          } catch (error) {
+            email = "";
+            return false;
+          }
+          if (email.length > 5 && email.includes(".")) {
+            //$.ajaxSetup({async: false});
+
+            $.post(
+              "selectEmail_Bio1.php",
+              {
+                email: email,
+              },
+              function (data, status) {
+                var n = data;
+
+                try {
+                  var nn = n.trim();
+                  if (nn.length > 1) {
+                    email = " ";
+                    document.getElementById("email").style.backgroundColor =
+                      "white";
+                    $("#emailCheck").hide();
+                    message = "Your Email already exists.";
+                    showErrorVisibility(message);
+
+                    $("#mdExist2").modal("show");
+                    emailIsUsed = true;
+
+                    return;
+                  } else {
+                    emailIsUsed = false;
+
+                    document.getElementById("email").style.backgroundColor =
+                      "#009EDF";
+
+                    $("#emailCheck").show();
+
+                    message = "Invalid Email";
+                    hideErrorVisibility(message);
+                  }
+                } catch (error) {
+                  email = "";
+                  return false;
+                }
+              }
+            );
+          } else {
+            email = "";
+            document.getElementById("email").style.backgroundColor = "white";
+            $("#emailCheck").hide();
+            message = "Invalid Email";
+            showErrorVisibility(message);
+          }
+        });
+
+        //end of email event
+
+        // BEGIN STAFF ID EVENT
+        var mobile = "";
+        var thisIDExist = 0;
+        $("#mobile").keyup(function () {
+          mobile = $("#mobile").val();
+          mobileIsUsed = false;
+
+          try {
+            var n = mobile.trim();
+            mobile = n;
+          } catch (error) {
+            mobile = "";
+            return false;
+          }
+          if (mobile.length == 10) {
+            //$.ajaxSetup({async: false});
+
+            if (mobile.substring(0, 1) == 0) {
+              hideErrorVisibility(message);
+            } else {
+              return false;
+            }
+
+            $.post(
+              "selectMobile_Bio1.php",
+              {
+                mobile: mobile,
+              },
+              function (data, status) {
+                var n = data;
+
+                try {
+                  var nn = n.trim();
+                  if (nn.length > 1) {
+                    mobile = " ";
+                    document.getElementById("mobile").style.backgroundColor =
+                      "white";
+                    $("#mobileCheck").hide();
+                    message = "Mobile Number Already Exists";
+                    showErrorVisibility(message);
+                    mobileIsUsed = true;
+                    $("#mdExist3").modal("show");
+                  } else {
+                    document.getElementById("mobile").style.backgroundColor =
+                      "#009EDF";
+                    $("#mobileCheck").show();
+
+                    hideErrorVisibility();
+                    mobileIsUsed = false;
+                  }
+                } catch (error) {
+                  mobile = "";
+                  return false;
+                }
+              }
+            );
+          } else {
+            mobile = "";
+            document.getElementById("mobile").style.backgroundColor = "white";
+            $("#mobileCheck").hide();
+            message = "Invalid Mobile Number.";
+            showErrorVisibility(message);
+          }
+        });
+
+        //end of mobile event
+      });
+    </script>
+
+    <!-- END SCRIPT -->
+
+    <!-- partial:index.partial.html -->
+    <form id="form">
+      <div class="form-outline mb-2 text-center m-1">
+        <div class="row align-items-center justify-content-center">
+          <img
+            style="width: 4rem; height: 4rem; border-radius: 50%"
+            id="gnatocImage"
+            src="image/ghatocLogo.jpg"
+            alt=""
+          />
+
+          <img style="width: 5rem" src="image/aamusted.png" alt="" />
+        </div>
+
+        <h3>GNATOC</h3>
+        <h6>AAMUSTED-K</h6>
+        1 of 8
+
+        <!-- begin -->
+
+        <div class="form-group">
+          <div class="col w-100">
+            <label style="float: left" for="username">Staff ID</label>
+          </div>
+          <br />
+          <div class="input-group">
+            <div class="input-group-addon">
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </div>
+            <input type="text" id="staffID" placeholder="Staff ID" required />
+            <i
+              id="staffIDCheck"
+              style="color: blue"
+              class="fa fa-check"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </div>
+      </div>
+      <!-- end -->
+
+      <!-- begin -->
+
+      <div class="form-group">
+        <div class="col w-100">
+          <label style="float: left" for="email">Email</label>
+        </div>
+        <br />
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </div>
+          <input type="email" id="email" placeholder="Email" required />
+          <i
+            id="emailCheck"
+            style="color: blue"
+            class="fa fa-check"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+
+      <!-- end -->
+
+      <!-- begin -->
+
+      <div class="form-group">
+        <div class="col w-100">
+          <label style="float: left" for="username">Mobile</label>
+        </div>
+        <br />
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-mobile-phone" aria-hidden="true"></i>
+          </div>
+          <input
+            type="tel"
+            id="mobile"
+            pattern="[0-9]{10}"
+            placeholder="Mobile e.g. 0257705314"
+            required
+          />
+          <i
+            id="mobileCheck"
+            style="color: blue"
+            class="fa fa-check"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+
+      <!-- end -->
+
+      <!-- begin -->
+
+      <div class="form-group">
+        <div class="col w-100">
+          <label style="float: left" for="username">Ghana Card Number</label>
+        </div>
+        <br />
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-id-card" aria-hidden="true"></i>
+          </div>
+          <input
+            type="text"
+            id="ghanaCard"
+            placeholder=" GHA-000000000-0"
+            required
+          />
+          <i
+            id="ghanaCardCheck"
+            style="color: blue"
+            class="fa fa-check"
+            aria-hidden="true"
+          ></i>
+        </div>
+      </div>
+
+      <!-- end -->
+
+      <button type="submit" class="btn btn-default mt-0">
+        Next
+        <i style="margin-left: 1rem" class="bi bi-fast-forward-fill"></i>
+      </button>
+
+      <span>
+        <a style="margin-right: 2rem; color: white" href="login.html"
+          >Back to Login</a
+        >
+        <br />
+        <br />
+      </span>
+
+      <span style="visibility: hidden" id="errorWrapper">
+        <span id="error"> </span>
+        <span>
+          <i style="font-size: 2rem" class="bi bi-exclamation-triangle-fill"></i
+        ></span>
+      </span>
+    </form>
+    <!-- partial -->
+
+    <!-- Modal HTML -->
+    <div id="mdExist" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">STAFF ID EXISTS!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>YOUR STAFF ID IS USED ALREADY.</p>
+
+            <p class="text-secondary">
+              <small
+                >Your staff Id Exist. use the edit record form to update your
+                data.
+              </small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="btError"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END MODAL -->
+
+    <!-- Modal HTML -->
+    <div id="mdExist2" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">EMAIL EXISTS!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>YOUR EMAIL IS ALREADY USED.</p>
+
+            <p class="text-secondary">
+              <small
+                >Your Email Address exists. use the edit record form to update
+                your data.
+              </small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="btError"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END MODAL -->
+
+    <!-- Modal HTML -->
+    <div id="mdExist3" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">MOBILE EXISTS!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>YOUR MOBILE NUMBER IS USED ALREADY.</p>
+
+            <p class="text-secondary">
+              <small
+                >Your Mobile Number Exist. use the edit record form to update
+                your data.
+              </small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="btError"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END MODAL -->
+
+    <!-- Modal HTML -->
+    <div id="mdExist4" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">WRONG GHANA CARD!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal">
+              X
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>GHANA CARD FROMAT: GHA-000000000-0</p>
+
+            <p class="text-secondary">
+              <small
+                >Please Check Your Ghana Card well it does not conform to our
+                format.
+              </small>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="btError"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- END MODAL -->
+
+    <!-- BEGIN AEMODEL-->
+    <div id="aeModelPassive" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="aeMTitle" class="modal-title">Modal title</h5>
+            <i
+              style="font-size: 2rem; color: blue"
+              class="bi bi-exclamation-triangle-fill"
+            >
+            </i>
+          </div>
+          <div class="modal-body">
+            <p id="aeMBody">Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              data-bs-dismiss="modal"
+              class="btn btn-primary"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END AEMODEL-->
+
+    <script>
+      var message = "";
+      var ghanaCard = "";
+      var staffID = "";
+
+      function validateGhanaCard() {
+        var v = document.getElementById("ghanaCard").value;
+
+        try {
+          var vv = v.trim();
+          ghanaCard = vv;
+        } catch (error) {}
+
+        var s = ghanaCard.substring(0, 4);
+
+        if (!(s === "GHA-")) {
+          message = "Format: GHA-000000000-0";
+          return false;
+        } else {
+          if (ghanaCard.length > 6) {
+            hideErrorVisibility();
+          }
+        }
+
+        if (ghanaCard.length < 5) {
+          message = "Format: GHA-000000000-0";
+          return false;
+        }
+
+        return true;
+      }
+
+      function hideErrorVisibility() {
+        document.getElementById("errorWrapper").style.visibility = "hidden";
+      }
+
+      function showErrorVisibility(message) {
+        document.getElementById("errorWrapper").style.visibility = "visible";
+
+        $("#error").text(message);
+      }
+
+      function hideChecks() {
+        $("#staffIDCheck").hide();
+        $("#emailCheck").hide();
+        $("#mobileCheck").hide();
+        $("#ghanaCardCheck").hide();
+      }
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
