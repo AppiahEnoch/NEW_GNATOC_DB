@@ -85,7 +85,6 @@
 
           if (ghanaCardWrong) {
             $("#mdExist4").modal("show");
-
             return false;
           }
 
@@ -93,6 +92,9 @@
             return false;
           }
 
+          alert(23)
+          return
+        
           $.ajax({
             url: "memberBio1_insert.php",
             type: "post",
@@ -103,14 +105,18 @@
               ghanaCard: ghanaCard,
             },
             success: function (data) {
+
+
               try {
                 var n = data.trim();
-                alert(data)
+              
 
                 if (n == "1") {
                   window.location = "emailVerification.html";
                 }
               } catch (error) {}
+
+
             },
           });
         });
@@ -171,7 +177,7 @@
                   if (nn.length > 1) {
                     staffID = " ";
 
-                    alert(nn)
+                   // alert(nn)
 
                     $("#staffID").css({
                       "background-color": "white",

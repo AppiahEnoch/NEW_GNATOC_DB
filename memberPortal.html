@@ -74,6 +74,14 @@
         font-weight: bold;
       }
     </style>
+
+    <style>
+      #center {
+        margin: auto;
+        width: 50%;
+        border: 3px solid blue;
+      }
+    </style>
   </head>
   <body class="w3-aqua w3-content" style="max-width: 1600px">
     <script>
@@ -469,6 +477,53 @@
       // functions end
 
       $(document).ready(function () {
+        $("#newPassword").click(function () {
+          $("#errorMismatch").hide();
+        });
+        $("#confirmPassword").click(function () {
+          $("#errorMismatch").hide();
+        });
+
+        $("#submit").click(function (e) {
+          e.preventDefault();
+          var o = $("#oldPassword").val();
+          var n = $("#newPassword").val();
+          var c = $("#confirmPassword").val();
+
+          var p = n.trim();
+          var cc = c.trim();
+
+          if (aeEmpty(o)) {
+            $("#oldPassword").focus();
+            return;
+          } else if (aeEmpty(p)) {
+            $("#newPassword").focus();
+            return;
+          } else if (aeEmpty(cc)) {
+            $("#confirmPassword").focus();
+            return;
+          }
+
+          if (!(p == cc)) {
+            $("#errorMismatch").show();
+            return;
+          } else {
+            $("#errorMismatch").hide();
+          }
+
+          $.post(
+            "resetPortalPassword.php",
+            {
+              1: 1,
+            },
+            function (data, status) {
+              alert(status);
+            }
+          );
+        });
+
+        document.getElementById("aeMresetPassword").style.display = "block";
+
         $("#ch1").click(function () {
           $("#ch1f").click();
         });
@@ -537,6 +592,8 @@
           type: "get",
           dataType: "JSON",
           success: function (response) {
+            alert(response);
+
             var fullName = response[1].fullName;
             var staffID = response[1].staffID;
             var regNumber = response[1].regNumber;
@@ -690,6 +747,8 @@
             return;
           },
         });
+
+        
       });
 
       function loadFile(id, file) {
@@ -737,6 +796,7 @@
           ><i class="fa fa-th-large fa-fw w3-margin-right"></i
           ><b>Basic Info</b></a
         >
+
         <a
           href="#myFiles"
           onclick="w3_close()"
@@ -757,6 +817,11 @@
           class="w3-bar-item w3-button w3-padding"
           ><i class="fa fa-thumbs-up w3-margin-right" aria-hidden="true"></i
           ><b>Voting</b></a
+        >
+
+        <a onclick="showReset()" class="w3-bar-item w3-button w3-padding"
+          ><i class="fa fa-lock fa-fw w3-margin-right"></i
+          ><b>Reset Password</b></a
         >
       </div>
       <div class="w3-panel w3-large">
@@ -1101,7 +1166,117 @@
       <!-- END AEMODEL-->
     </div>
 
+    <!--BEGIN RESET PASSWORD MODEL-->
+
+    <div id="aeMresetPassword" class="w3-modal">
+      <div
+        style="width: 30rem"
+        class="w3-modal-content w3-animate-left w3-card-4"
+      >
+        <header class="w3-container w3-deep-purple">
+          <span
+            onclick="document.getElementById('aeMresetPassword').style.display='none'"
+            class="w3-button w3-display-topright"
+            >&times;</span
+          >
+          <h3>RESET YOUR PASSWORD <i class="fa fa-unlock fa-2x"></i></h3>
+        </header>
+        <div class="w3-container w3-aqua w3-padding-small">
+          <form action="#" method="post">
+            <div
+              class="w3-container w3-aqua w3-center w3-padding"
+              style="width: 80%; margin: auto"
+            >
+              <div class="w3-auto w3-padding">
+                <input
+                  required
+                  style="font-weight: bolder"
+                  id="oldPassword"
+                  type="text"
+                  placeholder="Old Password"
+                />
+              </div>
+
+              <div class="w3-auto w3-padding">
+                <input
+                  required
+                  style="font-weight: bolder"
+                  id="newPassword"
+                  type="password"
+                  placeholder="New Password"
+                />
+              </div>
+              <div class="w3-auto w3-padding">
+                <input
+                  required
+                  style="font-weight: bolder"
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+
+                <br /><input
+                  id="showPassword1"
+                  class="w3-card"
+                  type="checkbox"
+                  onclick="showPassword()"
+                />
+                <label for="showPassword1"><span>Show Password</span></label>
+                <label
+                  id="errorMismatch"
+                  style="
+                    font-weight: bolder;
+                    font-style: italic;
+                    color: blue;
+                    display: none;
+                  "
+                >
+                  <span
+                    ><br />
+                    Password Mismatch!</span
+                  ></label
+                >
+              </div>
+
+              <button
+                type="submit"
+                id="submit"
+                class="w3-button w3-deep-purple w3-round w3-margin-top w3-justify w3-centered"
+              >
+                Reset Password
+                <i class="fa fa-unlock"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <footer class="w3-container w3-deep-purple">
+          <p></p>
+        </footer>
+      </div>
+    </div>
+    <!--END RESET PASSWORD MODEL-->
+
     <script>
+      function showReset() {
+        w3_close();
+        document.getElementById("aeMresetPassword").style.display = "block";
+      }
+
+      function showPassword() {
+        var x = document.getElementById("newPassword");
+        var xx = document.getElementById("confirmPassword");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+        if (xx.type === "password") {
+          xx.type = "text";
+        } else {
+          xx.type = "password";
+        }
+      }
       // Script to open and close sidebar
       function w3_open() {
         document.getElementById("mySidebar").style.display = "block";

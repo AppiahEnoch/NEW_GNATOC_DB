@@ -151,7 +151,7 @@
 
             return false;
           }
-
+       
           $.ajax({
             url: "memberBio7_Insert.php",
             type: "POST",
@@ -160,6 +160,7 @@
             cache: false,
             processData: false,
             success: function (data) {
+          
               location.href = "memberBio8.html";
             },
             error: function (e) {

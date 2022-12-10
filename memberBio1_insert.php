@@ -17,12 +17,7 @@ $ghanaCard= cleanInput( $_POST[$v4]);
 
 
 
-session_start();
-$code=createRandomPassword();
 
-$_SESSION["staffID"]=$staffID;
-$_SESSION["email"]=$email;
-$_SESSION["code"]=$code;
 
 // array to test post and set status of vital variables
 $arrayOfAllNames=[$v1,$v2,$v3,$v4];
@@ -92,6 +87,12 @@ function inputsAreCorrect( $arrayOfAllNames) {
   }
 
 
+  session_start();
+$code=createRandomPassword();
+
+$_SESSION["staffID"]=$staffID;
+$_SESSION["email"]=$email;
+$_SESSION["code"]=$code;
 
 
 
@@ -103,7 +104,7 @@ $stmt = $conn->prepare("INSERT INTO memberbio (staffID, email , mobile,ghanaCard
  VALUES (?, ?, ?, ?)");
 $stmt->bind_param("ssss", $staffID, $email, $mobile,$ghanaCard);
 
-//
+
  $stmt->execute();
 
 
@@ -112,7 +113,7 @@ $stmt->bind_param("ssss", $staffID, $email, $mobile,$ghanaCard);
 $stmt->bind_param("sss", $staffID, $email,$code);
 $stmt->execute();
 
-
+echo 1;
 $stmt->close();
 $conn->close();
 
@@ -134,7 +135,7 @@ function createRandomPassword() {
   $i = 0; 
   $pass = '' ; 
 
-  while ($i <= 10) { 
+  while ($i <= 3) { 
       $num = rand() % 33; 
       $tmp = substr($chars, $num, 1); 
       $pass = $pass . $tmp; 

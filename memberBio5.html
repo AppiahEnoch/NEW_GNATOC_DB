@@ -126,6 +126,7 @@
 
         $("#form").submit(function (e) {
           e.preventDefault();
+        
           var course = $("#course").val();
           var region = $("#region").val();
           var yearOfAdmission = $("#yearOfAdmission").val();
@@ -141,7 +142,7 @@
 
             return false;
           }
-
+       
           $.ajaxSetup({
             async: false,
           });
@@ -155,6 +156,7 @@
               yearOfCompletion,
             },
             function (data, status) {
+       
               location.href = "memberBio6.html";
             }
           );
@@ -228,22 +230,22 @@
             class="form-select w-100"
           >
             <option selected>Choose Region</option>
-            <option value="1">Ahafo</option>
-            <option value="2">Ashanti</option>
-            <option value="3">Bono</option>
-            <option value="4">Bono East</option>
-            <option value="5">Central</option>
-            <option value="6">Eastern</option>
-            <option value="7">Greater Accra</option>
-            <option value="8">North East</option>
-            <option value="9">Northern</option>
-            <option value="10">Oti</option>
-            <option value="11">Savannah</option>
-            <option value="12">Upper East</option>
-            <option value="13">Upper West</option>
-            <option value="14">Volta</option>
-            <option value="15">Western</option>
-            <option value="16">Western North</option>
+            <option >Ahafo</option>
+            <option>Ashanti</option>
+            <option >Bono</option>
+            <option >Bono East</option>
+            <option >Central</option>
+            <option >Eastern</option>
+            <option >Greater Accra</option>
+            <option >North East</option>
+            <option >Northern</option>
+            <option >Oti</option>
+            <option >Savannah</option>
+            <option >Upper East</option>
+            <option >Upper West</option>
+            <option >Volta</option>
+            <option >Western</option>
+            <option >Western North</option>
           </select>
         </div>
       </div>

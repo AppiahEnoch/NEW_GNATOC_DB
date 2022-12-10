@@ -5,7 +5,7 @@ require_once 'config.php';
 
 
 $v1="course";
-$v2="course";
+$v2="region";
 $v3="yearOfAdmission";
 $v4="yearOfCompletion";
 
@@ -99,10 +99,9 @@ try{
     session_start();
  
   
-  //$_SESSION["staffID"]="1220016";
+  $_SESSION["staffID"]="1220016";
   
   $staffID= $_SESSION["staffID"];
-    
     
 
 

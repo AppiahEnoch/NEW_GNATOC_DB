@@ -40,13 +40,12 @@
     $tmp = $_FILES[$v3]['tmp_name'];
     $masterList=getFilepath();
 
-   // exit();
-    
+
 
       
 // prepare and bind
 try{
-    $sql = "UPDATE file SET admission=?, studyLeave=?, masterList=?, rank=?  WHERE staffID=?";
+    $sql = " UPDATE file SET admission=?, studyLeave=?, masterList=?, rank1=?  WHERE staffID=?";
     
     $stmt = $conn->prepare($sql); 
     $stmt->bind_param("sssss", $admission,$studyLeave,$masterList, $rank, $staffID);
