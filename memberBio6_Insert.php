@@ -17,6 +17,9 @@
     $matricula="";
 
 
+    $path = 'upload/passport/'; 
+    mkdir($path); 
+
 
 //  copy paste session
     $path = 'upload/passport/';
