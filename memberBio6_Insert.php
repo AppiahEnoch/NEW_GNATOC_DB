@@ -84,7 +84,7 @@ function getFilepath(){
        // check's valid format
 
        if(!(in_array($ext, $valid_extensions))){
-        exit();
+        exit;
        }
        
        $path = $path.strtolower($final_image); 
@@ -92,7 +92,7 @@ function getFilepath(){
        
        return $path;
   } catch (\Throwable $th) {
-    //throw $th;
+    throw $th;
   }
    
      
