@@ -16,9 +16,12 @@
     $passport="";
     $matricula="";
 
-
-    $path = 'upload/passport/'; 
-    mkdir($path); 
+    $path = 'upload/passport/';
+    if ( !file_exists($dir) ) {
+        mkdir ($path, 0744);
+    }
+   
+    file_put_contents ($dir.'/test.txt', 'Hello File');
 
 
 //  copy paste session
@@ -26,9 +29,13 @@
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
     $passport=getFilepath();
-    
+
 
     $path = 'upload/matricula/';
+    if ( !file_exists($dir) ) {
+        mkdir ($path, 0744);
+    }
+    
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
     $matricula=getFilepath2();
