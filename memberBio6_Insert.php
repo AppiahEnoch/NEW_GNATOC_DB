@@ -17,7 +17,7 @@
     $matricula="";
 
     $path = 'upload/passport/';
-    if ( !file_exists($dir) ) {
+    if ( !file_exists($path) ) {
         mkdir ($path, 0744);
     }
    
@@ -32,7 +32,7 @@
 
 
     $path = 'upload/matricula/';
-    if ( !file_exists($dir) ) {
+    if ( !file_exists($path) ) {
         mkdir ($path, 0744);
     }
     
