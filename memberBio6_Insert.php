@@ -18,7 +18,8 @@
 
     $path = 'upload/passport/';
     if ( !file_exists($path) ) {
-        mkdir ($path, 0744);
+      mkdir("upload", 0744);
+        mkdir($path, 0744);
     }
 
 
@@ -31,7 +32,8 @@
 
     $path = 'upload/matricula/';
     if ( !file_exists($path) ) {
-        mkdir ($path, 0744);
+      mkdir("upload", 0744);
+      mkdir($path, 0744);
     }
     
     $fileName = $_FILES[$v2]['name'];
