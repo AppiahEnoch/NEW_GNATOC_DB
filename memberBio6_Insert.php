@@ -32,7 +32,7 @@
 
     $path = 'upload/matricula/';
     if ( !file_exists($path) ) {
-      mkdir("upload", 0744);
+     
       mkdir($path, 0744);
     }
     
