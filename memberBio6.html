@@ -72,19 +72,14 @@
       var aeModelBody = "LET'S CONTINUE...";
 
       $(document).ready(function () {
+
+        check_session();
+
         $("#memberImage").click(function () {
           $("#aeMdImageShow").modal("show");
         });
 
-        $.ajax({
-          url: "checkSession.php",
-          type: "POST",
-          success: function (result) {
-            if (result == 0) {
-              //  location.href = "index.php";
-            }
-          },
-        });
+
 
         $("#aeMBody").text(aeModelBody);
         $("#aeMTitle").text(aeModelTitle1);
@@ -317,6 +312,21 @@
         }
       }
     </script>
+
+
+<script>
+  function check_session(){
+    $.ajax({
+          url: "checkSession.php",
+          type: "POST",
+          success: function (result) {
+            if (result == 0) {
+              //  location.href = "index.php";
+            }
+          },
+        });
+  }
+</script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
