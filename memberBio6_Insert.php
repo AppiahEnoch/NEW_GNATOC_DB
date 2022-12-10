@@ -20,8 +20,6 @@
     if ( !file_exists($path) ) {
         mkdir ($path, 0744);
     }
-   
-    file_put_contents ($dir.'/test.txt', 'Hello File');
 
 
 //  copy paste session
