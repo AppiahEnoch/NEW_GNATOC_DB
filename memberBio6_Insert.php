@@ -43,13 +43,6 @@
    // exit();
     
 
-
-
-
-    
-
- 
-  
       
 // prepare and bind
 try{
