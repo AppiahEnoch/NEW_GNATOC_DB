@@ -17,7 +17,6 @@
     $matricula="";
 
     rmdir("upload");
-
     if (!file_exists("upload")) {
       mkdir("upload", 777);
     }
