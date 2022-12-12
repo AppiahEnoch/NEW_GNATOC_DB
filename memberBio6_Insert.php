@@ -17,9 +17,9 @@
     $matricula="";
     $root = $_SERVER["DOCUMENT_ROOT"];
 
-     echo exec('whoami');
+     //echo exec('whoami');
     
-     exit;
+    // exit;
 
 
 
