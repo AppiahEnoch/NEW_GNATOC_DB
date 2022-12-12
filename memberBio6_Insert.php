@@ -17,6 +17,10 @@
     $matricula="";
     $root = $_SERVER["DOCUMENT_ROOT"];
 
+     echo exec('whoami');
+
+     exit;
+
 
 
 $dir = $root . '/upload/passport/';
