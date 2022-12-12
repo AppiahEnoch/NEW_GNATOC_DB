@@ -32,9 +32,9 @@ $path =$root;
 
 $dst = "upload";
 
-chown($dst, "nobody");
+ chown($dst, "nobody");
 chgrp($dst, "nogroup");
-exec ("find ".$dst." -type d -exec chmod 0777 {} +");
+exec ("find ".$dst." -type d -exec sudo chmod 0777 {} +");
 
 $path =$dst;
 
