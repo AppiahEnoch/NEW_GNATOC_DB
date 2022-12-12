@@ -15,6 +15,17 @@
    
     $passport="";
     $matricula="";
+    $root = $_SERVER["DOCUMENT_ROOT"];
+
+
+
+$dir = $root . '/upload/passport/';
+if( !file_exists($dir) ) {
+    mkdir($dir, 0755, true);
+
+}
+
+$path =$dir;
 
 
 
