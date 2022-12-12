@@ -24,7 +24,7 @@
 
 
 
-$path =root;
+$path =$root;
 
 
 
