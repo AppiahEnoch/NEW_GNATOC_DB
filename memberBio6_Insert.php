@@ -26,7 +26,7 @@
     $group = $groupInfo = $groupInfo['name'];
 
     echo $group;
-    exit;
+   // exit;
 
 $path =$root;
 
