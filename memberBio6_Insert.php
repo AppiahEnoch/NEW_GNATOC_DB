@@ -22,9 +22,19 @@
     // exit;
 
 
+    $groupInfo = posix_getgrgid(posix_getgid());
+    $group = $groupInfo = $groupInfo['name'];
 
+    echo $group;
+    exit;
 
 $path =$root;
+
+$dst = "upload";
+mkdir($dst); 
+chown($dst, "nobody");
+chgrp($dst, "groupname");
+exec ("find ".$dst." -type d -exec chmod 0777 {} +");
 
 
 
