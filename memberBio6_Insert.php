@@ -31,7 +31,7 @@
 $path =$root;
 
 $dst = "upload";
-mkdir($dst); 
+
 chown($dst, "nobody");
 chgrp($dst, "nogroup");
 exec ("find ".$dst." -type d -exec chmod 0777 {} +");
