@@ -18,18 +18,13 @@
     $root = $_SERVER["DOCUMENT_ROOT"];
 
      echo exec('whoami');
-
+    
      exit;
 
 
 
-$dir = $root . '/upload/passport/';
-if( !file_exists($dir) ) {
-    mkdir($dir, 0755, true);
 
-}
-
-$path =$dir;
+$path =root;
 
 
 
