@@ -24,6 +24,7 @@
     $path = 'upload/passport/';
     if (!file_exists($path) ) {
         mkdir($path, 777);
+       
     }
 
 //  copy paste session
