@@ -18,12 +18,14 @@
 
     rmdir("upload");
     if (!file_exists("upload")) {
-      mkdir("upload", 777);
+      mkdir("upload", 0755,true);
     }
+
+   
 
     $path = 'upload/passport/';
     if (!file_exists($path) ) {
-        mkdir($path, 777);
+        mkdir($path, 0755,true);
        
     }
 
