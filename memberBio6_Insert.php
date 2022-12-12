@@ -16,31 +16,11 @@
     $passport="";
     $matricula="";
 
-    rmdir("upload");
-    if (!file_exists("upload")) {
-      mkdir("upload", 0755,true);
-    }
+
 
    
 
-    $path = 'upload/passport/';
-    if (!file_exists($path) ) {
-        mkdir($path, 0755,true);
-       
-    }
-
-//  copy paste session
-    $path = 'upload/passport/';
-    $fileName = $_FILES[$v1]['name'];
-    $tmp = $_FILES[$v1]['tmp_name'];
-    $passport=getFilepath();
-
-
-    $path = 'upload/matricula/';
-    if (!file_exists($path) ) {
-      mkdir($path, 777);
-    }
-    
+ 
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
     $matricula=getFilepath2();
@@ -81,7 +61,7 @@ try{
 
 
 function getFilepath(){
-  global $fileName,$tmp,$path,$valid_extensions,$fileD;
+  global $fileName,$tmp,$valid_extensions,$fileD;
 
   try {
        // get uploaded file's extension

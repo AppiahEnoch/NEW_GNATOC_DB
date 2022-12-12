@@ -60,6 +60,23 @@ $conn = mysqli_connect($hostname, $username, $password, $database,$port) or die(
 
 
 
+$path = '/upload/passport/';
+$root = $_SERVER["DOCUMENT_ROOT"];
+$dir = $root .$path;
+
+if( !file_exists($dir) ) {
+    mkdir($dir, 0755, true);
+
+
+
+    $path = 'upload/matricula/';
+    $dir = $root .$path;
+    mkdir($dir, 0755, true);
+
+
+}
+
+
 }
 
 
