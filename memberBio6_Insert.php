@@ -32,9 +32,7 @@ $path =$root;
 
 $dst = "upload";
 
- chown($dst, "nobody");
-chgrp($dst, "nogroup");
-exec ("find ".$dst." -type d -exec sudo chmod 0777 {} +");
+ chown("www-data");
 
 $path =$dst;
 
