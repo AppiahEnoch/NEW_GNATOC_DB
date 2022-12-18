@@ -57,6 +57,7 @@
       echo  "file not iswritable||";
     }
     
+    
 
     if (is_readable($folder)) {
       echo  "file is readable";
