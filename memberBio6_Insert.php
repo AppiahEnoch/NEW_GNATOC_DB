@@ -29,9 +29,7 @@
 
     //$folder = '/path/to/folder';
 
-    echo gethostname();
 
-    exit;
 
     if (mkdir($path, 0775)) {
       echo 'The new folder was successfully created on the remote server';
