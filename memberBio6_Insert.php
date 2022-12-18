@@ -44,12 +44,11 @@
      
     }
     else{
-      echo "dir exists";
+      echo "dir exists|| ";
     }
-    exit;
+
     
-    $ip = $_SERVER['REMOTE_ADDR'];
-    echo $ip;
+
 
 
 
@@ -60,9 +59,6 @@
     }
 
   
-
-
-
 
     exit();
     
