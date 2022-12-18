@@ -29,7 +29,17 @@
 
     //$folder = '/path/to/folder';
 
+
+    
+    if (mkdir($path, 0775)) {
+      echo 'The new folder was successfully created on the remote server';
+    } else {
+      echo 'An error occurred while creating the new folder on the remote server';
+    }
+    
+
     chmod("upload", 0644);
+
 
 
     if (is_readable("upload")) {
@@ -42,11 +52,6 @@
     
 
 
-    if (mkdir($path, 0775)) {
-      echo 'The new folder was successfully created on the remote server';
-    } else {
-      echo 'An error occurred while creating the new folder on the remote server';
-    }
 
 
     exit();
