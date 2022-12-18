@@ -44,7 +44,7 @@
     
     $ip = $_SERVER['REMOTE_ADDR'];
     echo $ip;
-    exit;
+
 
 
     if (is_readable($folder)) {
