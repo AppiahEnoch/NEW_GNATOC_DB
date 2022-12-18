@@ -29,6 +29,17 @@
 
     //$folder = '/path/to/folder';
 
+    chmod("upload", 0644);
+
+
+    if (is_readable("upload")) {
+      echo  "file is readable";
+    } else {
+      echo "file is not readable";
+    }
+
+    exit;
+    
 
 
     if (mkdir($path, 0775)) {
