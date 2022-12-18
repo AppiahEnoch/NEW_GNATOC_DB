@@ -49,7 +49,14 @@
 
     
 
+    $folder = '/path/to/folder';
 
+    if (is_writable($folder)) {
+        // The folder is writable
+    } else {
+        // The folder is not writable
+    }
+    
 
 
     if (is_readable($folder)) {
@@ -73,8 +80,6 @@ try{
   $stmt->execute();
 
   echo 1;
- 
-  
   $stmt->close();
   $conn->close();
 
