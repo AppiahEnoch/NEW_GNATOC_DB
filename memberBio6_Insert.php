@@ -16,7 +16,7 @@
     $passport="";
     $matricula="";
     
-    $path= "upload2";
+    $path= "upload";
 
 
  
