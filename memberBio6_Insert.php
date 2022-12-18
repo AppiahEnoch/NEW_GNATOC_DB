@@ -47,7 +47,8 @@
       echo "dir exists|| ";
     }
 
-    chmod($folder, 0777);
+    echo $path;
+    exit;
 
    
 
