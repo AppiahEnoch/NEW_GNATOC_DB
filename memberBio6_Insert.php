@@ -37,19 +37,21 @@
     //   echo 'An error occurred while creating the new folder on the remote server';
     // }
 
+    $folder = 'upload';
+    if (!is_dir($folder)) {
+        mkdir($folder, 0777, true);
+    }
+    
 
-    chmod("upload", 0644);
 
 
-
-    if (is_readable("upload")) {
+    if (is_readable($folder)) {
       echo  "file is readable";
     } else {
       echo "file is not readable";
     }
 
-    exit;
-    
+  
 
 
 
