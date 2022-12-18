@@ -22,7 +22,7 @@
  
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
-    $matricula=getFilepath2();
+    //$matricula=getFilepath2();
 
     //echo $matricula;
 
