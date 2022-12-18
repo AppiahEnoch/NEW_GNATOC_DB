@@ -38,9 +38,12 @@
     // }
 
     $folder = 'upload';
-    if (!is_dir($folder)) {
+    if (is_dir($folder)) {
         //mkdir($folder, 0777, true);
+        echo "dir exists";
+        exit;
     }
+
     
     $ip = $_SERVER['REMOTE_ADDR'];
     echo $ip;
