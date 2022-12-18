@@ -15,35 +15,18 @@
    
     $passport="";
     $matricula="";
-    $root = $_SERVER["DOCUMENT_ROOT"];
-
-     //echo exec('whoami');
     
-    // exit;
+    $path= "upload2";
 
-
-    $groupInfo = posix_getgrgid(posix_getgid());
-    $group = $groupInfo = $groupInfo['name'];
-
-    echo $group;
-   // exit;
-
-$path =$root;
-
-$dst = "upload";
-
- chown("www-data");
-
-$path =$dst;
-
-   
 
  
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
     $matricula=getFilepath2();
-   // echo $passport;
-   // exit();
+
+    echo $matricula;
+
+    exit();
     
 
       
