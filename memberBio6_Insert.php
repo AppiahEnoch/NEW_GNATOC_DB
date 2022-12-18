@@ -49,7 +49,7 @@
 
     
 
-    $folder = '/path/to/folder';
+   
 
     if (is_writable($folder)) {
         // The folder is writable
