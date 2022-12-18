@@ -47,7 +47,7 @@
       echo "dir exists|| ";
     }
 
-    
+    chmod($folder, 0777);
 
    
 
@@ -56,7 +56,7 @@
     } else {
       echo  "file not iswritable||";
     }
-    
+
     
 
     if (is_readable($folder)) {
