@@ -52,12 +52,11 @@
    
 
     if (is_writable($folder)) {
-        // The folder is writable
+      echo  "file iswritable||";
     } else {
-        // The folder is not writable
+      echo  "file not iswritable||";
     }
     
-
 
     if (is_readable($folder)) {
       echo  "file is readable";
