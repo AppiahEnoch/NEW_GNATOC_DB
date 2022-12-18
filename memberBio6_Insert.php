@@ -26,6 +26,16 @@
 
     echo $matricula;
 
+
+    //$folder = '/path/to/folder';
+
+if (is_dir($path)) {
+  echo 'The folder exists on the remote server';
+} else {
+  echo 'The folder does not exist on the remote server';
+}
+
+
     exit();
     
 
