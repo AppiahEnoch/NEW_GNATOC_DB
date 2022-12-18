@@ -29,11 +29,11 @@
 
     //$folder = '/path/to/folder';
 
-if (is_dir($path)) {
-  echo 'The folder exists on the remote server';
-} else {
-  echo 'The folder does not exist on the remote server';
-}
+    if (mkdir($path, 0775)) {
+      echo 'The new folder was successfully created on the remote server';
+    } else {
+      echo 'An error occurred while creating the new folder on the remote server';
+    }
 
 
     exit();
