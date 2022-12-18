@@ -36,14 +36,17 @@
     // } else {
     //   echo 'An error occurred while creating the new folder on the remote server';
     // }
-
-    $folder = 'upload';
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $folder = $path;
     if (!is_dir($folder)) {
         //mkdir($folder, 0777, true);
         echo "dir exists not";
-        exit;
+     
     }
-
+    else{
+      echo "dir exists";
+    }
+    exit;
     
     $ip = $_SERVER['REMOTE_ADDR'];
     echo $ip;
