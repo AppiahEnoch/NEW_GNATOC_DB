@@ -48,7 +48,7 @@
       echo "dir exists||";
     }
 
-    echo $path."||";
+    echo $folder2."||";
 
     if (is_writable($folder)) {
       echo  "file iswritable||";
