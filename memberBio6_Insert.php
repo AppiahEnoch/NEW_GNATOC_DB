@@ -48,7 +48,7 @@
     }
 
     echo $path;
-    exit;
+  
 
    
 
