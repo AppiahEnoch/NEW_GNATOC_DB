@@ -49,6 +49,7 @@
     }
 
     echo $folder2."||";
+    exit();
 
     if (is_writable($folder)) {
       echo  "file iswritable||";
