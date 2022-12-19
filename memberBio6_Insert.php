@@ -49,9 +49,6 @@
     }
 
     echo $path."||";
-  
-
-   
 
     if (is_writable($folder)) {
       echo  "file iswritable||";
