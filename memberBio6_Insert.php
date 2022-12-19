@@ -48,7 +48,7 @@
       echo "dir exists||";
     }
 
-    echo $path;
+    echo $path."||";
   
 
    
