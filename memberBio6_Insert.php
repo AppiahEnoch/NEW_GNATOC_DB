@@ -15,8 +15,15 @@
    
     $passport="";
     $matricula="";
+
+
+
+   
+
     
-    $path= "upload";
+        $path= "upload";
+
+   
 
 
  
@@ -50,17 +57,21 @@
 
   
 
+    $folder = $folder2;
+    $mode = 0777;
+    chmod($folder, $mode);
 
     if (is_writable($folder2)) {
       echo  "file iswritable||";
+
     } else {
-      echo  "file not iswritable||";
+      echo  " ||not writable||";
     }
 
     
 
     if (is_readable($folder2)) {
-      echo  "file is readable";
+      echo  "||file is readable ||";
     } else {
       echo "file is not readable";
     }
