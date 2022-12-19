@@ -38,14 +38,14 @@
     // }
     $path = $_SERVER['DOCUMENT_ROOT'];
     $folder = $path;
-    $folder2 = "\upload";
+    $folder2 = "upload";
     if (!is_dir($folder2)) {
         //mkdir($folder, 0777, true);
-        echo "dir exists not";
+        echo "do not exist";
      
     }
     else{
-      echo "do not exist";
+      echo " exist";
     }
 
     exit();
