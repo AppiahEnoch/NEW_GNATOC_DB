@@ -55,6 +55,26 @@
       echo " exist";
     }
 
+
+    createFile($folder2, "myfile.txt", "123");
+
+
+
+    function createFile($folder, $fileName, $contents) {
+      // Construct the full path to the file
+      $filePath = $folder . '/' . $fileName;
+    
+      // Open the file in write mode
+      $file = fopen($filePath, 'w');
+    
+      // Write the contents of the file
+      fwrite($file, $contents);
+    
+      // Close the file
+      fclose($file);
+    }
+    
+
   
 
     $folder = $folder2;
