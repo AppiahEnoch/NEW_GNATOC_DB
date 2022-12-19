@@ -44,7 +44,7 @@
      
     }
     else{
-      echo "dir exists|| ";
+      echo "dir exists||";
     }
 
     echo $path;
