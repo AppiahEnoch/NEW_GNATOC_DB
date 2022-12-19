@@ -48,10 +48,10 @@
       echo " exist";
     }
 
-    exit();
+  
 
 
-    if (is_writable($folder)) {
+    if (is_writable($folder2)) {
       echo  "file iswritable||";
     } else {
       echo  "file not iswritable||";
@@ -59,7 +59,7 @@
 
     
 
-    if (is_readable($folder)) {
+    if (is_readable($folder2)) {
       echo  "file is readable";
     } else {
       echo "file is not readable";
