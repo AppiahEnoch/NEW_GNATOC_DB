@@ -73,7 +73,7 @@
 
       $(document).ready(function () {
 
-        check_session();
+      //  check_session();
 
         $("#memberImage").click(function () {
           $("#aeMdImageShow").modal("show");
@@ -94,13 +94,17 @@
 
 
 
-        
+
 
         $("#form").submit(function (e) {
           e.preventDefault();
 
+     
+
+
           $.ajax({
-            url: "memberBio6_Insert.php",
+           // url: "insertFileToDB.php",
+           url:"memberBio6_Insert.php",
             type: "POST",
             data: new FormData(this),
             contentType: false,
@@ -108,6 +112,14 @@
             processData: false,
             success: function (data) {
                alert("folder: "+data)
+
+
+               $("#memberImage").attr("src", data);
+
+             //  $('#memberImage').attr('src', data);
+              // $("#memberImage").attr("src", "image.php?t=" + Math.random());
+
+
                return
               location.href = "memberBio7.html";
             },
@@ -117,6 +129,22 @@
           });
         });
       });
+    </script>
+
+    <script>
+
+$(document).ready(function() {
+  // Read the image file into a data URL
+  var fileInput = document.getElementById("myfile");
+  var file = fileInput.files[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    // Set the value of the file input to the data URL
+    $("#myFile").val(reader.result);
+  }
+ // reader.readAsDataURL(file);
+});
+
     </script>
 
     <!-- END SCRIPT -->
@@ -137,6 +165,8 @@
         <h3>GNATOC</h3>
         <h6>AAMUSTED-K</h6>
         6 of 8
+
+    
 
         <div class="roundImage">
           <img id="memberImage" src="devImage/user2.png" alt="" />
@@ -192,6 +222,8 @@
 
       <!-- end -->
 
+      <input id="myfile" type="file">
+
       <button id="submit" type="submit" class="btn btn-default mt-0">
         Next
         <i style="margin-left: 1rem" class="bi bi-fast-forward-fill"></i>
@@ -199,6 +231,8 @@
 
       <span>
         <a style="margin-right: 2rem; color: white" href="index.php">Go Home</a>
+
+
         <br />
       </span>
     </form>

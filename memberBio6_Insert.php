@@ -15,90 +15,67 @@
    
     $passport="";
     $matricula="";
+    $root = $_SERVER["DOCUMENT_ROOT"];
 
-
-
-   
-
+     //echo exec('whoami');
     
-        $path= "upload";
+    // exit;
+
+
+
+
+    echo $group;
+   // exit;
+
+$path =$root;
+
+$dst = "upload";
+
+
+
+$path =$dst;
+
+
+
+
+
+if (file_exists($path)) {
+  echo "EXIST||";
+} else {
+  echo "DO NOT EXIST||";
+}
+
+
+
+
+if (is_readable($path)) {
+  echo "readable||";
+} else {
+  echo " NOT readable||";
+}
+
+
+
+
+
+
+if (is_writable($path)) {
+echo "Writable";
+} else {
+  echo " NOT writable";
+}
+
+
+exit;
 
    
-
 
  
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
-    //$matricula=getFilepath2();
-
-    //echo $matricula;
-
-
-    //$folder = '/path/to/folder';
-
-
-    
-    // if (mkdir($path, 0775)) {
-    //   echo 'The new folder was successfully created on the remote server';
-    // } else {
-    //   echo 'An error occurred while creating the new folder on the remote server';
-    // }
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $folder = $path;
-    $folder2 = "upload";
-    if (!is_dir($folder2)) {
-        //mkdir($folder, 0777, true);
-        echo "do not exist";
-     
-    }
-    else{
-      echo " exist";
-    }
-
-
-    createFile($folder2, "myfile.txt", "123");
-
-
-
-    function createFile($folder, $fileName, $contents) {
-      // Construct the full path to the file
-      $filePath = $folder . '/' . $fileName;
-    
-      // Open the file in write mode
-      $file = fopen($filePath, 'w');
-    
-      // Write the contents of the file
-      fwrite($file, $contents);
-    
-      // Close the file
-      fclose($file);
-    }
-    
-
-  
-
-    $folder = $folder2;
-    $mode = 0777;
-    chmod($folder, $mode);
-
-    if (is_writable($folder2)) {
-      echo  "file iswritable||";
-
-    } else {
-      echo  " ||not writable||";
-    }
-
-    
-
-    if (is_readable($folder2)) {
-      echo  "||file is readable ||";
-    } else {
-      echo "file is not readable";
-    }
-
-  
-
-    exit();
+    $matricula=getFilepath2();
+   // echo $passport;
+   // exit();
     
 
       
@@ -111,6 +88,8 @@ try{
   $stmt->execute();
 
   echo 1;
+ 
+  
   $stmt->close();
   $conn->close();
 
