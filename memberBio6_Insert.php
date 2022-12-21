@@ -28,11 +28,7 @@
    // exit;
 
 $path =$root;
-
 $dst = "upload5";
-
-
-
 $path =$dst;
 
 
