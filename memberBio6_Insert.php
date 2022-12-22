@@ -14,12 +14,8 @@
     $v2="matricula";
    
     $passport="";
-    $matricula="";
-    $root = $_SERVER["DOCUMENT_ROOT"];
+    $matricula="mmmmm";
 
-     //echo exec('whoami');
-    
-    // exit;
 
 
 
@@ -27,14 +23,13 @@
    //echo $group;
    // exit;
 
-$path =$root;
-$dst = "files";
-$path =$dst;
+
+$path ="files";
 
 
 
 
-
+/*
 if (file_exists($path)) {
   echo "EXIST||";
 } else {
@@ -62,16 +57,14 @@ echo "Writable";
 }
 
 
-exit;
-
+*/
    
 
  
-    $fileName = $_FILES[$v2]['name'];
-    $tmp = $_FILES[$v2]['tmp_name'];
-    $matricula=getFilepath2();
-   // echo $passport;
-   // exit();
+    $fileName = $_FILES[$v1]['name'];
+    $tmp = $_FILES[$v1]['tmp_name'];
+    $passport=getFilepath();
+
     
 
       
