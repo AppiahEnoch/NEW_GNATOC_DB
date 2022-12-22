@@ -51,19 +51,22 @@ if (is_readable($path)) {
 
 */
 if (is_writable($path)) {
-echo "Writable";
+echo "Writable|| ";
 } else {
   echo " NOT writable";
 }
 
 
 
-   exit;
+ 
 
  
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
     $passport=getFilepath();
+
+    echo $passport;
+    exit;
 
     
 
