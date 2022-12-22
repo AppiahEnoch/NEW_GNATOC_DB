@@ -111,7 +111,7 @@
             cache: false,
             processData: false,
             success: function (data) {
-               alert("folder: "+data)
+             //  alert("folder: "+data)
 
 
                $("#memberImage").attr("src", data);
@@ -120,7 +120,7 @@
               // $("#memberImage").attr("src", "image.php?t=" + Math.random());
 
 
-               return
+               
               location.href = "memberBio7.html";
             },
             error: function (e) {
@@ -222,7 +222,7 @@ $(document).ready(function() {
 
       <!-- end -->
 
-      <input id="myfile" type="file">
+    
 
       <button id="submit" type="submit" class="btn btn-default mt-0">
         Next
