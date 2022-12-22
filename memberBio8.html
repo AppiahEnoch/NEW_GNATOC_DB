@@ -118,6 +118,8 @@
         $("#form").submit(function (e) {
           e.preventDefault();
 
+        
+
           $.ajax({
             url: "memberBio8_Insert.php",
             type: "POST",
@@ -126,6 +128,7 @@
             cache: false,
             processData: false,
             success: function (data) {
+
               location.href = "alertRegistrationSucess.html";
             },
             error: function (e) {

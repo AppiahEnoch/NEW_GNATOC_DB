@@ -176,7 +176,7 @@
           return;
         }
 
-        alert(value);
+        //alert(value);
 
         // alert(fName+" "+mName +" "+lName)
 
@@ -467,7 +467,7 @@
           type: "post",
           success: function (response) {
             if (!aeEmpty(frameID)) {
-              alert(response);
+            //  alert(response);
               loadFile(frameID, response);
             }
           },
@@ -511,18 +511,36 @@
             $("#errorMismatch").hide();
           }
 
-          $.post(
-            "resetPortalPassword.php",
-            {
-              1: 1,
-            },
-            function (data, status) {
-              alert(status);
+          $.ajax({
+          type: "post",
+          data: {
+            old_password: o,
+            new_password: n
+           
+
+          },
+          cache: false,
+          url: "reset_member_password.php",
+          dataType: "text",
+          error: function (xhr, status, error) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message);
+          },
+
+          success: function (data,status) {
+            alert(data);
+            if(data=="1"){
+              alert(7);
+              document.getElementById("aeMresetPassword").style.display = "none";
             }
-          );
+          },
         });
 
-        document.getElementById("aeMresetPassword").style.display = "block";
+
+
+        });
+
+   
 
         $("#ch1").click(function () {
           $("#ch1f").click();
@@ -592,7 +610,7 @@
           type: "get",
           dataType: "JSON",
           success: function (response) {
-            alert(response);
+           // alert(response);
 
             var fullName = response[1].fullName;
             var staffID = response[1].staffID;
@@ -721,6 +739,8 @@
               );
 
             // files
+
+           // alert(fSsnit)
             loadFile("fStudyLeave", fStudy);
             document.getElementById("d1").setAttribute("href", fStudy);
             loadFile("fAdmission", fAdmission);

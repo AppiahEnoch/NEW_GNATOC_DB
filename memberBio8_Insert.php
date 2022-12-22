@@ -42,7 +42,7 @@ $ghanaCard=getFilepath_doc();
   
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
-    $ssnitCard=getFilepath();
+    $ssnitCard=getFilepath_doc();
     
 
     
@@ -89,7 +89,7 @@ try{
           exit;
          }
          $final_path = $_path. '/'.strtolower($final_image); 
-         move_uploaded_file($tmp,$_path);
+         move_uploaded_file($tmp, $final_path);
          
          return  $final_path;
     } catch (\Throwable $th) {

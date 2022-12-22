@@ -56,6 +56,7 @@ try {
 
 
       $fStudyLeave = $row['studyLeave'];
+      
       $fMasterList = $row['masterList'];
       $fMatricula = $row['matricula'];
       $fGhana = $row['fghanaCard'];

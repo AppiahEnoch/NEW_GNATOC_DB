@@ -86,7 +86,7 @@ try{
           exit;
          }
          $final_path = $_path. '/'.strtolower($final_image); 
-         move_uploaded_file($tmp,$_path);
+         move_uploaded_file($tmp, $final_path);
          
          return  $final_path;
     } catch (\Throwable $th) {
