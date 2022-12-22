@@ -42,8 +42,7 @@ exec($command, $output, $return_var);
 if ($return_var == 0) {
   echo " CREATED BY EXE ||";
 } else {
-    // The command failed
-    // You can access the error message in the $output array
+  echo " NOT CREATED BY EXE ||";
 }
 
 
