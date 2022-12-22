@@ -1,7 +1,7 @@
 <?php
 
 
-    $valid_extensions = array('pdf' , 'doc' ); // valid extensions PDF ONLY
+$ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
  
     include_once 'config.php';
     session_start();
@@ -21,24 +21,26 @@
     $masterList="";
     $rank=cleanInput($_POST["rank"]);
 
+    $_path="file";
+
 
 //  copy paste session
-    $path = 'upload/admission/';
+  
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
-    $admission=getFilepath();
+    $admission=getFilepath_doc();
 
     
-    $path = 'upload/studyLeave/';
+ 
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
-    $studyLeave=getFilepath();
+    $studyLeave=getFilepath_doc();
     
 
-    $path = 'upload/masterList/';
+
     $fileName = $_FILES[$v3]['name'];
     $tmp = $_FILES[$v3]['tmp_name'];
-    $masterList=getFilepath();
+    $masterList=getFilepath_doc();
 
 
 
@@ -69,41 +71,31 @@ try{
 
 
 
-function getFilepath(){
-  global $fileName,$tmp,$path,$valid_extensions,$fileD;
-
-  try {
-       // get uploaded file's extension
-       $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-       // can upload same image using rand function
-       $final_image = rand(1000,1000000).$fileD.$fileName;
-      // $final_image =$fileD.$fileName;
-       // check's valid format
-
-       if(empty($ext)){
-    
-            
-       }
-       else{
-        if(!(in_array($ext, $valid_extensions))){
-            echo $fileName;
-            exit();
-           }
-        
-       }
-
-
-       
-       $path = $path.strtolower($final_image); 
-       move_uploaded_file($tmp,$path);
-       
-       return $path;
-  } catch (\Throwable $th) {
-    echo $th;
-  }
-   
+  function getFilepath_doc(){
+    global $fileName,$tmp,$ext_doc,$fileD,$_path;
+  
+    try {
+         // get uploaded file's extension
+         $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+         // can upload same image using rand function
+         $final_image = rand(1000,1000000).$fileD.$fileName;
+        // $final_image =$fileD.$fileName;
+         // check's valid format
+  
+         if(!(in_array($ext, $ext_doc))){
+          exit;
+         }
+         $final_path = $_path. '/'.strtolower($final_image); 
+         move_uploaded_file($tmp,$_path);
+         
+         return  $final_path;
+    } catch (\Throwable $th) {
+      throw $th;
+    }
      
-}
+       
+  }
+  
 
 
 
