@@ -60,13 +60,16 @@ echo "Writable|| ";
 
  
 
- 
+ /*
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
     $passport=getFilepath();
 
-
-    $error = error_get_last();
+*/
+$target_dir ="file";
+$target_file = $target_dir . '/' . basename($_FILES[$v1]['name']);
+if (!move_uploaded_file($_FILES[$v2]['tmp_name'], $target_file)) {
+  $error = error_get_last();
   die('Error: ' . $error['message']);
 
    // echo $passport;
