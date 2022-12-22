@@ -49,13 +49,13 @@ if (is_readable($path)) {
 
 
 
-*/
+
 if (is_writable($path)) {
 echo "Writable|| ";
 } else {
   echo " NOT writable";
 }
-
+*/
 
 
  
