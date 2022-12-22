@@ -1,8 +1,8 @@
 <?php
 
-    $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'bmp' , 'pdf' , 'doc' ); // valid extensions
+    $ext_img = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
  
-    $valid_extensions2 = array('pdf' , 'doc' ); // valid extensions PDF ONLY
+    $ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
  
     include_once 'config.php';
     session_start();
@@ -14,68 +14,25 @@
     $v2="matricula";
    
     $passport="";
-    $matricula="mmmmm";
+    $matricula="";
+    
+$_path ="file";
 
 
-
-
-
-   //echo $group;
-   // exit;
-
-
-$path ="file";
-
-
-
-
-/*
-if (file_exists($path)) {
-  echo "EXIST||";
-} else {
-  echo "DO NOT EXIST||";
-}
-
-
-
-
-if (is_readable($path)) {
-  echo "readable||";
-} else {
-  echo " NOT readable||";
-}
-
-
-
-
-
-
-if (is_writable($path)) {
-echo "Writable|| ";
-} else {
-  echo " NOT writable";
-}
-*/
-
-
- 
-
- /*
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
-    $passport=getFilepath();
+    $passport=getFilepath_img();
 
-*/
-$target_dir ="file";
-$target_file = $target_dir . '/' . basename($_FILES[$v1]['name']);
-if (!move_uploaded_file($_FILES[$v2]['tmp_name'], $target_file)) {
-  $error = error_get_last();
-  die('Error: ' . $error['message']);
-}
-    echo $target_file;
-    exit;
+
+    $fileName = $_FILES[$v2]['name'];
+    $tmp = $_FILES[$v2]['tmp_name'];
+    $matricula=getFilepath_doc();
+
+  
 
     
+
+
 
       
 // prepare and bind
@@ -106,11 +63,24 @@ try{
   
 
 
+  function get_file_path($v1){
+    
+$target_dir = $_path;
+$target_file = $target_dir . '/' . basename($_FILES[$v1]['name']);
+if (!move_uploaded_file($_FILES[$v1]['tmp_name'], $target_file)) {
+  $error = error_get_last();
+  die('Error: ' . $error['message']);
+  exit;
+}
+
+return $target_file;
+  }
 
 
 
-function getFilepath(){
-  global $fileName,$tmp,$valid_extensions,$fileD,$path;
+
+function getFilepath_doc(){
+  global $fileName,$tmp,$ext_doc,$fileD,$_path;
 
   try {
        // get uploaded file's extension
@@ -120,14 +90,13 @@ function getFilepath(){
       // $final_image =$fileD.$fileName;
        // check's valid format
 
-       if(!(in_array($ext, $valid_extensions))){
+       if(!(in_array($ext, $ext_doc))){
         exit;
        }
+       $final_path = $_path. '/'.strtolower($final_image); 
+       move_uploaded_file($tmp,$_path);
        
-       $path = $path.strtolower($final_image); 
-       move_uploaded_file($tmp,$path);
-       
-       return $path;
+       return  $final_path;
   } catch (\Throwable $th) {
     throw $th;
   }
@@ -136,8 +105,8 @@ function getFilepath(){
 }
     
 
-function getFilepath2(){
-  global $fileName,$tmp,$path,$valid_extensions2,$fileD,$path;;
+function getFilepath_img(){
+  global $fileName,$tmp,$ext_img,$fileD,$_path;
 
   try {
        // get uploaded file's extension
@@ -147,18 +116,20 @@ function getFilepath2(){
       // $final_image =$fileD.$fileName;
        // check's valid format
 
-       if(!(in_array($ext, $valid_extensions2))){
-        exit();
+       if(!(in_array($ext, $ext_img))){
+        exit;
        }
+       $final_path = $_path. '/'.strtolower($final_image); 
+       move_uploaded_file($tmp,$final_path);
        
-       $path = $path.strtolower($final_image); 
-       move_uploaded_file($tmp,$path);
-       
-       return $path;
+       return  $final_path;
   } catch (\Throwable $th) {
-    //throw $th;
+    throw $th;
   }
    
      
 }
+    
+
+
     
