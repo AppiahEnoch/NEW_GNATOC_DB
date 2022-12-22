@@ -33,6 +33,22 @@ $path =$dst;
 
 
 
+$command = 'sudo mkdir -p upload6 && sudo chmod -R 777 upload6/';
+
+// Execute the command
+exec($command, $output, $return_var);
+
+// Check the return value to see if the command was successful
+if ($return_var == 0) {
+  echo " CREATED BY EXE ||";
+} else {
+    // The command failed
+    // You can access the error message in the $output array
+}
+
+
+
+exit;
 
 
 if (file_exists($path)) {
