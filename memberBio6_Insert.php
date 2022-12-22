@@ -100,7 +100,7 @@ try{
 
 
 function getFilepath(){
-  global $fileName,$tmp,$valid_extensions,$fileD;
+  global $fileName,$tmp,$valid_extensions,$fileD,$path;
 
   try {
        // get uploaded file's extension
@@ -127,7 +127,7 @@ function getFilepath(){
     
 
 function getFilepath2(){
-  global $fileName,$tmp,$path,$valid_extensions2,$fileD;
+  global $fileName,$tmp,$path,$valid_extensions2,$fileD,$path;;
 
   try {
        // get uploaded file's extension
