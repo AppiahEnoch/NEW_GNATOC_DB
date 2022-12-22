@@ -65,7 +65,11 @@ echo "Writable|| ";
     $tmp = $_FILES[$v1]['tmp_name'];
     $passport=getFilepath();
 
-    echo $passport;
+
+    $error = error_get_last();
+  die('Error: ' . $error['message']);
+
+   // echo $passport;
     exit;
 
     
