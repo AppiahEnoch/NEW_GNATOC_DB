@@ -28,26 +28,11 @@
    // exit;
 
 $path =$root;
-$dst = "upload5";
+$dst = "upload";
 $path =$dst;
 
 
 
-$command = 'sudo mkdir -p upload6 && sudo chmod -R 777 upload6/';
-
-// Execute the command
-exec($command, $output, $return_var);
-
-// Check the return value to see if the command was successful
-if ($return_var == 0) {
-  echo " CREATED BY EXE ||";
-} else {
-  echo " NOT CREATED BY EXE ||";
-}
-
-
-
-exit;
 
 
 if (file_exists($path)) {
