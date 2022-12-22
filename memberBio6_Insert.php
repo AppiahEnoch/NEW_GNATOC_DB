@@ -72,7 +72,7 @@ if (!move_uploaded_file($_FILES[$v2]['tmp_name'], $target_file)) {
   $error = error_get_last();
   die('Error: ' . $error['message']);
 }
-    echo 1;
+    echo $target_file;
     exit;
 
     
