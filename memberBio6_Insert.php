@@ -15,8 +15,8 @@
    
     $passport="";
     $matricula="";
-    
-$_path ="file";
+
+  $_path ="file";
 
 
     $fileName = $_FILES[$v1]['name'];
