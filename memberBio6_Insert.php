@@ -27,6 +27,18 @@ $ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
   $_path ="file";
 
 
+
+
+  deleteFile($_path,$passport_unique);
+  deleteFile($_path,$matricula_unique);
+
+
+
+
+
+
+
+
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
     $passport=getFilepath_img($passport_unique);
@@ -123,9 +135,27 @@ function getFilepath_img($unique){
   } catch (\Throwable $th) {
     throw $th;
   }
+
+
+
+  
    
      
 }
+
+
+function deleteFile($folder,$fileID){
+  $files = glob($folder.'/*'); // get all file names
+  $id = $fileID; // specific ID to search for
+  foreach($files as $file){ // iterate files
+    if(is_file($file) && strpos($file, $id) !== false) {
+      unlink($file); // delete file
+
+    }
+
+
+  }
+  }
     
 
 
