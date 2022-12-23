@@ -92,8 +92,6 @@
             return false;
           }
 
-   
-        
           $.ajax({
             url: "memberBio1_insert.php",
             type: "post",
@@ -104,19 +102,15 @@
               ghanaCard: ghanaCard,
             },
             success: function (data) {
-            //  alert(data)
-              
+              //  alert(data)
 
               try {
                 var n = data.trim();
-              
 
                 if (n == "1") {
                   window.location = "emailVerification.html";
                 }
               } catch (error) {}
-
-
             },
           });
         });
@@ -149,6 +143,10 @@
           staffID = $("#staffID").val();
           staffIDIsUsed = false;
 
+          alert(4);
+
+          return;
+
           try {
             var n = staffID.trim();
             staffID = n;
@@ -157,8 +155,7 @@
             return false;
           }
 
-
-         // alert(staffID)
+          // alert(staffID)
           if (staffID.length > 3) {
             //$.ajaxSetup({async: false});
 
@@ -170,17 +167,17 @@
               function (data, status) {
                 var n = data;
 
-               //  alert(data)
+                //  alert(data)
 
                 // return false;
-              //  alert(n);
+                //  alert(n);
 
                 try {
                   var nn = n.trim();
                   if (nn.length > 1) {
                     staffID = " ";
 
-                   // alert(nn)
+                    // alert(nn)
 
                     $("#staffID").css({
                       "background-color": "white",
