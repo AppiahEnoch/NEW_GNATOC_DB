@@ -106,6 +106,10 @@
   </head>
 
   <body>
+
+  <?php
+  include "verifyAdmin.php";
+  ?>
     <!-- NAV BAR BEGINS-->
 
     <nav
@@ -135,21 +139,26 @@
               <a class="nav-link" aria-current="page" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="generateCode.html">CODE</a>
+              <a class="nav-link" href="generateCode.php">CODE</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Receive Dues</a>
-              
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Records</a>
-              
             </li>
             <li class="nav-item">
-              <a id="resetPassword" class="nav-link" href="resetAdminPassword.html">Reset Password</a>
+              <a
+                id="resetPassword"
+                class="nav-link"
+                href="resetAdminPassword.html"
+                >Reset Password</a
+              >
             </li>
             <li class="nav-item">
-              <a id="resetPassword" class="nav-link" href="addAdmin.html">New Admin</a>
+              <a id="resetPassword" class="nav-link" href="addAdmin.php"
+                >New Admin</a
+              >
             </li>
           </ul>
         </div>

@@ -52,6 +52,10 @@
   </head>
 
   <body>
+
+  <?php
+  include "checkSession.php";
+  ?>
     <!-- BEGIN SCRIPT -->
     <script>
       $(document).ready(function () {

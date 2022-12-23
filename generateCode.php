@@ -52,6 +52,15 @@
   </head>
 
   <body>
+    
+  <?php
+  include "verifyAdmin.php";
+
+  ?>
+    
+
+
+
     <!-- BEGIN SCRIPT -->
     <script>
       $(document).ready(function () {
@@ -263,7 +272,7 @@
           <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
       </div>
-      <a style="color: white" href="adminPage.html">Go Back</a>
+      <a style="color: white" href="adminPage.php">Go Back</a>
     </form>
     <!-- partial -->
 

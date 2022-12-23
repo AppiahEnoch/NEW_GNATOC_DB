@@ -81,19 +81,11 @@
           }
         });
 
-
-
         $("#aeMdSuccess").on("click", "#btClose", function (e) {
           $("#aeMdSuccess").modal("hide");
 
-          location.replace("adminPage.html")
-
+          location.replace("adminPage.php");
         });
-
-
-
-
-
 
         $("#form").submit(function (e) {
           e.preventDefault();
@@ -105,66 +97,40 @@
           var password = $("#password").val();
           var confirm = $("#confirm").val();
 
-
           try {
-            var p=password.trim();
-          var c=confirm.trim()
+            var p = password.trim();
+            var c = confirm.trim();
 
+            if (!(p == c)) {
+              aeModelTitle = "PASSWORD MISMATCH";
+              aeModelBody =
+                "Password is not equal to confirm password. Make sure they are equal.";
 
-          if(!(p==c)){
+              $("#aeMBody").text(aeModelBody);
+              $("#aeMTitle").text(aeModelTitle);
+              $("#aeModelPassive").modal("show");
 
-            aeModelTitle = "PASSWORD MISMATCH";
-                  aeModelBody = "Password is not equal to confirm password. Make sure they are equal.";
-
-                  $("#aeMBody").text(aeModelBody);
-                  $("#aeMTitle").text(aeModelTitle);
-                  $("#aeModelPassive").modal("show");
-
-                  return;
-          }
-
-
-
-
-
-          } catch (error) {
-            
-          }
-
-
-
-
-
-
-
-
+              return;
+            }
+          } catch (error) {}
 
           $.post(
-            "addNewAdmin_Insert.php",
+            "resetAdminPassword2_.php",
             {
-              staffID:staffID,
-              email:email,
-              mobile:mobile,
+              staffID: staffID,
+              email: email,
+              mobile: mobile,
               username: username,
               password: password,
             },
             function (data, status) {
               var v = data.trim();
 
-              alert(data)
-              return;
-
-             
-
               if (v == 1) {
-
                 $("#aeMdSuccess").modal("show");
-            
-
-                
               } else {
                 aeModelTitle = "COULD NOT SAVE YOUR RECORD";
-                aeModelBody = "STAFF ID ALREADY EXISTS.";
+                aeModelBody = "PROBLEM OCCURED AND DATA COULD NOT BE SAVED";
 
                 $("#aeMBody").text(aeModelBody);
                 $("#aeMTitle").text(aeModelTitle);
@@ -177,15 +143,21 @@
     </script>
   </head>
   <body>
+  <?php
+  include "verifyAdmin.php";
+
+  ?>
+
+
+
     <div class="h-100 d-flex align-items-center justify-content-center m-1">
       <div
         class="h-100 d-flex align-items-center justify-content-center m-auto"
       >
         <form id="form">
           <div class="form-outline mb-2 text-center">
-            <h3>ADD NEW ADMIN</h3>
-            <i class="fa fa-male fa-3x" aria-hidden="true"></i>
-
+            <h3>RESET PASSWORD</h3>
+            <i style="font-size: 2rem" class="bi bi-lock-fill"></i>
           </div>
 
           <!-- Email input -->
@@ -230,7 +202,6 @@
             <input
               required
               type="text"
-        
               id="username"
               class="form-control"
               placeholder="New Username"
@@ -241,7 +212,6 @@
           <!-- Password input -->
           <div class="input-group mb-2" id="show_hide_password">
             <input
-            minlength="8"
               required
               class="form-control w-100"
               id="password"
@@ -264,7 +234,6 @@
           <!-- Password input -->
           <div class="input-group mb-2" id="show_hide_password">
             <input
-            minlength="8"
               required
               class="form-control w-100"
               id="confirm"
@@ -291,7 +260,7 @@
               class="btn-primary w-100"
               type="submit"
             >
-              ADD
+              RESET
             </button>
           </div>
 
@@ -300,7 +269,7 @@
             <div class="col d-flex justify-content-start">
               <!-- Checkbox -->
               <div class="form-check justify-content-lg-start">
-                <a style="font-weight: bold; color: blue" href="adminPage.html"
+                <a style="font-weight: bold; color: blue" href="adminPage.php"
                   >Go Back?</a
                 >
                 <br />
@@ -311,8 +280,6 @@
       </div>
     </div>
 
-
-    
     <!-- BEGIN AEMODEL-->
     <div id="aeModelPassive" class="modal" tabindex="-1">
       <div class="modal-dialog">
@@ -342,10 +309,6 @@
     </div>
     <!-- END AEMODEL-->
 
-
-
-
-    
     <!-- BEGIN AEMODEL-->
     <div id="aeMdSuccess" class="modal" tabindex="-1">
       <div class="modal-dialog">
@@ -365,7 +328,6 @@
       </div>
     </div>
     <!-- END AEMODEL-->
-
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

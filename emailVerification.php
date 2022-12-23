@@ -52,11 +52,16 @@
   </head>
 
   <body>
+
+  <?php
+  include "checkSession.php";
+  ?>
     <!-- BEGIN SCRIPT -->
     <script>
       var staffID = "";
 
       $(document).ready(function () {
+
         if (navigator.onLine) {
           getVcode();
         } else {
