@@ -792,10 +792,10 @@
       });
 
       function loadFile(id, file) {
-        var parent = $("embed#" + id + "").parent();
+        var parent = $("embed" + id + "").parent();
         var newElement = "<embed src=" + file + " id='" + id + "'>";
 
-        $("embed#" + id + "").remove();
+        $("embed #" + id + "").remove();
         parent.append(newElement);
       }
     </script>
