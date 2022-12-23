@@ -113,7 +113,7 @@ try {
   $stmt->close();
   $conn->close();
 
-  header("Location: memberBio3.html");
+  header("Location: memberBio3.php");
 } catch (Exception $e) {
   echo $e;
 }

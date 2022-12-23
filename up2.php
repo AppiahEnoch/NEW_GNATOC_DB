@@ -44,7 +44,7 @@ try{
      echo ''.$value;
     $stmt->close();
     $conn->close();
-    // header("Location:memberBio7.html");
+    // header("Location:memberBio7.php");
     
   }
   catch(Exception $e){

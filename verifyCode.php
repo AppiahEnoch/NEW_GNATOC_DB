@@ -36,6 +36,6 @@ while ($row = $result->fetch_assoc()) {
  }
  
  elseif($code==0){
-    header('Location: memberBio3.html');
+    header('Location: memberBio3.php');
     exit;
  }

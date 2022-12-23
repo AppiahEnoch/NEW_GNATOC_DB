@@ -154,7 +154,7 @@ include "verifyCode.php"
             },
             function (data, status) {
        
-              location.href = "memberBio6.html";
+              location.href = "memberBio6.php";
             }
           );
         });

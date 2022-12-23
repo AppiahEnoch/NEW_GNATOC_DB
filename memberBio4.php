@@ -107,7 +107,7 @@
               dob: dob,
             },
             function (data, status) {
-              location.href = "memberBio5.html";
+              location.href = "memberBio5.php";
             }
           );
         });

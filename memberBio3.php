@@ -52,6 +52,9 @@
   </head>
 
   <body>
+  <?php
+  include "checkSession.php";
+  ?>
     <!-- BEGIN SCRIPT -->
     <script>
       var aeModelBody = "";
@@ -104,8 +107,8 @@
                   voter: voter,
                 },
                 function (data, status) {
-                  // window.open("memberBio4.html","_self")
-                  location.href = "memberBio4.html";
+                  // window.open("memberBio4.php","_self")
+                  location.href = "memberBio4.php";
                 }
               );
             }
