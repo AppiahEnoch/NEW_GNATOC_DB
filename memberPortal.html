@@ -636,18 +636,18 @@
             var fSsnit = response[1].fSsnit;
             var fAdmission = response[1].fAdmission;
 
-            alert(fAdmission);
+           // alert(fAdmission);
 
             $.ajax({
     url:fAdmission,
     type:'HEAD',
     error: function()
     {
-        alert("exist")
+      //  alert("exist")
     },
     success: function()
     {
-        alert("NOT exist")
+       // alert("NOT exist")
     }
 });
 
@@ -805,8 +805,8 @@
         parent.append(newElement);
       }
 
-      function setEmbedSrc(id,fileUrl) {
-    alert("url: "+fileUrl);
+  function setEmbedSrc(id,fileUrl) {
+   // alert("url: "+fileUrl);
   var embedElement = document.getElementById(id);
   embedElement.src = fileUrl;
 }
