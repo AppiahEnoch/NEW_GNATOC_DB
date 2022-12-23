@@ -30,7 +30,7 @@
 // prepare and bind
 try{
   session_start();
-  $_SESSION["staffID"]="1220016";
+  
   $staffID=$_SESSION["staffID"];
 
   
