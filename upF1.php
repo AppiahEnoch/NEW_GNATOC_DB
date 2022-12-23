@@ -1,5 +1,11 @@
 <?php
-
+$passport_unique="passportx@23UaG52_x-@@k3";
+$matricula_unique="matriculax@23UaG52_x-@@k3";
+$studyleave_unique="studyleavex@23UaG52_x-@@k3";
+$masterlist_unique="masterlistx@23UaG52_x-@@k3";
+$ssnit_unique="ssnitx@23UaG52_x-@@k3";
+$ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
+$admission_unique="admissionx@23UaG52_x-@@k3";
 
 $ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
  
@@ -30,6 +36,34 @@ $ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
 
 
     $_path="file";
+    $folder=$_path;
+    $fileID="";
+
+
+
+    $fileID=$studyleave_unique;
+    find_and_delete_file($col,"study");
+
+    $fileID=$admission_unique;
+    find_and_delete_file($col,"admission");
+
+    $fileID=$passport_unique;
+    find_and_delete_file($col,"passport");
+
+    $fileID=$matricula_unique;
+    find_and_delete_file($col,"matricula");
+
+    $fileID=$masterlist_unique;
+    find_and_delete_file($col,"master");
+
+    $fileID=$ssnit_unique;
+    find_and_delete_file($col,"ssnit");
+
+    $fileID=$ghanaCard_unique;
+    find_and_delete_file($col,"ghana");
+
+
+
 
 //  copy paste session
 $fileName = $_FILES[$v1]['name'];
@@ -106,3 +140,25 @@ try{
   }
 
     
+  function deleteFile($folder,$fileID){
+    $files = glob($folder.'/*'); // get all file names
+    $id = $fileID; // specific ID to search for
+    foreach($files as $file){ // iterate files
+      if(is_file($file) && strpos($file, $id) !== false) {
+        unlink($file); // delete file
+  
+      }
+  
+  
+    }
+    }
+
+
+
+    function find_and_delete_file($original_string,$containStr){
+              global $folder,$fileID;
+       if (strpos($original_string, $containStr) !== false) {
+             deleteFile($folder,$fileID);
+
+      }
+    }

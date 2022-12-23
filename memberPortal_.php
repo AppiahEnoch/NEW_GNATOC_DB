@@ -1,5 +1,13 @@
 <?php
 
+$passport_unique="passportx@23UaG52_x-@@k3";
+$matricula_unique="matriculax@23UaG52_x-@@k3";
+$studyleave_unique="studyleavex@23UaG52_x-@@k3";
+$masterlist_unique="masterlistx@23UaG52_x-@@k3";
+$ssnit_unique="ssnitx@23UaG52_x-@@k3";
+$ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
+$admission_unique="admissionx@23UaG52_x-@@k3";
+
 require_once 'config.php';
 
 
@@ -96,3 +104,17 @@ try {
 
 
 $conn->close();
+
+
+
+function deleteFile($folder,$fileID){
+  $files = glob($folder.'/*'); // get all file names
+  $id = $fileID; // specific ID to search for
+  foreach($files as $file){ // iterate files
+    if(is_file($file) && strpos($file, $id) !== false) {
+      unlink($file); // delete file
+
+    }
+
+  }
+  }

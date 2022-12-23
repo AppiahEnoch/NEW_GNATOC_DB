@@ -1,5 +1,12 @@
 <?php
 
+$passport_unique="passportx@23UaG52_x-@@k3";
+$matricula_unique="matriculax@23UaG52_x-@@k3";
+$studyleave_unique="studyleavex@23UaG52_x-@@k3";
+$masterlist_unique="masterlistx@23UaG52_x-@@k3";
+$ssnit_unique="ssnitx@23UaG52_x-@@k3";
+$ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
+
     $ext_img = array('jpeg', 'jpg', 'png', 'gif', 'bmp'); // valid extensions
  
     $ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
@@ -12,6 +19,7 @@
     
     $v1="passport";
     $v2="matricula";
+
    
     $passport="";
     $matricula="";
@@ -21,12 +29,12 @@
 
     $fileName = $_FILES[$v1]['name'];
     $tmp = $_FILES[$v1]['tmp_name'];
-    $passport=getFilepath_img();
+    $passport=getFilepath_img($passport_unique);
 
 
     $fileName = $_FILES[$v2]['name'];
     $tmp = $_FILES[$v2]['tmp_name'];
-    $matricula=getFilepath_doc();
+    $matricula=getFilepath_doc($matricula_unique);
 
   
 
@@ -63,30 +71,19 @@ try{
   
 
 
-  function get_file_path($v1){
-    
-$target_dir = $_path;
-$target_file = $target_dir . '/' . basename($_FILES[$v1]['name']);
-if (!move_uploaded_file($_FILES[$v1]['tmp_name'], $target_file)) {
-  $error = error_get_last();
-  die('Error: ' . $error['message']);
-  exit;
-}
-
-return $target_file;
-  }
 
 
 
 
-function getFilepath_doc(){
+function getFilepath_doc($unique){
   global $fileName,$tmp,$ext_doc,$fileD,$_path;
+  
 
   try {
        // get uploaded file's extension
        $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
        // can upload same image using rand function
-       $final_image = rand(1000,1000000).$fileD.$fileName;
+       $final_image = rand(1000,1000000).$unique.$fileD.$fileName;
       // $final_image =$fileD.$fileName;
        // check's valid format
 
@@ -105,14 +102,14 @@ function getFilepath_doc(){
 }
     
 
-function getFilepath_img(){
+function getFilepath_img($unique){
   global $fileName,$tmp,$ext_img,$fileD,$_path;
 
   try {
        // get uploaded file's extension
        $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
        // can upload same image using rand function
-       $final_image = rand(1000,1000000).$fileD.$fileName;
+       $final_image = rand(1000,1000000).$unique.$fileD.$fileName;
       // $final_image =$fileD.$fileName;
        // check's valid format
 
