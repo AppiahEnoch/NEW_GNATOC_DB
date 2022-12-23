@@ -612,8 +612,6 @@
           success: function (response) {
             alert(response);
 
-     
-
             var fullName = response[1].fullName;
          
             var staffID = response[1].staffID;
@@ -639,6 +637,22 @@
             var fAdmission = response[1].fAdmission;
 
             alert(fAdmission);
+
+            $.ajax({
+    url:fAdmission,
+    type:'HEAD',
+    error: function()
+    {
+        alert("exist")
+    },
+    success: function()
+    {
+        alert("NOT exist")
+    }
+});
+
+
+
             
 
             var email = response[1].email;
