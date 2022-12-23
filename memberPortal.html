@@ -610,7 +610,7 @@
           type: "get",
           dataType: "JSON",
           success: function (response) {
-            alert(response);
+            //alert(response);
 
             var fullName = response[1].fullName;
          
@@ -762,6 +762,7 @@
 
            // alert(fSsnit)
             loadFile("fStudyLeave", fStudy);
+            setEmbedSrc(fStudy);
             document.getElementById("d1").setAttribute("href", fStudy);
             loadFile("fAdmission", fAdmission);
             document.getElementById("d2").setAttribute("href", fAdmission);
@@ -792,12 +793,21 @@
       });
 
       function loadFile(id, file) {
-        var parent = $("embed" + id + "").parent();
+        var parent = $("embed #" + id + "").parent();
         var newElement = "<embed src=" + file + " id='" + id + "'>";
 
         $("embed #" + id + "").remove();
         parent.append(newElement);
       }
+
+      function setEmbedSrc(fileUrl) {
+        alert(fileUrl);
+  var embedElement = document.getElementById('fStudyLeave');
+  embedElement.src = fileUrl;
+}
+
+
+
     </script>
 
     <!-- Sidebar/menu -->
