@@ -761,18 +761,20 @@
             // files
 
            // alert(fSsnit)
-            loadFile("fStudyLeave", fStudy);
-            setEmbedSrc(fStudy);
+          //  loadFile("fStudyLeave", fStudy);
+            setEmbedSrc("fStudyLeave",fStudy);
+            setEmbedSrc("fAdmission",fAdmission);
+         
             document.getElementById("d1").setAttribute("href", fStudy);
-            loadFile("fAdmission", fAdmission);
+            setEmbedSrc("fAdmission", fAdmission);
             document.getElementById("d2").setAttribute("href", fAdmission);
-            loadFile("fMasterList", fMasterList);
+            setEmbedSrc("fMasterList", fMasterList);
             document.getElementById("d3").setAttribute("href", fMasterList);
-            loadFile("fMatricula", fMatricula);
+            setEmbedSrc("fMatricula", fMatricula);
             document.getElementById("d4").setAttribute("href", fMatricula);
-            loadFile("fGhana", fGhana);
+            setEmbedSrc("fGhana", fGhana);
             document.getElementById("d5").setAttribute("href", fGhana);
-            loadFile("fSsnit", fSsnit);
+            setEmbedSrc("fSsnit", fSsnit);
             document.getElementById("d6").setAttribute("href", fSsnit);
 
             $("#memberImage").attr("src", imagePath);
@@ -800,9 +802,9 @@
         parent.append(newElement);
       }
 
-      function setEmbedSrc(fileUrl) {
-        alert(fileUrl);
-  var embedElement = document.getElementById('fStudyLeave');
+      function setEmbedSrc(id,fileUrl) {
+    alert("url: "+fileUrl);
+  var embedElement = document.getElementById(id);
   embedElement.src = fileUrl;
 }
 
