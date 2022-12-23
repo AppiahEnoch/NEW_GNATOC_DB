@@ -1,7 +1,12 @@
 <?php
 
 
+include "config.php";
 
+
+$sql  =  "DELETE FROM memberbio";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
 
 
 
