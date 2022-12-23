@@ -26,7 +26,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="./style.css" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -52,40 +52,36 @@
   </head>
 
   <body>
-    &nbsp;
+
+  <?php
+include "verifyCode.php"
+?>
+  
+
     <!-- BEGIN SCRIPT -->
     <script>
       var aeModelTitle = "";
       var aeModelBody = "";
 
       $(document).ready(function () {
-        $.ajax({
-          url: "checkSession.php",
-          type: "POST",
-          success: function (result) {
-            if (result == 0) {
-              location.href = "index.php";
-            }
-          },
-        });
+    
 
         aeModelTitle = "CONGRATS!";
-        aeModelBody = "You are almost Done. let's Continue..";
+        aeModelBody = "let's  Continue..";
         $("#aeMBody").text(aeModelBody);
         $("#aeMTitle").text(aeModelTitle);
         $("#aeModelPassive").modal("show");
 
-        $("#admission").on("change", function () {
-          const oFile = document.getElementById("admission").files[0];
+        $("#ghanaCard").on("change", function () {
+          const oFile = document.getElementById("ghanaCard").files[0];
           if (fileTooBig(oFile)) {
-            document.getElementById("admission").value = "";
+            document.getElementById("ghanaCard").value = "";
             return;
           }
 
-          var f = $("#admission").prop("files")[0];
-
+          var f = $("#ghanaCard").prop("files")[0];
           if (!(f.type == "application/pdf")) {
-            $("#admission").val("");
+            $("#ghanaCard").val("");
 
             aeModelTitle = "ONLY PDF ALLOWED!";
             aeModelBody = "Please scan all Documents to PDF.";
@@ -96,36 +92,16 @@
           }
         });
 
-        $("#studyLeave").on("change", function () {
-          const oFile = document.getElementById("studyLeave").files[0];
+        $("#ssnitCard").on("change", function () {
+          const oFile = document.getElementById("ssnitCard").files[0];
           if (fileTooBig(oFile)) {
-            document.getElementById("studyLeave").value = "";
+            document.getElementById("ssnitCard").value = "";
             return;
           }
 
-          var f = $("#studyLeave").prop("files")[0];
+          var f = $("#ssnitCard").prop("files")[0];
           if (!(f.type == "application/pdf")) {
-            $("#studyLeave").val("");
-
-            aeModelTitle = "ONLY PDF ALLOWED!";
-            aeModelBody = "Please scan all Documents to PDF.";
-
-            $("#aeMBody").text(aeModelBody);
-            $("#aeMTitle").text(aeModelTitle);
-            $("#aeModelPassive").modal("show");
-          }
-        });
-
-        $("#masterList").on("change", function () {
-          const oFile = document.getElementById("masterList").files[0];
-          if (fileTooBig(oFile)) {
-            document.getElementById("masterList").value = "";
-            return;
-          }
-
-          var f = $("#masterList").prop("files")[0];
-          if (!(f.type == "application/pdf")) {
-            $("#masterList").val("");
+            $("#ssnitCard").val("");
 
             aeModelTitle = "ONLY PDF ALLOWED!";
             aeModelBody = "Please scan all Documents to PDF.";
@@ -139,30 +115,18 @@
         $("#form").submit(function (e) {
           e.preventDefault();
 
-          var chosenRank = $("#rank").val();
+        
 
-          if (chosenRank == "Choose rank") {
-            aeModelTitle = "Choose Rank";
-            aeModelBody = "Please Choose Your Rank";
-
-            $("#aeMBody").text(aeModelBody);
-            $("#aeMTitle").text(aeModelTitle);
-            $("#aeModelPassive").modal("show");
-
-            return false;
-          }
-
-    
           $.ajax({
-            url: "memberBio7_Insert.php",
+            url: "memberBio8_Insert.php",
             type: "POST",
             data: new FormData(this),
             contentType: false,
             cache: false,
             processData: false,
             success: function (data) {
-             //alert(data)
-              location.href = "memberBio8.html";
+
+              location.href = "alertRegistrationSucess.html";
             },
             error: function (e) {
               alert("error:" + e);
@@ -189,40 +153,12 @@
 
         <h3>GNATOC</h3>
         <h6>AAMUSTED-K</h6>
-         7 of 8
-
-        <!-- begin -->
-
-        <div class="form-group">
-          <div class="col w-100">
-            <label style="float: left" for="rank">Current rank</label>
-          </div>
-          <br />
-          <div class="input-group">
-            <select
-              id="rank"
-              name="rank"
-              style="font-weight: bold; height: 2rem"
-              class="form-select w-100"
-              aria-label="Default select example"
-            >
-              <option selected>Choose rank</option>
-              <option>Senior Superintendent II</option>
-              <option>Senior Superintendent I</option>
-              <option>Principal Superintendent</option>
-              <option>Assistant Director I</option>
-              <option>Superintendent II</option>
-              <option>Superintendent I</option>
-              <option>Teacher</option>
-            </select>
-          </div>
-        </div>
-        <!-- end -->
+        8 of 8
 
         <div class="form-group">
           <div class="col w-100">
             <label style="float: left" for="admission"
-              >Upload Admission Letter(PDF only)</label
+              >Upload Gnana Card(PDF only)</label
             >
           </div>
           <br />
@@ -234,9 +170,9 @@
               accept="application/pdf"
               required
               type="file"
-              name="admission"
-              id="admission"
-              placeholder="Admission Letter"
+              name="ghanaCard"
+              id="ghanaCard"
+              placeholder="Ghana Card"
             />
           </div>
         </div>
@@ -248,7 +184,7 @@
       <div class="form-group">
         <div class="col w-100">
           <label style="float: left" for="studyLeave"
-            >Upload Study Leave Letter(PDF only)</label
+            >Upload SSNIT Card (PDF only)</label
           >
         </div>
         <br />
@@ -256,14 +192,13 @@
           <div class="input-group-addon">
             <i class="bi bi-filetype-pdf"></i>
           </div>
-
           <input
             accept="application/pdf"
             required
             type="file"
-            name="studyLeave"
-            id="studyLeave"
-            placeholder="Study Leave"
+            name="ssnitCard"
+            id="ssnitCard"
+            placeholder="SSNIT Card"
           />
         </div>
       </div>
@@ -272,10 +207,10 @@
 
       <!-- begin -->
 
-      <div class="form-group">
+      <div class="form-group d-none">
         <div class="col w-100">
           <label style="float: left" for="lName"
-            >Upload Master List (PDF only)</label
+            >Upload Voter Card (PDF only)</label
           >
         </div>
         <br />
@@ -286,9 +221,9 @@
           <input
             accept="application/pdf"
             type="file"
-            name="masterList"
-            id="masterList"
-            placeholder="master List"
+            name="voterCard"
+            id="voterCard"
+            placeholder="Voter Card"
           />
         </div>
       </div>

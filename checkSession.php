@@ -1,8 +1,9 @@
 <?php
+
 session_start();
-if (isset($_SESSION['staffID'])) {
-    echo 1;
-}
-else{
-    echo 0;
+
+  if (isset($_SESSION['staffID'])) {
+} else {
+  header('Location: index.php');
+  exit;
 }

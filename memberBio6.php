@@ -66,6 +66,12 @@
   </head>
 
   <body>
+
+  <?php
+
+include "verifyCode.php"
+
+?>
     <!-- BEGIN SCRIPT -->
     <script>
       var aeModelTitle1 = "SUCCESS!";
@@ -336,19 +342,7 @@
     </script>
 
 
-<script>
-  function check_session(){
-    $.ajax({
-          url: "checkSession.php",
-          type: "POST",
-          success: function (result) {
-            if (result == 0) {
-              //  location.href = "index.php";
-            }
-          },
-        });
-  }
-</script>
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

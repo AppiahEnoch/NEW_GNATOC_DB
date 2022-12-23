@@ -50,6 +50,10 @@
   </head>
   <link rel="stylesheet" href="dist/style.css" />
   <body>
+
+  <?php
+  include "checkSession.php";
+  ?>
     <!-- BEGIN SCRIPT -->
     <script>
       $(document).ready(function () {

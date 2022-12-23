@@ -89,19 +89,16 @@
   </head>
 
   <body>
+  <?php
+
+include "verifyCode.php"
+
+?>
     <!-- BEGIN SCRIPT -->
     <script>
       7;
       $(document).ready(function () {
-        $.ajax({
-          url: "checkSession.php",
-          type: "POST",
-          success: function (result) {
-            if (result == 0) {
-              location.href = "index.php";
-            }
-          },
-        });
+    
 
         $("#suggestion").hide();
         $("#course").keyup(function () {

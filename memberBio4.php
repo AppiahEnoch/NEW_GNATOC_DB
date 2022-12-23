@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>GNATOC-AAMUSTED KUMASI</title>
+    <title>GNATOC-AAMUSTED-K</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- FONTS -->
@@ -26,7 +26,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     />
-
+    <link rel="stylesheet" href="./style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -48,93 +48,68 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="dist/style.css" />
+    <link rel="stylesheet" href="dist/radioStyle.css" />
   </head>
 
   <body>
-    &nbsp;
+
+  <?php
+
+  include "verifyCode.php"
+
+  ?>
+    
     <!-- BEGIN SCRIPT -->
     <script>
-      var aeModelTitle = "";
-      var aeModelBody = "";
-
       $(document).ready(function () {
-        $.ajax({
-          url: "checkSession.php",
-          type: "POST",
-          success: function (result) {
-            if (result == 0) {
-              // location.href = "index.php";
-            }
-          },
-        });
 
-        aeModelTitle = "CONGRATS!";
-        aeModelBody = "let's  Continue..";
+
+        document.getElementById("date").value = "1989-10-23";
+
+        aeModelTitle = "CONGRATULATIONS!";
+        aeModelBody =
+          "Thank you for filling the forms up to this stage. " +
+          "Now let's Continue..";
+
         $("#aeMBody").text(aeModelBody);
         $("#aeMTitle").text(aeModelTitle);
         $("#aeModelPassive").modal("show");
 
-        $("#ghanaCard").on("change", function () {
-          const oFile = document.getElementById("ghanaCard").files[0];
-          if (fileTooBig(oFile)) {
-            document.getElementById("ghanaCard").value = "";
-            return;
-          }
-
-          var f = $("#ghanaCard").prop("files")[0];
-          if (!(f.type == "application/pdf")) {
-            $("#ghanaCard").val("");
-
-            aeModelTitle = "ONLY PDF ALLOWED!";
-            aeModelBody = "Please scan all Documents to PDF.";
-
-            $("#aeMBody").text(aeModelBody);
-            $("#aeMTitle").text(aeModelTitle);
-            $("#aeModelPassive").modal("show");
-          }
-        });
-
-        $("#ssnitCard").on("change", function () {
-          const oFile = document.getElementById("ssnitCard").files[0];
-          if (fileTooBig(oFile)) {
-            document.getElementById("ssnitCard").value = "";
-            return;
-          }
-
-          var f = $("#ssnitCard").prop("files")[0];
-          if (!(f.type == "application/pdf")) {
-            $("#ssnitCard").val("");
-
-            aeModelTitle = "ONLY PDF ALLOWED!";
-            aeModelBody = "Please scan all Documents to PDF.";
-
-            $("#aeMBody").text(aeModelBody);
-            $("#aeMTitle").text(aeModelTitle);
-            $("#aeModelPassive").modal("show");
-          }
-        });
-
         $("#form").submit(function (e) {
           e.preventDefault();
 
-        
+          var gender = $("input[name=gender]:checked", "#form").val();
+          var studyLeaveStatus = $(
+            "input[name=studyLeave]:checked",
+            "#form"
+          ).val();
 
-          $.ajax({
-            url: "memberBio8_Insert.php",
-            type: "POST",
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function (data) {
+          var level = $("#level").find(":selected").text();
+          var dob = $("#date").val();
 
-              location.href = "alertRegistrationSucess.html";
+          if (level == "Choose level") {
+            aeModelTitle = "CHOOSE YOUR LEVEL!";
+            aeModelBody = "Please Choose Your Level";
+
+            $("#aeMBody").text(aeModelBody);
+            $("#aeMTitle").text(aeModelTitle);
+            $("#aeModelPassive").modal("show");
+
+            return false;
+          }
+
+          $.post(
+            "memberBio4_Insert.php",
+            {
+              gender: gender,
+              studyLeaveStatus: studyLeaveStatus,
+              level: level,
+              dob: dob,
             },
-            error: function (e) {
-              alert("error:" + e);
-            },
-          });
+            function (data, status) {
+              location.href = "memberBio5.html";
+            }
+          );
         });
       });
     </script>
@@ -142,7 +117,7 @@
     <!-- END SCRIPT -->
 
     <!-- partial:index.partial.html -->
-    <form id="form" method="post">
+    <form id="form">
       <div class="form-outline mb-2 text-center m-1">
         <div class="row align-items-center justify-content-center">
           <img
@@ -156,26 +131,86 @@
 
         <h3>GNATOC</h3>
         <h6>AAMUSTED-K</h6>
-        8 of 8
+        4 of 8
+
+        <!-- begin -->
+        php
+        <h6 style="text-align: left; font-weight: bolder">Gender:</h6>
+        <fieldset>
+          <div class="col">
+            <div class="row">
+              <input
+                type="radio"
+                class="radio"
+                name="gender"
+                value="Male"
+                id="genderm"
+                required
+              />
+              <label for="genderm">Male</label>
+
+              <input
+                style="margin-left: 1rem"
+                type="radio"
+                class="radio"
+                name="gender"
+                value="Female"
+                id="genderf"
+                required
+              />
+              <label for="genderf">female</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <h6 style="text-align: left; font-weight: bolder">
+          Do you have study Leave with pay?
+        </h6>
+        <fieldset>
+          <div class="col">
+            <div class="row">
+              <input
+                type="radio"
+                class="radio"
+                name="studyLeave"
+                value="Yes"
+                id="studyLeaveY"
+                required
+              />
+              <label for="studyLeaveY">Yes</label>
+
+              <input
+                style="margin-left: 1rem"
+                type="radio"
+                class="radio"
+                name="studyLeave"
+                value="No"
+                id="studyLeaveN"
+                required
+              />
+              <label for="studyLeaveN">No</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- begin -->
 
         <div class="form-group">
           <div class="col w-100">
-            <label style="float: left" for="admission"
-              >Upload Gnana Card(PDF only)</label
-            >
+            <label style="float: left" for="lName">Date Of Birth</label>
           </div>
           <br />
           <div class="input-group">
             <div class="input-group-addon">
-              <i class="bi bi-filetype-pdf"></i>
+              <i class="fa fa-calendar" aria-hidden="true"></i>
             </div>
             <input
-              accept="application/pdf"
+              type="date"
+              id="date"
+              placeholder="Date of Birth"
               required
-              type="file"
-              name="ghanaCard"
-              id="ghanaCard"
-              placeholder="Ghana Card"
+              min="1984-01-19"
+              max="2005-01-10"
             />
           </div>
         </div>
@@ -186,51 +221,23 @@
 
       <div class="form-group">
         <div class="col w-100">
-          <label style="float: left" for="studyLeave"
-            >Upload SSNIT Card (PDF only)</label
-          >
+          <label style="float: left" for="lName">Choose Level</label>
         </div>
         <br />
         <div class="input-group">
-          <div class="input-group-addon">
-            <i class="bi bi-filetype-pdf"></i>
-          </div>
-          <input
-            accept="application/pdf"
-            required
-            type="file"
-            name="ssnitCard"
-            id="ssnitCard"
-            placeholder="SSNIT Card"
-          />
-        </div>
-      </div>
-
-      <!-- end -->
-
-      <!-- begin -->
-
-      <div class="form-group d-none">
-        <div class="col w-100">
-          <label style="float: left" for="lName"
-            >Upload Voter Card (PDF only)</label
+          <select
+            id="level"
+            style="font-weight: bold; height: 2rem"
+            class="form-select w-100"
           >
-        </div>
-        <br />
-        <div class="input-group">
-          <div class="input-group-addon">
-            <i class="bi bi-filetype-pdf"></i>
-          </div>
-          <input
-            accept="application/pdf"
-            type="file"
-            name="voterCard"
-            id="voterCard"
-            placeholder="Voter Card"
-          />
+            <option selected>Choose level</option>
+            <option value="1">100</option>
+            <option value="2">200</option>
+            <option value="3">300</option>
+            <option value="3">400</option>
+          </select>
         </div>
       </div>
-
       <!-- end -->
 
       <button type="submit" class="btn btn-default mt-0">
@@ -239,8 +246,7 @@
       </button>
 
       <span>
-        <a style="margin-right: 2rem; color: white" href="#!">Go Home</a>
-        <br />
+        <a style="margin-right: 2rem; color: white" href="#!">Go Home</a> <br />
         <br />
       </span>
     </form>
@@ -274,21 +280,6 @@
       </div>
     </div>
     <!-- END AEMODEL-->
-
-    <script>
-      function fileTooBig(file) {
-        if (file.size > 2097152) {
-          aeModelTitle = "FILE SIZE TOO LARGE";
-          aeModelBody = "Please reduce the size of your File to less than 2mb";
-
-          $("#aeMBody").text(aeModelBody);
-          $("#aeMTitle").text(aeModelTitle);
-          $("#aeModelPassive").modal("show");
-
-          return true;
-        }
-      }
-    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
