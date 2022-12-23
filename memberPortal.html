@@ -612,9 +612,10 @@
           success: function (response) {
             alert(response);
 
-            return;
+     
 
             var fullName = response[1].fullName;
+         
             var staffID = response[1].staffID;
             var regNumber = response[1].regNumber;
             var mobile = response[1].mobile;
@@ -636,6 +637,9 @@
             var fGhana = response[1].fGhana;
             var fSsnit = response[1].fSsnit;
             var fAdmission = response[1].fAdmission;
+
+            alert(fAdmission);
+            
 
             var email = response[1].email;
 
