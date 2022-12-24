@@ -4,21 +4,14 @@ require_once 'config.php';
 
 
 session_start();
-$_SESSION["staffID"] = "1220016";
+//$_SESSION["staffID"] = "1220016";
 $staffID = $_SESSION["staffID"];
 
 $return_arr[] = null;
 
-
-
 try {
-
-
   $sql = "SELECT * FROM memberfile where staffID='$staffID'";
   $result = mysqli_query($conn, $sql);
-
-
-
 
   if (mysqli_num_rows($result) > 0) {
     // output data of each row
@@ -56,7 +49,7 @@ try {
 
 
       $fStudyLeave = $row['studyLeave'];
-      
+
       $fMasterList = $row['masterList'];
       $fMatricula = $row['matricula'];
       $fGhana = $row['fghanaCard'];
@@ -82,7 +75,6 @@ try {
         "course" => $course,
         "ghanaCardNumber" => $ghanaCardNumber,
 
-
         "fStudyLeave" => $fStudyLeave,
         "fMasterList" => $fMasterList,
         "fGhana" => $fGhana,
@@ -101,23 +93,6 @@ try {
 } catch (Throwable $th) {
   echo $th;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $conn->close();
