@@ -129,3 +129,23 @@ html{
   width: 4rem;
 
 }
+
+
+/* apply styles for medium screens (tablets) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  #form {
+    color: white;
+    background-color: #009edf;
+    border-radius: 0.3rem;
+    padding: 2.5rem;
+    min-width: 25rem;
+    margin:auto;
+  }
+
+}
+
+/* apply styles for large screens (desktops) */
+@media only screen and (min-width: 992px) {
+  /* your styles go here */
+}
