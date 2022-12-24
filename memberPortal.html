@@ -31,6 +31,19 @@
     ></script>
 
     <style>
+      #success-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        text-align: center;
+        font-size: large;
+        display: none;
+      }
+    </style>
+
+    <style>
       body,
       h1,
       h2,
@@ -466,9 +479,10 @@
           data: form_data,
           type: "post",
           success: function (response) {
+          //  alert(response)
             if (!aeEmpty(frameID)) {
-            //  alert(response);
-              loadFile(frameID, response);
+              //  alert(response);
+              setEmbedSrc(frameID, response);
             }
           },
         });
@@ -479,9 +493,70 @@
       $(document).ready(function () {
         $("#newPassword").click(function () {
           $("#errorMismatch").hide();
+          $("#errorMismatch").text("Password Mismatch!");
+
+          var o = $("#oldPassword").val();
+          var n = $("#newPassword").val();
+          var c = $("#confirmPassword").val();
+
+          var n = n.trim();
+          var c = c.trim();
+
+          if (!(c == n)) {
+            $("#errorMismatch").show();
+          } else {
+            $("#errorMismatch").hide();
+          }
         });
         $("#confirmPassword").click(function () {
           $("#errorMismatch").hide();
+          $("#errorMismatch").text("Password Mismatch!");
+          var o = $("#oldPassword").val();
+          var n = $("#newPassword").val();
+          var c = $("#confirmPassword").val();
+
+          var n = n.trim();
+          var c = c.trim();
+
+          if (!(c == n)) {
+            $("#errorMismatch").show();
+          } else {
+            $("#errorMismatch").hide();
+          }
+        });
+
+        $("#newPassword").keyup(function () {
+          $("#errorMismatch").hide();
+          $("#errorMismatch").text("Password Mismatch!");
+          var o = $("#oldPassword").val();
+          var n = $("#newPassword").val();
+          var c = $("#confirmPassword").val();
+
+          var n = n.trim();
+          var c = c.trim();
+
+          if (!(c == n)) {
+            $("#errorMismatch").show();
+          } else {
+            $("#errorMismatch").hide();
+          }
+        });
+        $("#confirmPassword").keyup(function () {
+          $("#errorMismatch").hide();
+          $("#errorMismatch").text("Password Mismatch!");
+
+          var o = $("#oldPassword").val();
+          var n = $("#newPassword").val();
+          var c = $("#confirmPassword").val();
+
+          var n = n.trim();
+          var c = c.trim();
+
+          if (!(c == n)) {
+            $("#errorMismatch").show();
+          } else {
+            $("#errorMismatch").hide();
+          }
         });
 
         $("#submit").click(function (e) {
@@ -512,35 +587,34 @@
           }
 
           $.ajax({
-          type: "post",
-          data: {
-            old_password: o,
-            new_password: n
-           
+            type: "post",
+            data: {
+              old_password: o,
+              new_password: n,
+            },
+            cache: false,
+            url: "reset_member_password.php",
+            dataType: "text",
+            error: function (xhr, status, error) {
+              var err = eval("(" + xhr.responseText + ")");
+              alert(err.Message);
+            },
 
-          },
-          cache: false,
-          url: "reset_member_password.php",
-          dataType: "text",
-          error: function (xhr, status, error) {
-            var err = eval("(" + xhr.responseText + ")");
-            alert(err.Message);
-          },
+            success: function (data, status) {
+              // alert(data);
+              if (data == "1") {
+                document.getElementById("aeMresetPassword").style.display =
+                  "none";
 
-          success: function (data,status) {
-           // alert(data);
-            if(data=="1"){
-             // alert(7);
-              document.getElementById("aeMresetPassword").style.display = "none";
-            }
-          },
+                var message = "PASSWORD RESET MADE SUCCESSFULLY!";
+                show_success_alert(message);
+              } else {
+                $("#errorMismatch").show();
+                $("#errorMismatch").text("INVALID OLD PASSWORD");
+              }
+            },
+          });
         });
-
-
-
-        });
-
-   
 
         $("#ch1").click(function () {
           $("#ch1f").click();
@@ -613,7 +687,7 @@
             //alert(response);
 
             var fullName = response[1].fullName;
-         
+
             var staffID = response[1].staffID;
             var regNumber = response[1].regNumber;
             var mobile = response[1].mobile;
@@ -636,24 +710,18 @@
             var fSsnit = response[1].fSsnit;
             var fAdmission = response[1].fAdmission;
 
-           // alert(fAdmission);
+            // alert(fAdmission);
 
             $.ajax({
-    url:fAdmission,
-    type:'HEAD',
-    error: function()
-    {
-      //  alert("exist")
-    },
-    success: function()
-    {
-       // alert("NOT exist")
-    }
-});
-
-
-
-            
+              url: fAdmission,
+              type: "HEAD",
+              error: function () {
+                //  alert("exist")
+              },
+              success: function () {
+                // alert("NOT exist")
+              },
+            });
 
             var email = response[1].email;
 
@@ -760,11 +828,11 @@
 
             // files
 
-           // alert(fSsnit)
-          //  loadFile("fStudyLeave", fStudy);
-            setEmbedSrc("fStudyLeave",fStudy);
-            setEmbedSrc("fAdmission",fAdmission);
-         
+            // alert(fSsnit)
+            //  loadFile("fStudyLeave", fStudy);
+            setEmbedSrc("fStudyLeave", fStudy);
+            setEmbedSrc("fAdmission", fAdmission);
+
             document.getElementById("d1").setAttribute("href", fStudy);
             setEmbedSrc("fAdmission", fAdmission);
             document.getElementById("d2").setAttribute("href", fAdmission);
@@ -777,8 +845,7 @@
             setEmbedSrc("fSsnit", fSsnit);
             document.getElementById("d6").setAttribute("href", fSsnit);
 
-           // alert("image:path : "+imagePath)
-
+            // alert("image:path : "+imagePath)
 
             $("#memberImage").attr("src", imagePath);
             $("#memberImageSmall").attr("src", imagePath);
@@ -793,8 +860,6 @@
             return;
           },
         });
-
-        
       });
 
       function loadFile(id, file) {
@@ -805,14 +870,11 @@
         parent.append(newElement);
       }
 
-  function setEmbedSrc(id,fileUrl) {
-   // alert("url: "+fileUrl);
-  var embedElement = document.getElementById(id);
-  embedElement.src = fileUrl;
-}
-
-
-
+      function setEmbedSrc(id, fileUrl) {
+        // alert("url: "+fileUrl);
+        var embedElement = document.getElementById(id);
+        embedElement.src = fileUrl;
+      }
     </script>
 
     <!-- Sidebar/menu -->
@@ -913,6 +975,15 @@
           ><i class="fa fa-bars"></i
         ></span>
         <div class="w3-container">
+          <div id="success-alert" class="w3-panel w3-green">
+            <span
+              onclick="this.parentElement.style.display='none'"
+              class="w3-button w3-large w3-display-topright"
+              >&times;</span
+            >
+            Your message was sent successfully!
+          </div>
+
           <h1 id="memberName1">APPIAH ENOCH</h1>
           <div class="w3-section w3-bottombar w3-padding-16 w3-blue"></div>
         </div>
@@ -925,9 +996,21 @@
             <h4>
               <strong>Basic Information</strong>
             </h4>
-            <button id="btEdit2" class="w3-button w3-deep-purple">
-              Edit
-              <i class="fa fa-pencil" aria-hidden="true"></i>
+            <p>
+              <button id="btPrint" class="w3-button w3-deep-purple w3-hide ">
+                <i class="fa fa-print" aria-hidden="true"></i> Print
+              </button>
+              <button id="btEdit" class="w3-button w3-deep-purple">
+                Edit
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button id="btSaveEdit" class="w3-button w3-deep-purple">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                Save
+              </button>
+            </p>
+
+
             </button>
             <div class="w3-card">
               <table id="tbBasicInfo" style="width: 100%">
@@ -940,20 +1023,9 @@
                 <tbody></tbody>
               </table>
             </div>
+            <p></p>
 
-            <p>
-              <button id="btPrint" class="w3-button w3-deep-purple">
-                <i class="fa fa-print" aria-hidden="true"></i> Print
-              </button>
-              <button id="btEdit" class="w3-button w3-deep-purple">
-                Edit
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </button>
-              <button id="btSaveEdit" class="w3-button w3-deep-purple">
-                <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                Save
-              </button>
-            </p>
+     
           </div>
         </div>
       </div>
@@ -996,7 +1068,11 @@
 
               <p>
                 <span
-                  ><a id="d1" href=""  target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d1"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1018,7 +1094,11 @@
 
               <p>
                 <span
-                  ><a id="d2" href="" target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d2"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1039,7 +1119,11 @@
 
               <p>
                 <span
-                  ><a id="d3" href=""  target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d3"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1064,7 +1148,11 @@
 
               <p>
                 <span
-                  ><a id="d4" href="" target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d4"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1086,7 +1174,11 @@
 
               <p>
                 <span
-                  ><a id="d5" href="" target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d5"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1107,7 +1199,11 @@
 
               <p>
                 <span
-                  ><a id="d6" href=""  target="_blank" class="w3-button w3-deep-purple"
+                  ><a
+                    id="d6"
+                    href=""
+                    target="_blank"
+                    class="w3-button w3-deep-purple"
                     >Download
                     <i class="fa fa-download" aria-hidden="true"></i>
                   </a>
@@ -1277,6 +1373,8 @@
                   onclick="showPassword()"
                 />
                 <label for="showPassword1"><span>Show Password</span></label>
+                <br>
+
                 <label
                   id="errorMismatch"
                   style="
@@ -1384,6 +1482,11 @@
 
           return true;
         }
+      }
+
+      function show_success_alert(message) {
+        $("#success-alert").html(message).show();
+        $("#success-alert").delay(3000).fadeOut();
       }
     </script>
   </body>
