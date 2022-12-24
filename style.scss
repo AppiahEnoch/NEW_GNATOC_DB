@@ -3,11 +3,9 @@
   font-family: "Merriweather Sans", sans-serif;
 }
 html{
-  background-color: #b0dbee;
   height:100%;
   width:100%;
   margin:0;
-  display:flex;
 
 }
 
@@ -16,9 +14,9 @@ html{
  body {
   background-color: #b0dbee;
   height:100%;
-  margin:auto;
+  width:100%;
+  margin:0;
   display:flex;
-  width: 100%;
 
 
   
@@ -28,9 +26,9 @@ html{
     color: white;
     background-color: #009edf;
     border-radius: 0.3rem;
-    margin: auto;
+    width: 25rem;
     padding: 2.5rem;
-    margin-bottom: 1rem;
+    margin:auto;
 
     -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
