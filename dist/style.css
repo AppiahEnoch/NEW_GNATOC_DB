@@ -11,7 +11,7 @@ html {
 
 body {
   background-color: #b0dbee;
-  height: auto;
+  height: 100%;
   margin: auto;
   width: auto;
   display: flex;
