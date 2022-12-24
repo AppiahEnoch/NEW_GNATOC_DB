@@ -48,7 +48,7 @@ function createRandomPassword() {
   $i = 0; 
   $pass = '' ; 
 
-  while ($i <= 10) { 
+  while ($i <= 3) { 
       $num = rand() % 33; 
       $tmp = substr($chars, $num, 1); 
       $pass = $pass . $tmp; 

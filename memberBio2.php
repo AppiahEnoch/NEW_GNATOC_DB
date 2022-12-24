@@ -47,13 +47,31 @@
       src="https://kit.fontawesome.com/c1db89cf54.js"
       crossorigin="anonymous"
     ></script>
+
+    <style>
+      #success-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        text-align: center;
+        font-size: large;
+        display: none;
+      }
+    </style>
   </head>
   <link rel="stylesheet" href="dist/style.css" />
+  <link rel="stylesheet" href="w3css.css" />
   <body>
 
   <?php
   include "checkSession.php";
   ?>
+
+<div id="success-alert" class="w3-panel">
+      Your message was sent successfully!
+    </div>
     <!-- BEGIN SCRIPT -->
     <script>
       $(document).ready(function () {

@@ -101,9 +101,14 @@ try{
   //
   
   $staffID= $_SESSION["staffID"];
+  $n="1";
     
     
-
+  $sql = "UPDATE verified SET vcode=?
+  WHERE staffID=?";
+  $stmt = $conn->prepare($sql); 
+  $stmt->bind_param("ss", $n, $staffID);
+  $stmt->execute();
 
     $sql = "UPDATE memberbio SET admissionNumber=?, ssnitNumber=?, voterNumber=?
     WHERE staffID=?";

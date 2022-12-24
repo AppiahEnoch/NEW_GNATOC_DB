@@ -49,6 +49,19 @@
     ></script>
 
     <link rel="stylesheet" href="dist/style.css" />
+    <link rel="stylesheet" href="w3css.css" />
+    <style>
+      #success-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        text-align: center;
+        font-size: large;
+        display: none;
+      }
+    </style>>
   </head>
 
   <body>
@@ -119,6 +132,8 @@
                   if (nn === "exist") {
                     staffID = "";
                     thisIDExist = 2;
+
+                    showErrorVisibility("STAFFID IS ALREADY USED")
 
                     $("#staffID").css({
                       "background-color": "white",
@@ -196,6 +211,7 @@
                   if (nn.length > 1) {
                     username = "";
                     usernameExist = true;
+                    showErrorVisibility("USERNAME IS ALREADY USED")
 
                     $("#username").css({
                       "background-color": "white",
@@ -371,8 +387,11 @@
     <!-- END SCRIPT -->
 
     <!-- partial:index.partial.html -->
+    <div id="success-alert" class="w3-panel">
+      Your message was sent successfully!
+    </div>
     <form id="form" method="post">
-      <div class="form-outline mb-2 text-center m-1">
+      <div class="form-outline mb-0 text-center m-1">
         <div class="row align-items-center justify-content-center">
           <img
             style="width: 4rem; height: 4rem; border-radius: 50%"
@@ -503,14 +522,8 @@
         id="error"
         class="wrap"
       >
-        <span id="errorString" class="errorString1">Password Mismatch </span>
+     
 
-        <span>
-          <i
-            style="font-size: 2rem"
-            class="bi bi-exclamation-triangle-fill"
-          ></i>
-        </span>
       </div>
     </form>
     <!-- partial -->
@@ -663,6 +676,24 @@
         $("#staffIDCheck").hide();
         $("#usernameCheck").hide();
       }
+
+
+      function showErrorVisibility(message) {
+        $("#success-alert").text(message);
+            $("#success-alert").css({
+              "background-color": "red",
+              color: "white",
+              "font-size": "2rem",
+            });
+            $("#success-alert").fadeIn();
+            $("#success-alert").delay(3000).fadeOut();
+      }
+
+      function hideErrorVisibility(message) {  
+         $("#success-alert").hide();
+      }
+
+
     </script>
 
     <script

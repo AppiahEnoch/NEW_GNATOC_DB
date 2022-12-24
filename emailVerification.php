@@ -70,7 +70,7 @@
         }
 
         $("#mdSuccessAlert").on("click", "#goNext", function (e) {
-          window.location = "memberSignUp.html";
+          window.location = "memberSignUp.php";
         });
 
         $("#mdErrorAlert").on("click", "#btError", function (e) {
@@ -85,6 +85,8 @@
         $("#myModal").on("click", "#mdBtresend", function (e) {
           staffID = $("#resendStaffID").val();
 
+      
+
           try {
             var staff = staffID.trim();
 
@@ -96,13 +98,16 @@
           $.post(
             "selectEmailResend.php",
             {
-              staffID: staffID,
+              staffID: staffID
             },
             function (data, status) {
               try {
                 var output = data.split("|");
+                //alert(data)
                 var e = output[0];
                 var c = output[1];
+
+                alert(date)
 
                 if (typeof c == "undefined") {
                   $("#myModal").modal("hide");
@@ -147,6 +152,7 @@
         });
 
         $("btResend").click(function () {
+          alert(1)
           // staffID=$("#resendID").val();
           $("#myModal").modal("hidden");
         });
@@ -179,6 +185,8 @@
               staffID: staffID,
             },
             success: function (data, status) {
+             // alert(data)
+          
               $("#mdSuccessAlert").modal("show");
             },
           });

@@ -48,9 +48,27 @@
     ></script>
 
     <link rel="stylesheet" href="dist/style.css" />
+    <link rel="stylesheet" href="w3css.css" />
+
+    <style>
+      #success-alert {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        text-align: center;
+        font-size: large;
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
+    <div id="success-alert" class="w3-panel">
+      Your message was sent successfully!
+    </div>
+
     <!-- BEGIN SCRIPT -->
     <script>
       var staffIDIsUsed = true;
@@ -119,6 +137,7 @@
 
         // GHANA Card
         $("#ghanaCard").keyup(function () {
+          $("#success-alert").hide();
           if (!validateGhanaCard()) {
             showErrorVisibility(message);
             ghanaCardWrong = true;
@@ -239,6 +258,7 @@
               },
               function (data, status) {
                 var n = data;
+                //alert(n)
 
                 try {
                   var nn = n.trim();
@@ -355,7 +375,7 @@
 
     <!-- partial:index.partial.html -->
     <form id="form">
-      <div class="form-outline mb-2 text-center m-1">
+      <div class="form-outline text-center">
         <div class="row align-items-center justify-content-center">
           <img
             style="width: 4rem; height: 4rem; border-radius: 50%"
@@ -373,7 +393,7 @@
 
         <!-- begin -->
         <div class="form-group">
-          <div class="col w-100">
+          <div class="col">
             <label style="float: left" for="username">Staff ID</label>
           </div>
           <br />
@@ -482,15 +502,6 @@
         <a style="margin-right: 2rem; color: white" href="login.html"
           >Back to Login</a
         >
-        <br />
-        <br />
-      </span>
-
-      <span style="visibility: hidden" id="errorWrapper">
-        <span id="error"> </span>
-        <span>
-          <i style="font-size: 2rem" class="bi bi-exclamation-triangle-fill"></i
-        ></span>
       </span>
     </form>
     <!-- partial -->
@@ -701,13 +712,20 @@
       }
 
       function hideErrorVisibility() {
-        document.getElementById("errorWrapper").style.visibility = "hidden";
+        $("#success-alert").hide();
       }
 
       function showErrorVisibility(message) {
-        document.getElementById("errorWrapper").style.visibility = "visible";
+        $("#success-alert").text(message);
+            $("#success-alert").css({
+              "background-color": "red",
+              color: "white",
+              "font-size": "2rem",
+            });
+            $("#success-alert").fadeIn();
+            $("#success-alert").delay(3000).fadeOut();
 
-        $("#error").text(message);
+  
       }
 
       function hideChecks() {

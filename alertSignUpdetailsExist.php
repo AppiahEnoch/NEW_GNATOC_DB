@@ -39,7 +39,7 @@
         $("#submit").click(function() {
 
 
-            location.replace("memberSignUp.html");
+            location.replace("memberSignUp.php");
 
         });
 
