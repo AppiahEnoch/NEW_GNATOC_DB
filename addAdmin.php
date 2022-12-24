@@ -126,8 +126,7 @@
             function (data, status) {
               var v = data.trim();
 
-              alert(data);
-              return;
+       
 
               if (v == 1) {
                 $("#aeMdSuccess").modal("show");

@@ -32,6 +32,11 @@
       referrerpolicy="no-referrer"
     ></script>
 
+    <?php
+  include "verifyAdmin.php";
+
+  ?>
+
     <style>
       html,
       body {
@@ -143,10 +148,9 @@
     </script>
   </head>
   <body>
-  <?php
-  include "verifyAdmin.php";
 
-  ?>
+
+ 
 
 
 

@@ -98,7 +98,7 @@ try{
     
   $code=createRandomPassword();
 
-  $stmt = $conn->prepare("INSERT INTO authentication (staffID, code,level) VALUES (?, ?,?)");
+  $stmt = $conn->prepare("INSERT INTO `authentication` (staffID, code,`level`) VALUES (?, ?, ?)");
   $stmt->bind_param("sss", $staffID, $code,$level);
     $stmt->execute();
     $stmt->close();

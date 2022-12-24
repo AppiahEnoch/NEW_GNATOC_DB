@@ -32,7 +32,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="./style.css" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -49,6 +49,51 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+
+    <style>
+      #confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#confirmation-modal-content {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+}
+
+#confirmation-modal-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+#confirm-button,
+#cancel-button {
+  background: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+#confirm-button:hover,
+#cancel-button:hover {
+  background: #0069d9;
+}
+
+    </style>
 
     <style>
       body {
@@ -95,6 +140,26 @@
 
     <script>
       $(document).ready(function () {
+
+        $("#emptySystem").click(function(){
+
+document.getElementById("confirmation-modal").style.display = "flex";
+
+   });
+
+        $("#confirm-button").click(function(){
+      document.getElementById("confirmation-modal").style.display = "none";
+      runPHPCode("empty_system.php");
+
+         });
+
+$("#cancel-button").click(function(){
+
+document.getElementById("confirmation-modal").style.display = "none";
+
+});
+       
+
         $("#btnRegister").click(function () {
           location.replace("memberBio1.html");
         });
@@ -110,6 +175,9 @@
   <?php
   include "verifyAdmin.php";
   ?>
+
+
+
     <!-- NAV BAR BEGINS-->
 
     <nav
@@ -128,7 +196,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img style="width: 5rem" src="devImage/Ll3.png" alt="" />
+          <img style="width: 5rem" src="devImage/L13.PNG" alt="" />
           <span style="font-weight: bold; color: #3d8bfd">
             GNATOC-AAMUSTED-K</span
           >
@@ -160,6 +228,11 @@
                 >New Admin</a
               >
             </li>
+            <li class="nav-item">
+              <a id="emptySystem" class="nav-link" 
+                >Empty System</a
+              >
+            </li>
           </ul>
         </div>
       </div>
@@ -176,10 +249,47 @@
       </p>
     </div>
 
+
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+
+
+
+    <div id="confirmation-modal">
+  <div id="confirmation-modal-content">
+    <p style="color:blue; font-weight:bold">Are you sure you want to delete All records in the System?</p>
+    <div id="confirmation-modal-buttons">
+      <button id="confirm-button">Yes</button>
+      <button id="cancel-button">No</button>
+    </div>
+  </div>
+</div>
+
   </body>
+
+  <script>
+    async function runPHPCode(phpFile) {
+  // Send the request
+  const response = await fetch(phpFile, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "param1=value1&param2=value2"
+  });
+
+  // Handle the response from the server
+ // const result = await response.text();
+ // console.log(result);
+}
+
+  </script>
+
+
+  
 </html>
