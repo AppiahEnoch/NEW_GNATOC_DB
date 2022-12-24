@@ -225,7 +225,7 @@ $id=$_SESSION["staffID"];
   $result = $stmt->get_result();
   if ($row = $result->fetch_assoc()) {
   
-       if(empty(trim($row['rank']))){
+       if(empty(trim($row['rank1']))){
             $pageNumber=7; 
   
             echo $pageNumber;
