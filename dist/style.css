@@ -13,7 +13,7 @@ body {
   background-color: #b0dbee;
   height: 100%;
   margin: auto;
-  width: auto;
+  width: 1;
   display: flex;
 }
 body #form {
