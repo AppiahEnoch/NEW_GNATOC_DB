@@ -38,6 +38,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
     />
 
+
+
     <script
       src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
@@ -196,9 +198,9 @@ document.getElementById("confirmation-modal").style.display = "none";
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img style="width: 5rem" src="devImage/L13.PNG" alt="" />
+          <img     style="width: 5rem  " src="devImage/L14.jpg" alt="" />
           <span style="font-weight: bold; color: #3d8bfd">
-            GNATOC-AAMUSTED-K</span
+            GNATOC-AAMUSTED-K1</span
           >
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
