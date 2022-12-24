@@ -103,11 +103,15 @@
             function (data, status) {
               try {
                 var output = data.split("|");
-                //alert(data)
+               if(aeEmpty(data)){
+                $("#myModal").modal("hide");
+                  $("#mdErrorAlert").modal("show");
+
+               }
                 var e = output[0];
                 var c = output[1];
 
-                alert(date)
+         
 
                 if (typeof c == "undefined") {
                   $("#myModal").modal("hide");
@@ -199,7 +203,7 @@
     <!-- END SCRIPT -->
 
     <!-- partial:index.partial.html -->
-    <form id="form" method="post">
+    <form style=" width: auto;" id="form" method="post">
       <div class="form-outline mb-2 text-center m-1">
         <div class="row align-items-center justify-content-center">
           <img
@@ -508,6 +512,33 @@
           function (data, status) {}
         );
       }
+    </script>
+
+    <script>
+      function aeEmpty(e) {
+        var ee = "";
+        try {
+          ee = e.trim();
+        } catch (error) {
+          return true;
+        }
+        try {
+          switch (e) {
+            case "":
+            case 0:
+            case "0":
+            case null:
+            case false:
+            case undefined:
+              return true;
+            default:
+              return false;
+          }
+        } catch (error) {
+          return true;
+        }
+      }
+      
     </script>
 
     <script
