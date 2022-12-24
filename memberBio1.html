@@ -47,8 +47,8 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="dist/style.css" />
     <link rel="stylesheet" href="w3css.css" />
+    <link rel="stylesheet" href="dist/style.css" />
 
     <style>
       #success-alert {
@@ -389,7 +389,7 @@
 
         <h3>GNATOC</h3>
         <h6>AAMUSTED-K</h6>
-        1 of 88
+        1 of 89
 
         <!-- begin -->
         <div class="form-group">
@@ -498,13 +498,13 @@
         <i style="margin-left: 1rem" class="bi bi-fast-forward-fill"></i>
       </button>
 
-      <br>
-      <br>
-
-    
+      <br />
+      <br />
 
       <span>
-        <a style="margin-right: 2rem; margin-bottom: 2rem; color: white" href="login.html"
+        <a
+          style="margin-right: 2rem; margin-bottom: 2rem; color: white"
+          href="login.html"
           >Back to Login</a
         >
       </span>
@@ -722,15 +722,13 @@
 
       function showErrorVisibility(message) {
         $("#success-alert").text(message);
-            $("#success-alert").css({
-              "background-color": "red",
-              color: "white",
-              "font-size": "2rem",
-            });
-            $("#success-alert").fadeIn();
-            $("#success-alert").delay(3000).fadeOut();
-
-  
+        $("#success-alert").css({
+          "background-color": "red",
+          color: "white",
+          "font-size": "2rem",
+        });
+        $("#success-alert").fadeIn();
+        $("#success-alert").delay(3000).fadeOut();
       }
 
       function hideChecks() {
