@@ -198,11 +198,12 @@ document.getElementById("confirmation-modal").style.display = "none";
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img     style="width: 5rem  " src="devImage/L14.jpg" alt="" />
+          <img     style="width: 5rem; border-radius: 50%;" src="devImage/L14.jpg" alt="" />
           <span style="font-weight: bold; color: #3d8bfd">
             GNATOC-AAMUSTED-K1</span
           >
         </a>
+    
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
