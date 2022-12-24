@@ -147,7 +147,7 @@ document.getElementById("confirmation-modal").style.display = "flex";
 
    });
 
-        $("#confirm-button").click(function(){
+      $("#confirm-button").click(function(){
       document.getElementById("confirmation-modal").style.display = "none";
       runPHPCode("empty_system.php");
 
