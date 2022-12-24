@@ -21,8 +21,7 @@ body #form {
   border-radius: 0.3rem;
   margin: auto;
   padding: 2.5rem;
-  padding-bottom: 0;
-  padding-top: 0;
+  margin-bottom: 1rem;
   box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
 }
 body #form p {
