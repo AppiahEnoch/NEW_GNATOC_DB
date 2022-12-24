@@ -716,16 +716,7 @@
 
             // alert(fAdmission);
 
-            $.ajax({
-              url: fAdmission,
-              type: "HEAD",
-              error: function () {
-                //  alert("exist")
-              },
-              success: function () {
-                // alert("NOT exist")
-              },
-            });
+     
 
             var email = response[1].email;
 
