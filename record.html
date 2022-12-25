@@ -61,57 +61,62 @@
       var from = "";
       var to = "";
       var level = "";
+      var rank = "";
 
+      function getData() {
+        $("#table1 tbody").empty();
 
-
-      function getData(){
-        if(aeEmpty(sex)&& aeEmpty(from)&&(aeEmpty(to)&& aeEmpty(level))){
-            return
+        if (aeEmpty(sex) && aeEmpty(from) && aeEmpty(to) && aeEmpty(level) && aeEmpty(rank)) {
+          hideSpin();
+          return;
         }
-             
+
         $.ajax({
-        url: 'getData.php',
-        type: 'post',
-        data:{
-            sex:sex,
-            to:to,
-            from:from,
-            level:level
-        },
-      
-       // dataType: 'JSON',
-        success: function(response){
-                alert(response)
+          url: "getData.php",
+          type: "post",
+          data: {
+            sex: sex,
+            to: to,
+            from: from,
+            level: level,
+            rank1: rank,
+          },
 
-            return;
-       /*    var len = response.length;
-        
-            for(var i=0; i<len; i++){
-                var mobile = response[i].mobile;
-                var fullName = response[i].fullName;
-                var farmSize = response[i].farmSize;
-                var location = response[i].location;
+          dataType: "JSON",
+          success: function (response) {
+            var len = response.length;
+            hideSpin();
 
-                var tr_str = "<tr>" +
-                    "<td >" + fullName + "</td>" +
-                    "<td >" + mobile + "</td>" +
-                    "<td>" + farmSize + "</td>" +
-                    "<td>" + location + "</td>" +
-                    "</tr>";
+         
 
-                $("#farmerTable tbody").append(tr_str);
+            for (var i = 0; i < len; i++) {
+              var mobile = response[i].mobile;
+              var fullName = response[i].fullName;
+              var staffID = response[i].staffID;
 
+              var tr_str =
+                "<tr>" +
+                "<td >" +
+                staffID +
+                "</td>" +
+                "<td >" +
+                fullName +
+                "</td>" +
+                "<td>" +
+                mobile +
+                "</td>" +
+                "</tr>";
 
+              $("#table1 tbody").append(tr_str);
+              $("#total_records").text(len);
             }
-
-            */
-
-        }
-    });
-    
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.error(textStatus + ": " + errorThrown);
+            alert("An error occurred: " + errorThrown);
+          },
+        });
       }
-
-
 
       $(document).ready(function () {
         hideSpin();
@@ -140,6 +145,15 @@
           getInput();
           getData();
         });
+
+        $("#tf_rank").keyup(function () {
+          showSpin();
+          getInput();
+          getData();
+        });
+
+
+
       });
     </script>
 
@@ -189,40 +203,61 @@
           </form>
         </div>
 
+
         <div class="col">
           <form>
             <div class="form-group">
-              <input
-                type="text"
-                placeholder="e.g. 300"
-                class="form-control"
-                id="tf_level"
-                aria-describedby="search2Help"
-              />
-              <small
-                style="text-align: left; color: #fff"
-                id="search2Help"
-                class="form-text"
-                >Search By Level</small
+              <div class="col d-inline-flex justify-content-center p-0 m-0">
+                <input
+                  placeholder="Level"
+                  type="text"
+                  class="form-control"
+                  id="tf_level"
+                  aria-describedby="search2Help"
+                />
+                <input
+                  type="text"
+                  placeholder="Rank"
+                  class="form-control ml-3"
+                  id="tf_rank"
+                  aria-describedby="search2Help"
+                />
+              </div>
+
+              <small style="text-align: left; color: #fff" class="form-text"
+                >Search By Level and Rank</small
               >
             </div>
           </form>
         </div>
+
+
+
+
+
+
       </div>
     </div>
     <div class="container-fluid">
       <div class="row">
         <div id="board" class="col-12 m-auto">
-          <img
-            style="width: 3rem; margin: auto; position: absolute; right: 0"
-            src="devImage/excel.png"
-            alt=""
-          />
+          <a href="Records.xlsx" download>
+            <img
+              style="width: 3rem; margin: auto; position: absolute; right: 0"
+              src="devImage/excel.png"
+              alt=""
+            />
+          </a>
+
           <i
             id="spin"
             style="color: white; margin-bottom: 1rem"
             class="fas fa-spinner fa-pulse fa-2x"
           ></i>
+
+          <label style="text-align: left"
+            >Total Records &nbsp; <span id="total_records"> 00</span></label
+          >
         </div>
       </div>
     </div>
@@ -237,26 +272,12 @@
           </tr>
         </thead>
 
-        <tbody>
-          <tr>
-            <td>1220016</td>
-            <td>APPIAH KUBI ENOCH</td>
-            <td>0549822202</td>
-          </tr>
-
-          <tr>
-            <td>1220016</td>
-            <td>APPIAH KUBI ENOCH</td>
-            <td>0549822202</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
 
     <script>
-
-
-function aeEmpty(e) {
+      function aeEmpty(e) {
         var ee = "";
         try {
           ee = e.trim();
@@ -279,16 +300,23 @@ function aeEmpty(e) {
           return true;
         }
       }
-      
-     function getInput() {
-         sex = $("#tf_sex").val();
-         sex =sex.trim();
-         from = $("#tf_from").val();
-         from =from.trim();
-         to = $("#tf_to").val();
-         to =to.trim();
-         level = $("#tf_level").val();
-         level =level.trim();
+
+      function getInput() {
+        sex = $("#tf_sex").val();
+        sex = sex.trim();
+        from = $("#tf_from").val();
+        from = from.trim();
+        to = $("#tf_to").val();
+        to = to.trim();
+        level = $("#tf_level").val();
+        level = level.trim();
+
+        rank = $("#tf_rank").val();
+        rank = rank.trim();
+
+
+
+        $("#total_records").text("0");
       }
       function hideSpin() {
         $("#spin").hide();

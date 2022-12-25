@@ -216,7 +216,8 @@ document.getElementById("confirmation-modal").style.display = "none";
               <a class="nav-link" href="#">Receive Dues</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="record.html">Records</a>
+            <a class="nav-link" href="record.html">Records</a>
+     
             </li>
             <li class="nav-item">
               <a
