@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 
+
 $level=cleanInput($_POST["level"]);
 $code="";
 $staffID="";
@@ -20,6 +21,9 @@ $sql = "SELECT * FROM authentication WHERE level=?";
 $stmt = $conn->prepare($sql); 
 $stmt->bind_param("s", $level);
 $stmt->execute();
+
+
+
 $result = $stmt->get_result();
 $pdf->Cell(100,6,date("l jS \of F Y h:i:s A"));
 $pdf->Ln();
@@ -33,6 +37,9 @@ $pdf->SetFont('Arial', 'B', 12);
 while ($row = $result->fetch_assoc()) {
     $staffID= $row["staffID"];
     $code= $row["code"];
+
+
+
 
     
     $pdf->Cell(80,6,$staffID,1,0);

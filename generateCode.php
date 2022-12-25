@@ -68,12 +68,28 @@
           e.preventDefault();
           var level = $("#level").val();
 
+          if(aeEmpty(level)){
+
+            aeModelTitle = "WHICH LEVEL ?";
+                aeModelBody =
+                  "Enter Members level to Download their Codes";
+
+                $("#aeMBody").text(aeModelBody);
+                $("#aeMTitle").text(aeModelTitle);
+                $("#aeModelPassive").modal("show");
+                return false;
+          }
+
+  
+
           $.post(
             "selectAllAutCodes.php",
             {
               level: level,
             },
             function (data, status) {
+
+      
        
               window.location.href = 'AUTHENTICATION_CODES.pdf';
       
@@ -166,6 +182,7 @@
               } catch (error) {}
 
               if (em.length < 2) {
+
                 aeModelTitle = "ERROR! STAFFID IS UNKNOWN";
                 aeModelBody =
                   "LET THIS MEMBER SIGN UP BEFORE HE CAN GET THE CODE.";
@@ -386,5 +403,32 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      function aeEmpty(e) {
+        var ee = "";
+        try {
+          ee = e.trim();
+        } catch (error) {
+          return true;
+        }
+        try {
+          switch (e) {
+            case "":
+            case 0:
+            case "0":
+            case null:
+            case false:
+            case undefined:
+              return true;
+            default:
+              return false;
+          }
+        } catch (error) {
+          return true;
+        }
+      }
+      
+    </script>
   </body>
 </html>
