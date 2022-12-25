@@ -213,7 +213,7 @@ document.getElementById("confirmation-modal").style.display = "none";
         <a class="navbar-brand" href="#">
           <img     style="width: 5rem; border-radius: 50%;" src="devImage/L14.jpg" alt="" />
           <span style="font-weight: bold; color: #3d8bfd">
-            GNATOC-AAMUSTED-K1</span
+            GNATOC-AAMUSTED-K</span
           >
         </a>
     
