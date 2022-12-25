@@ -95,7 +95,7 @@
   background: #0069d9;
 }
 
-    </style>
+</style>
 
     <style>
       body {
@@ -136,6 +136,17 @@
         color: white;
         text-align: center;
       }
+
+  a:hover{
+  text-decoration: underline;
+  color: blue;
+  font-size: larger;
+}
+
+
+
+
+
     </style>
 
     <!-- SCRIPTS BEGIN-->
@@ -209,16 +220,28 @@ document.getElementById("confirmation-modal").style.display = "none";
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.php">Home</a>
+              <a id="ahome" class="nav-link" aria-current="page" href="index.php">Home
+                <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="generateCode.php">CODE</a>
+              <a id="acode" class="nav-link" href="generateCode.php">CODE
+
+                <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Receive Dues</a>
+              <a id="adue" class="nav-link" href="#">Receive Dues
+
+                <i class="fa fa-money fa-2x" aria-hidden="true"></i>
+              </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="record.php">Records</a>
+
+            <a  id="arecord" class="nav-link" href="record.php">Records
+              <i  class="fa fa-table fa-2x" aria-hidden="true"></i>
+
+            </a>
      
             </li>
             <li class="nav-item">
@@ -226,17 +249,23 @@ document.getElementById("confirmation-modal").style.display = "none";
                 id="resetPassword"
                 class="nav-link"
                 href="resetAdminPassword.html"
-                >Reset Password</a
+                >Reset Password
+                <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i>
+                </a
               >
             </li>
             <li class="nav-item">
-              <a id="resetPassword" class="nav-link" href="addAdmin.php"
-                >New Admin</a
+              <a id="anew" class="nav-link" href="addAdmin.php"
+                >New Admin
+                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+                </a
               >
             </li>
             <li class="nav-item">
               <a id="emptySystem" class="nav-link" 
-                >Empty System</a
+                >Empty System
+                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                </a
               >
             </li>
           </ul>
