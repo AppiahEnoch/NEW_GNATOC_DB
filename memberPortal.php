@@ -825,10 +825,10 @@
               type: "HEAD",
               url: fStudy,
               success: function () {
-               alert("exist")
+               //alert("exist")
               },
               error: function () {
-                alert("NOT exist")
+               // alert("NOT exist")
               },
             });
 
@@ -875,7 +875,7 @@
       }
 
       function setEmbedSrc(id, fileUrl) {
-        alert(fileUrl);
+        //alert(fileUrl);
         // alert("url: "+fileUrl);
         var embedElement = document.getElementById(id);
         embedElement.src = fileUrl;
