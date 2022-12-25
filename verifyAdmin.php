@@ -29,9 +29,6 @@ if ($row = $result->fetch_assoc()) {
 
 }
 
-
-
-
 $i=trim($i);
 
  if(empty($i)){
