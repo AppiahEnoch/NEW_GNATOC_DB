@@ -12,7 +12,9 @@ session_start();
 $id=$_SESSION["staffID"];
 
 $n=0;
-$i=0;
+$i="";
+
+
 
 
 
@@ -21,19 +23,18 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $id);
 $stmt->execute();
 $result = $stmt->get_result();
-while ($row = $result->fetch_assoc()) {
+if ($row = $result->fetch_assoc()) {
     $n=$row["username"];
     $i=$row["staffID"];
 
 }
 
 
- if($n==0){
-    header('Location: index.php');
-    exit;
- }
- 
- elseif($i==0){
+
+
+$i=trim($i);
+
+ if(empty($i)){
     header('Location: index.php');
     exit;
  }
