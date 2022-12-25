@@ -54,8 +54,16 @@
         justify-content: center;
       }
     </style>
+
+<?php
+include "verifyAdmin.php";
+
+?>
+
+
   </head>
   <body>
+
     <script>
       var sex = "";
       var from = "";
