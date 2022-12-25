@@ -49,9 +49,19 @@
     ></script>
 
     <link rel="stylesheet" href="dist/style.css" />
+
+
+    <?php
+  session_start();
+  session_destroy();
+?>
+
+
   </head>
 
   <body>
+
+
     <!-- BEGIN SCRIPT -->
     <script>
       $(document).ready(function () {
@@ -199,7 +209,7 @@
                   }
 
                   //location.replace("in.dex.html");
-                  // location.replace("login.html");
+                  // location.replace("login.php");
                 } else {
                   document.getElementById("invalid").style.visibility =
                     "visible";

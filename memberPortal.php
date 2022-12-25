@@ -896,7 +896,7 @@
           style="width: 45%"
           class="w3-round"
         /><br /><br />
-        <a class="w3-button w3-deep-purple" href="login.html">Log out</a>
+        <a class="w3-button w3-deep-purple" href="login.php">Log out</a>
 
         <h4><b>MY PORTAL</b></h4>
       </div>

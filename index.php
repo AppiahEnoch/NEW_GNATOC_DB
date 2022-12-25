@@ -76,9 +76,20 @@
         });
     });
     </script>
+
+<?php
+  session_start();
+  session_destroy();
+?>
+
+
 </head>
 
 <body>
+
+
+
+
     <!-- NAV BAR BEGINS-->
 
     <nav class="navbar  navbar-expand-md navbar-expand-lg py-3 navbar-dark bg-dark navbar-expand-lg">
@@ -95,25 +106,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Latest Info
+                        <a class="nav-link" aria-current="page" href="#">News
                             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
 
                         </a>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Portal
+                        <a class="nav-link" href="login.php">Login
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Continue Registration
-                            <i class="fa fa-share" aria-hidden="true"></i>
-
-
-                        </a>
-                    </li>
+                 
                 </ul>
                 <a href="memberBio1.html" class="btn btn-primary ms-lg-3">Register</a>
             </div>
@@ -154,6 +159,8 @@
             <span>aamustedgnatoc@gmail.com</span> <br />
             <i class="bi bi-telephone-forward-fill"></i>
             <span>Tel: 0257705314 </span>
+            <br>
+            <span style="align-items: left;  text-align: left;">Powered by: AECleanCodes: 0549822202 </span>
         </p>
     </div>
 
