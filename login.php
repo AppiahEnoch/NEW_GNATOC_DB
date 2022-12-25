@@ -185,7 +185,7 @@
                   outputValue = 0;
                 }
 
-                 alert(outputValue);
+                // alert(outputValue);
 
                 if (outputValue > 0) {
                   if (outputValue == 1) {

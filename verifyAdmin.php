@@ -26,8 +26,8 @@ $result = $stmt->get_result();
 if ($row = $result->fetch_assoc()) {
     $n=$row["username"];
     $i=$row["staffID"];
-
 }
+
 
 $i=trim($i);
 
