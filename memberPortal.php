@@ -97,7 +97,7 @@
     </style>
   </head>
   <body class="w3-aqua w3-content" style="max-width: 1600px">
-  <?php
+    <?php
   include "checkSession.php";
   ?>
 
@@ -483,7 +483,7 @@
           data: form_data,
           type: "post",
           success: function (response) {
-          //  alert(response)
+            //  alert(response)
             if (!aeEmpty(frameID)) {
               //  alert(response);
               setEmbedSrc(frameID, response);
@@ -716,8 +716,6 @@
 
             // alert(fAdmission);
 
-     
-
             var email = response[1].email;
 
             $("#tbBasicInfo")
@@ -823,6 +821,17 @@
 
             // files
 
+            $.ajax({
+              type: "HEAD",
+              url: fStudy,
+              success: function () {
+               alert("exist")
+              },
+              error: function () {
+                alert("NOT exist")
+              },
+            });
+
             // alert(fSsnit)
             //  loadFile("fStudyLeave", fStudy);
             setEmbedSrc("fStudyLeave", fStudy);
@@ -866,6 +875,7 @@
       }
 
       function setEmbedSrc(id, fileUrl) {
+        alert(fileUrl);
         // alert("url: "+fileUrl);
         var embedElement = document.getElementById(id);
         embedElement.src = fileUrl;
@@ -992,7 +1002,7 @@
               <strong>Basic Information</strong>
             </h4>
             <p>
-              <button id="btPrint" class="w3-button w3-deep-purple w3-hide ">
+              <button id="btPrint" class="w3-button w3-deep-purple w3-hide">
                 <i class="fa fa-print" aria-hidden="true"></i> Print
               </button>
               <button id="btEdit" class="w3-button w3-deep-purple">
@@ -1005,8 +1015,6 @@
               </button>
             </p>
 
-
-            </button>
             <div class="w3-card">
               <table id="tbBasicInfo" style="width: 100%">
                 <colgroup>
@@ -1019,8 +1027,6 @@
               </table>
             </div>
             <p></p>
-
-     
           </div>
         </div>
       </div>
@@ -1368,7 +1374,7 @@
                   onclick="showPassword()"
                 />
                 <label for="showPassword1"><span>Show Password</span></label>
-                <br>
+                <br />
 
                 <label
                   id="errorMismatch"
