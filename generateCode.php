@@ -91,7 +91,8 @@
 
       
        
-              window.location.href = 'AUTHENTICATION_CODES.pdf';
+              window.open('AUTHENTICATION_CODES.pdf', '_blank');
+              
       
          
             }
