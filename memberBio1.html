@@ -67,7 +67,9 @@
   <body>
     <div id="success-alert" class="w3-panel">
       <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
-      Your message was sent successfully!
+      <div id="success-alert2">
+        Your message was sent successfully!
+      </div>
   </div>
   
 
@@ -730,7 +732,7 @@
       }
 
       function showErrorVisibility(message) {
-        $("#success-alert").text(message);
+        $("#success-alert2").text(message);
         $("#success-alert").css({
           "background-color": "red",
           color: "white",
