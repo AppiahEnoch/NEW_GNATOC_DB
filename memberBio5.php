@@ -1,3 +1,8 @@
+<?php
+
+include "verifyCode.php"
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -89,11 +94,7 @@
   </head>
 
   <body>
-  <?php
 
-include "verifyCode.php"
-
-?>
     <!-- BEGIN SCRIPT -->
     <script>
       7;
