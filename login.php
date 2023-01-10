@@ -173,6 +173,9 @@
               username: username,
               password: password,
             },
+          error: function (xhr, status, error) {
+             alert(error);
+          },
             success: function (data, status) {
               alert(data);
               try {
