@@ -1,6 +1,4 @@
 <?php
-
- 
     include_once 'config.php';
     session_start();
    // $_SESSION["staffID"]=1220016;

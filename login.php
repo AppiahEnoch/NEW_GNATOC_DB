@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  session_destroy();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,10 +56,7 @@
     <link rel="stylesheet" href="dist/style.css" />
 
 
-    <?php
-  session_start();
-  session_destroy();
-?>
+
 
 
   </head>

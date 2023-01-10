@@ -1,3 +1,7 @@
+<?php
+
+include "verifyCode.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -67,11 +71,7 @@
 
   <body>
 
-  <?php
 
-include "verifyCode.php"
-
-?>
     <!-- BEGIN SCRIPT -->
     <script>
       var aeModelTitle1 = "SUCCESS!";

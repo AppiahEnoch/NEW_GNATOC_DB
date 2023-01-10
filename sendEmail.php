@@ -11,7 +11,6 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-
 $subject=$_POST['subject'];
 $messageBody=$_POST['message'];
 $receiver=$_POST['receiver'];
@@ -48,7 +47,3 @@ else{
 }
 
 $mail->smtpClose();
-
-
-
-?>
