@@ -210,7 +210,7 @@
       </button>
 
       <span>
-        <a style="margin-right: 2rem; color: white" href="#!">Back to Login</a>
+        <a style="margin-right: 2rem; color: white" href="login.php">Back to Login</a>
         <br />
         <br />
       </span>

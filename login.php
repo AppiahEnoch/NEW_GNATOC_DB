@@ -174,7 +174,7 @@
               password: password,
             },
             success: function (data, status) {
-              //alert(data);
+              alert(data);
               try {
                 var output = data;
                 var nn = output.trim();
