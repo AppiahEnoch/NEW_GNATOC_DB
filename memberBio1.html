@@ -66,8 +66,10 @@
 
   <body>
     <div id="success-alert" class="w3-panel">
+      <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
       Your message was sent successfully!
-    </div>
+  </div>
+  
 
     <!-- BEGIN SCRIPT -->
     <script>
@@ -735,7 +737,7 @@
           "font-size": "2rem",
         });
         $("#success-alert").fadeIn();
-        $("#success-alert").delay(3000).fadeOut();
+        $("#success-alert").delay(1000).fadeOut();
       }
 
       function hideChecks() {
