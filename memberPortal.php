@@ -1,3 +1,6 @@
+<?php
+  include "checkSession.php";
+  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -97,9 +100,7 @@
     </style>
   </head>
   <body class="w3-aqua w3-content" style="max-width: 1600px">
-    <?php
-  include "checkSession.php";
-  ?>
+
 
     <script>
       function up1(event) {

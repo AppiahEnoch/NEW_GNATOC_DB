@@ -1,3 +1,6 @@
+<?php
+  include "checkSession.php";
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,9 +68,7 @@
   <link rel="stylesheet" href="w3css.css" />
   <body>
 
-  <?php
-  include "checkSession.php";
-  ?>
+
 
 <div id="success-alert" class="w3-panel">
       Your message was sent successfully!

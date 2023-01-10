@@ -1,3 +1,7 @@
+<?php
+  include "checkSession.php";
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,9 +57,7 @@
 
   <body>
 
-  <?php
-  include "checkSession.php";
-  ?>
+
     <!-- BEGIN SCRIPT -->
     <script>
       var staffID = "";
