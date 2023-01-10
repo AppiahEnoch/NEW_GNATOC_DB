@@ -453,7 +453,9 @@
       var code = "";
 
       function getVcode() {
-        $.post("selectEmailVerificationCode.php", {}, function (data, status) {
+        $.post("selectEmailVerificationCode.php", {
+          
+        }, function (data, status) {
           var output = data.split("|");
 
           var e = output[0];

@@ -28,12 +28,8 @@ if ($row = $result->fetch_assoc()) {
      $value= $row['staffID'];
      $email=$row['email'];
      $code=$row['code'];
-
-     
      echo "$email|$code";
 }
-
-
 
 
 $stmt->close();
@@ -42,20 +38,12 @@ $conn->close();
 
 
 function createRandomPassword() { 
-
-  $chars = "abcdefghijkmnopqrstuvwxyz023456789"; 
-  srand((double)microtime()*1000000); 
-  $i = 0; 
-  $pass = '' ; 
-
-  while ($i <= 3) { 
-      $num = rand() % 33; 
-      $tmp = substr($chars, $num, 1); 
-      $pass = $pass . $tmp; 
-      $i++; 
-  } 
-
-  return $pass; 
+  $chars = "abcdefghijkmnpqrstuvwxyz23456789"; 
+  $otp = "";
+  for ($i = 0; $i < $length; $i++) {
+      $otp .= $chars[mt_rand(0, strlen($chars) - 1)];
+  }
+  return $otp;
 
 } 
 

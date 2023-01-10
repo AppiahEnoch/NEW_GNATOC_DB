@@ -1,4 +1,5 @@
 <?php  
+include "env.php";
 require 'includes/Exception.php';
 require 'includes/SMTP.php';
 require 'includes/PHPMailer.php';
@@ -10,15 +11,14 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-$sender=$_POST['sender'];
-$password=$_POST['password'];
+
 $subject=$_POST['subject'];
 $messageBody=$_POST['message'];
 $receiver=$_POST['receiver'];
 
-$sender=$_POST['sender'];
-$sender=$_POST['sender'];
-$sender=$_POST['sender'];
+$sender=$SENDER;
+$password=$EMAIL_PASSWORD;
+
 
 
 
