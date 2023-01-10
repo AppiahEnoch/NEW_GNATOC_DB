@@ -1,19 +1,16 @@
 <?php
 session_start();
-
   if (isset($_SESSION['staffID'])) {
   } else {
     header('Location: index.php');
     exit;
   }
 
+  include "config.php";
 $id=$_SESSION["staffID"];
 
 $n=0;
 $i="";
-
-
-include "config.php";
 
 
 $sql = "SELECT * FROM sysadmin WHERE staffID=?";
