@@ -275,7 +275,10 @@ $id=$_SESSION["staffID"];
   function aeTrim($var) {
     try {
         // Trim the variable
-        $var = trim($var);
+        if($var !== null && $var !== ''){
+          $var = trim($var);
+      }
+      
         
         // Check if the variable is null or empty
         if(is_null($var) || $var === "") {
