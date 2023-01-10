@@ -7,6 +7,12 @@ include "config.php";
 $sql  =  "DELETE FROM memberbio";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
+
+$sql  =  "DELETE FROM `authentication`";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+
 deleteAllFiles();
 
 
