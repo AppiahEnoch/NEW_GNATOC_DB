@@ -129,9 +129,9 @@ catch(Exception $e){
 
 
 function createRandomPassword() { 
-  $chars = "abcdefghijkmnpqrstuvwxyz23456789"; 
+  $chars = "23456789"; 
   $otp = "";
-  for ($i = 0; $i < 7; $i++) {
+  for ($i = 0; $i < 4; $i++) {
       $otp .= $chars[mt_rand(0, strlen($chars) - 1)];
   }
   return $otp;
