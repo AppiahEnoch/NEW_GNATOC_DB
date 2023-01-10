@@ -23,7 +23,7 @@ $arrayOfAllNames=[$v2,$v3];
 // function to clean user input
 function cleanInput($data){
     try {
-        $data = trim($data);
+        $data = aeTrim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
       } catch(Exception $e) {
@@ -179,7 +179,7 @@ $id=$_SESSION["staffID"];
   $result = $stmt->get_result();
   if ($row = $result->fetch_assoc()) {
   
-       if(empty(trim($row['fName']))){
+       if(empty(aeTrim($row['fName']))){
             $pageNumber=2; 
   
             echo $pageNumber;
@@ -187,14 +187,14 @@ $id=$_SESSION["staffID"];
            
        }
        
-       elseif(empty(trim($row['admissionNumber']))){
+       elseif(empty(aeTrim($row['admissionNumber']))){
             $pageNumber=3; 
             echo $pageNumber;
             exit();
     
        }
 
-       elseif(empty(trim($row['gender']))){
+       elseif(empty(aeTrim($row['gender']))){
         $pageNumber=4; 
         echo $pageNumber;
         exit();
@@ -202,7 +202,7 @@ $id=$_SESSION["staffID"];
    }
 
 
-   elseif(empty(trim($row['course']))){
+   elseif(empty(aeTrim($row['course']))){
     $pageNumber=5; 
     echo $pageNumber;
     exit();
@@ -225,7 +225,7 @@ $id=$_SESSION["staffID"];
   $result = $stmt->get_result();
   if ($row = $result->fetch_assoc()) {
   
-       if(empty(trim($row['rank1']))){
+       if(empty(aeTrim($row['rank1']))){
             $pageNumber=7; 
   
             echo $pageNumber;
@@ -233,14 +233,14 @@ $id=$_SESSION["staffID"];
            
        }
        
-       elseif(empty(trim($row['ghanaCard']))){
+       elseif(empty(aeTrim($row['ghanaCard']))){
             $pageNumber=8; 
             echo $pageNumber;
             exit();
     
        }
 
-       elseif(empty(trim($row['passport']))){
+       elseif(empty(aeTrim($row['passport']))){
         $pageNumber=6; 
         echo $pageNumber;
         exit();
@@ -272,6 +272,21 @@ $id=$_SESSION["staffID"];
   $conn->close();
   
     
+  function aeTrim($var) {
+    try {
+        // Trim the variable
+        $var = aeTrim($var);
+        
+        // Check if the variable is null or empty
+        if(is_null($var) || $var === "") {
+            return "";
+        }
+        
+        return $var;
+    } catch (Exception $e) {
+      return "";
+    }
+}
 
 
 echo $pageNumber;
