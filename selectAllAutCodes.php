@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-
+include "env.php";
 
 $level=cleanInput($_POST["level"]);
 $code="";
@@ -54,7 +54,8 @@ while ($row = $result->fetch_assoc()) {
    
 }
 
-$pdf->Output('F', 'AUTHENTICATION_CODES.pdf');
+
+$pdf->Output('F', $pdf_path);
 
 echo $code;
 
