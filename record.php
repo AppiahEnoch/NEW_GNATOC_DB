@@ -1,3 +1,7 @@
+<?php
+include "verifyAdmin.php";
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -55,10 +59,7 @@
       }
     </style>
 
-<?php
-include "verifyAdmin.php";
 
-?>
 
 
   </head>

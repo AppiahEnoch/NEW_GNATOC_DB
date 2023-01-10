@@ -1,3 +1,6 @@
+<?php
+  include "verifyAdmin.php";
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -182,9 +185,7 @@ document.getElementById("confirmation-modal").style.display = "none";
       });
     </script>
 
-<?php
-  include "verifyAdmin.php";
-  ?>
+
   </head>
 
   <body>

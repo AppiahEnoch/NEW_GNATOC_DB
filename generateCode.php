@@ -1,3 +1,6 @@
+<?php
+  include "verifyAdmin.php";
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,10 +56,7 @@
 
   <body>
     
-  <?php
-  include "verifyAdmin.php";
 
-  ?>
     
 
 

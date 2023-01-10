@@ -1,3 +1,7 @@
+<?php
+  include "verifyAdmin.php";
+
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,10 +36,7 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <?php
-  include "verifyAdmin.php";
 
-  ?>
 
     <style>
       html,
