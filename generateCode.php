@@ -91,7 +91,7 @@
 
       
        
-              window.open('AUTHENTICATION_CODES.pdf', '_blank');
+              window.open('output/AUTHENTICATION_CODES.pdf', '_blank');
               
       
          

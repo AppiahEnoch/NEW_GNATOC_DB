@@ -55,7 +55,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 
-$pdf->Output('F', $pdf_path);
+$pdf->Output('F', 'output/AUTHENTICATION_CODES.pdf');
 
 echo $code;
 
