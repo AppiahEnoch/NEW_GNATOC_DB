@@ -51,10 +51,11 @@
       crossorigin="anonymous"
     ></script>
 
+    <link rel="stylesheet" href="w3css.css" />
     <link rel="stylesheet" href="dist/style.css" />
   </head>
 
-  <body>
+  <body >
     
 
     
@@ -113,8 +114,6 @@
           "#btConfirmDelete",
           function (e) {
             $("#aeModelConfirmdelete").modal("hide");
-            $("#aeMdSuccess").modal("show");
-
             $.post(
               "DeleteAllAutCodes.php",
 
@@ -217,10 +216,10 @@
     </script>
 
     <!-- END SCRIPT -->
-
+  
     <!-- partial:index.partial.html -->
-    <form id="form" method="post">
-      <div class="form-outline mb-2 text-center m-1">
+    <form class="form" id="form" method="post">
+      <div class="form-outline mb-2 text-center">
         <h4
           id="code"
           style="font-style: italic; color: #b0dbee; font-weight: bolder"
@@ -245,17 +244,18 @@
           <div class="input-group-addon">
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
-          <input type="number" id="level" placeholder="Enter Level" min="100" />
+          <input type="number" id="level" placeholder="Enter Level" />
         </div>
       </div>
 
       <!-- end -->
 
       <div
-        style="padding: 1rem 1rem; background-color: #b0dbee"
-        class="btwrapper"
+       class="card"
+       style="background-color: transparent;"
+       
       >
-        <button id="generate" type="button" class="btn btn-default mt-0">
+        <button id="generate" type="button" class="btn btn-default mt-0 p-2 mb-1">
           Generate
           <i class="fa fa-fire" aria-hidden="true"></i>
         </button>
@@ -264,18 +264,20 @@
           <i class="fa fa-envelope-o" aria-hidden="true"></i>
         </button>
         <hr />
-        <button id="generateAll" type="button" class="btn btn-default mt-0">
+
+        <button id="generateAll" type="button" class="btn btn-default mt-0 mb-1">
           Generate for All Chosen level
         </button>
-        <button id="sendAll" type="button" class="btn btn-default mt-0">
+        <button id="sendAll" type="button" class="btn btn-default mt-0 mb-1">
           Send to All Chosen level
         </button>
   
         <button
+        
           id="download"
           style="background-color: #13795b; color: white"
           type="submit"
-          class="btn btn-default mt-0"
+          class="btn btn-default mt-0 mb-1"
         >
           Download
           <i class="fa fa-download" aria-hidden="true"></i>
