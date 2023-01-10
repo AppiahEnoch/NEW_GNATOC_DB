@@ -1,7 +1,5 @@
 <?php
-include "config.php";
 session_start();
-
 
   if (isset($_SESSION['staffID'])) {
   } else {
@@ -15,7 +13,7 @@ $n=0;
 $i="";
 
 
-
+include "config.php";
 
 
 $sql = "SELECT * FROM sysadmin WHERE staffID=?";

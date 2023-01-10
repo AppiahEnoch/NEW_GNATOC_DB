@@ -84,6 +84,7 @@
 
         // FORM SUBMIT BEGINS
         $("#form").submit(function (e) {
+          hideErrorVisibility();
           e.preventDefault();
 
           if (staffIDIsUsed) {
@@ -137,6 +138,7 @@
 
         // GHANA Card
         $("#ghanaCard").keyup(function () {
+          hideErrorVisibility();
           $("#success-alert").hide();
           if (!validateGhanaCard()) {
             showErrorVisibility(message);
@@ -159,6 +161,7 @@
         var thisIDExist = 0;
 
         $("#staffID").keyup(function () {
+          hideErrorVisibility();
           staffID = $("#staffID").val();
           staffIDIsUsed = false;
 
@@ -228,6 +231,8 @@
             $("#staffIDCheck").hide();
             staffID = "";
             message = "Invalid staff ID";
+
+            alert(2)
             showErrorVisibility(message);
           }
         });
@@ -238,6 +243,7 @@
         var email = "";
         var thisIDExist = 0;
         $("#email").keyup(function () {
+          hideErrorVisibility();
           email = $("#email").val();
           emailIsUsed = false;
 
@@ -306,6 +312,7 @@
         var mobile = "";
         var thisIDExist = 0;
         $("#mobile").keyup(function () {
+          hideErrorVisibility();
           mobile = $("#mobile").val();
           mobileIsUsed = false;
 
@@ -318,7 +325,7 @@
           }
           if (mobile.length == 10) {
             //$.ajaxSetup({async: false});
-
+            hideErrorVisibility(" ");
             if (mobile.substring(0, 1) == 0) {
               hideErrorVisibility(message);
             } else {
