@@ -66,12 +66,13 @@
 
   <body>
     <div id="success-alert" class="w3-panel">
-      <span onclick="this.parentElement.style.display='none'" class="w3-button w3-large w3-display-topright">&times;</span>
-      <div id="success-alert2">
-        Your message was sent successfully!
-      </div>
-  </div>
-  
+      <span
+        onclick="this.parentElement.style.display='none'"
+        class="w3-button w3-large w3-display-topright"
+        >&times;</span
+      >
+      <div id="success-alert2">Your message was sent successfully!</div>
+    </div>
 
     <!-- BEGIN SCRIPT -->
     <script>
@@ -85,6 +86,8 @@
 
       $(document).ready(function () {
         hideChecks();
+
+   
 
         // FORM SUBMIT BEGINS
         $("#form").submit(function (e) {
@@ -141,7 +144,7 @@
         //END FORM SUBMIT
 
         // GHANA Card
-        $("#ghanaCard").keyup(function () {
+        $("#ghanaCard").on("input", function(){
           hideErrorVisibility();
           $("#success-alert").hide();
           if (!validateGhanaCard()) {
@@ -164,7 +167,12 @@
 
         var thisIDExist = 0;
 
-        $("#staffID").keyup(function () {
+
+
+
+
+     
+        $("#staffID").on("input", function(){
           hideErrorVisibility();
           staffID = $("#staffID").val();
           staffIDIsUsed = false;
@@ -189,7 +197,7 @@
               function (data, status) {
                 var n = data;
 
-                //  alert(data)
+                  //alert(data)
 
                 // return false;
                 //  alert(n);
@@ -218,6 +226,9 @@
                     $("#staffID").css({
                       "background-color": "#009edf",
                     });
+
+                 
+
                     $("#staffIDCheck").show();
                     hideErrorVisibility();
                   }
@@ -236,7 +247,7 @@
             staffID = "";
             message = "Invalid staff ID";
 
-           // alert(2)
+            // alert(2)
             showErrorVisibility(message);
           }
         });

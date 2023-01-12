@@ -1,6 +1,6 @@
 <?php
 
-$conn ="";
+$conn =null;
 $currentHost= gethostname(); 
 
 if($currentHost=="AECleanCodes"){
@@ -10,11 +10,11 @@ if($currentHost=="AECleanCodes"){
         $username = "root";
         $password = "";
         $database = "gnatoc";
-        $port = "63947";
+        $port = "63943";
        $conn = mysqli_connect($hostname, $username, $password, $database,$port) or die("Database connection failed");
  
     } catch (Throwable $th) {
-        //throw $th;
+        throw $th;
     }
 
 }
