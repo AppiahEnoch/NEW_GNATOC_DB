@@ -1,13 +1,13 @@
 <?php
-  include "checkSession.php";
-  ?>
+include "checkSession.php";
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <title>GNATOC-AAMUSTED-K</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="w3css.css" />
+    
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Raleway"
@@ -32,7 +32,7 @@
       src="https://kit.fontawesome.com/c1db89cf54.js"
       crossorigin="anonymous"
     ></script>
-
+    <link rel="stylesheet" href="w3css.css" />
     <style>
       #success-alert {
         position: fixed;
@@ -47,6 +47,10 @@
     </style>
 
     <style>
+
+
+
+
       body,
       h1,
       h2,
@@ -100,8 +104,6 @@
     </style>
   </head>
   <body class="w3-aqua w3-content" style="max-width: 1600px">
-
-
     <script>
       function up1(event) {
         var fullName = $("#a1").text();
@@ -485,17 +487,42 @@
           type: "post",
           success: function (response) {
             //  alert(response)
+
             if (!aeEmpty(frameID)) {
               //  alert(response);
               setEmbedSrc(frameID, response);
+              resetUrl(col, response);
             }
           },
-        });
+        });        NaN
       }
 
       // functions end
 
       $(document).ready(function () {
+        $("#closeMenuID").click(function () {
+          $("mySidebar").hide();
+        });
+
+        $("#changePassportID").click(function () {
+          $("#fileInput").click();
+        });
+        document
+          .getElementById("fileInput")
+          .addEventListener("change", function () {
+            if (this.files && this.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                $("#memberImage").attr("src", e.target.result);
+                $("#memberImageSmall").attr("src", e.target.result);
+                updatePassportPicture();
+
+
+              };
+              reader.readAsDataURL(this.files[0]);
+            }
+          });
+
         $("#newPassword").click(function () {
           $("#errorMismatch").hide();
           $("#errorMismatch").text("Password Mismatch!");
@@ -553,7 +580,6 @@
           var o = $("#oldPassword").val();
           var n = $("#newPassword").val();
           var c = $("#confirmPassword").val();
-
           var n = n.trim();
           var c = c.trim();
 
@@ -826,18 +852,16 @@
               type: "HEAD",
               url: fStudy,
               success: function () {
-               //alert("exist")
+                //alert("exist")
               },
               error: function () {
-               // alert("NOT exist")
+                // alert("NOT exist")
               },
             });
 
             // alert(fSsnit)
-            //  loadFile("fStudyLeave", fStudy);
+            // loadFile("fStudyLeave", fStudy);
             setEmbedSrc("fStudyLeave", fStudy);
-            setEmbedSrc("fAdmission", fAdmission);
-
             document.getElementById("d1").setAttribute("href", fStudy);
             setEmbedSrc("fAdmission", fAdmission);
             document.getElementById("d2").setAttribute("href", fAdmission);
@@ -886,7 +910,7 @@
     <!-- Sidebar/menu -->
     <nav
       class="w3-sidebar w3-collapse w3-white w3-animate-left"
-      style="z-index: 3; width: 300px"
+      style="z-index: 13; width: 300px"
       id="mySidebar"
     >
       <h5><strong>GNATOC-AAMUSTED-K</strong></h5>
@@ -895,18 +919,64 @@
         <a
           href="#"
           onclick="w3_close()"
-          class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+          class="w3-hide-medium w3-right w3-jumbo w3-padding w3-hover-grey"
           title="close menu"
         >
-          <i class="fa fa-remove"></i>
+          <i id="closeMenuID" class="fa fa-remove"></i>
         </a>
 
-        <img
-          id="memberImage"
-          src="devImage/l2.png"
-          style="width: 45%"
-          class="w3-round"
-        /><br /><br />
+        <style>
+          .icon-border {
+            border: none;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px blue;
+            position: relative;
+          }
+
+          .icon-border:hover {
+            box-shadow: 0 0 0 2px red;
+            color: red;
+          }
+
+          #memberImage:hover {
+            transform: scale(2.1);
+            transition: transform 0.2s ease-in-out;
+          }
+          #memberImageSmall:hover {
+            transform: scale(2.1);
+            transition: transform 0.2s ease-in-out;
+          }
+
+          
+        </style>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          style="display: none"
+        />
+
+        <div style="position:relative; max-width: 90%; ")>
+          <img
+            id="memberImage"
+            src="devImage/l2.png"
+            style="width: 45%; border-radius: 50%"
+            class="w3-round"
+          />
+          <i
+            id="changePassportID"
+            class="fa fa-pencil-square-o icon-border"
+            aria-hidden="true"
+            style="
+              position: absolute;
+              right: 8rem;
+              top: 50%;
+              transform: translateY(-50%);
+            "
+          ></i>
+        </div>
+
         <a class="w3-button w3-deep-purple" href="login.php">Log out</a>
 
         <h4><b>MY PORTAL</b></h4>
@@ -1224,36 +1294,31 @@
         <br />
         <br />
 
-        <div class="w3-row-padding">
+        <div class="w3-row-padding w3-hide">
           <div class="w3-section w3-bottombar w3-padding-16 w3-blue"></div>
           <h4 id="payment"><strong>PAYMENT HISTORY</strong></h4>
         </div>
 
         <!-- First Photo Grid-->
-        <div class="w3-row-padding">
+        <div class="w3-row-padding w3-hide">
           <div class="w3-container w3-margin-bottom">
             <div class="w3-container w3-white">
               <h4><strong>My Gnatoc Dues Payment history</strong></h4>
               <p>
-                Praesent tincidunt sed tellus ut rutrum. Sed vitae justo
-                condimentum, porta lectus vitae, ultricies congue gravida diam
-                non fringilla. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Quaerat velit nulla ullam, aliquid, laborum
-                dolore labore eveniet eligendi cum recusandae assumenda at quia
-                consequuntur fugit nihil tempore voluptatum consectetur? Est.
+            All your dues payment information will be available here soon
               </p>
               <p><button class="w3-button w3-deep-purple">Print</button></p>
             </div>
           </div>
         </div>
 
-        <div class="w3-row-padding">
+        <div class="w3-row-padding w3-hide">
           <div class="w3-section w3-bottombar w3-padding-16 w3-blue"></div>
           <h4 id="voting"><strong>VOTING</strong></h4>
         </div>
 
         <!-- Second Photo Grid-->
-        <div class="w3-row-padding">
+        <div class="w3-row-padding w3-hide">
           <div class="w3-third w3-container w3-margin-bottom">
             <div class="w3-container w3-white">
               <p><b>Candidate 1</b></p>
@@ -1489,6 +1554,62 @@
       function show_success_alert(message) {
         $("#success-alert").html(message).show();
         $("#success-alert").delay(3000).fadeOut();
+      }
+
+      function resetUrl(text, response) {
+        text = text.toLowerCase();
+        // alert(text);
+
+        if (text.indexOf("studyleave") !== -1) {
+          fStudy = response;
+          alert(fStudy);
+          setEmbedSrc("fStudyLeave", fStudy);
+          document.getElementById("d1").setAttribute("href", fStudy);
+        } else if (text.indexOf("admission") !== -1) {
+          fAdmission = response;
+
+          setEmbedSrc("fAdmission", fAdmission);
+          document.getElementById("d2").setAttribute("href", fAdmission);
+        } else if (text.indexOf("masterlist") !== -1) {
+          fMasterList = response;
+
+          setEmbedSrc("fMasterList", fMasterList);
+          document.getElementById("d3").setAttribute("href", fMasterList);
+        } else if (text.indexOf("matricula") !== -1) {
+          fMatricula = response;
+
+          setEmbedSrc("fMatricula", fMatricula);
+          document.getElementById("d4").setAttribute("href", fMatricula);
+        } else if (text.indexOf("ssnitcard") !== -1) {
+          fSsnit = response;
+          setEmbedSrc("fSsnit", fSsnit);
+          document.getElementById("d6").setAttribute("href", fSsnit);
+        } else if (text.indexOf("ghanacard") !== -1) {
+          fGhana = response;
+
+          setEmbedSrc("fGhana", fGhana);
+          document.getElementById("d5").setAttribute("href", fGhana);
+        }
+      }
+
+ 
+
+      function updatePassportPicture(){
+    var file = $("#fileInput")[0].files[0];
+    var formData = new FormData();
+    formData.append("image", file);
+    $.ajax({
+        url: "updatePassport.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          //alert(response);
+        }
+    });
+
+
       }
     </script>
   </body>

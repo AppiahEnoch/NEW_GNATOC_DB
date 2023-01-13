@@ -64,12 +64,8 @@
 
       $(document).ready(function () {
 
-        if (navigator.onLine) {
           getVcode();
-        } else {
-          $("#mdErrorOffline").modal("show");
-          return;
-        }
+   
 
         $("#mdSuccessAlert").on("click", "#goNext", function (e) {
           window.location = "memberSignUp.php";
@@ -464,9 +460,9 @@
           var c = output[1];
           var st = output[2];
 
-        //  alert("email:"+e)
-         // alert("code:"+c)
-       //  alert("saff:"+st)
+         // alert("email:"+e)
+          //alert("code:"+c)
+         //alert("saff:"+st)
 
           if (typeof c == "undefined") {
             $("#myModal").modal("show");
@@ -506,6 +502,7 @@
       }
 
       function sendEmail(receiver, subject, message) {
+       
         $.post(
           "sendEmail2.php",
           {
@@ -513,7 +510,9 @@
             message: message,
             receiver: receiver,
           },
-          function (data, status) {}
+          function (data, status) {
+            alert(data)
+          }
         );
       }
     </script>

@@ -1,46 +1,32 @@
 <?php
+include_once 'config.php';
+session_start();
+//
+$fileD = $_SESSION["staffID"];
+$staffID = $_SESSION["staffID"];
 
-$passport_unique="passportx@23UaG52_x-@@k3";
-$matricula_unique="matriculax@23UaG52_x-@@k3";
-$studyleave_unique="studyleavex@23UaG52_x-@@k3";
-$masterlist_unique="masterlistx@23UaG52_x-@@k3";
-$ssnit_unique="ssnitx@23UaG52_x-@@k3";
-$ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
-$admission_unique="admissionx@23UaG52_x-@@k3";
+try {
+  $id = aeTrim($staffID);
+
+  if (strlen($id) < 1) {
+    exit();
+  }
+} catch (\Throwable $th) {
+  //throw $th;
+}
 
 
-$ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
- 
-    include_once 'config.php';
-    session_start();
-   // $_SESSION["staffID"]=1220016;
-    $fileD=$_SESSION["staffID"];
-    $staffID=$_SESSION["staffID"];
 
-    try {
-        $id=  trim($staffID);
+$v1 = "ghanaCard";
+$v2 = "ssnitCard";
+// $v3="voterCard";
 
-        if(strlen($id)<1){
-            exit();
-        }
-    } catch (\Throwable $th) {
-        //throw $th;
-    }
+$ghanaCard = "";
+$ssnitCard = "";
+$voterCard = "not set";
 
-  
-    
-    $v1="ghanaCard";
-    $v2="ssnitCard";
-   // $v3="voterCard";
-   
-    $ghanaCard="";
-    $ssnitCard="";
-    $voterCard="not set";
+$_path = "file";
 
-    $_path="file";
-
-    deleteFile($_path,$ghanaCard_unique);
-    deleteFile($_path,$ssnit_unique);
 
 
 
@@ -49,81 +35,187 @@ $ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
 //  copy paste session
 $fileName = $_FILES[$v1]['name'];
 $tmp = $_FILES[$v1]['tmp_name'];
-$ghanaCard=getFilepath_doc($ghanaCard_unique);
+insertPDF($staffID, $v1);
 
- 
 
-    
-  
-    $fileName = $_FILES[$v2]['name'];
-    $tmp = $_FILES[$v2]['tmp_name'];
-    $ssnitCard=getFilepath_doc($ssnit_unique);
-    
 
-    
+$fileName = $_FILES[$v2]['name'];
+$tmp = $_FILES[$v2]['tmp_name'];
+insertPDF($staffID, $v2);
 
-      
-// prepare and bind
-try{
-    $sql = "UPDATE file SET ghanaCard=?, ssnitCard=?, voterCard=? WHERE staffID=?";
-    
-    $stmt = $conn->prepare($sql); 
-    $stmt->bind_param("ssss", $ghanaCard,$ssnitCard,$voterCard,$staffID);
+
+
+function insertImage($staffID, $column)
+{
+  global $conn, $tmp;
+
+  //check if file is image file before inserting
+  $finfo = new finfo(FILEINFO_MIME_TYPE);
+  $file_type = $finfo->file($tmp);
+  if (strpos($file_type, 'image') !== false) {
+    //Read image file content
+    $image_data = file_get_contents($tmp);
+
+    //update staff image in filetable
+    $query = "UPDATE `filetable` SET $column = ? WHERE staffID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("bs", $image_data, $staffID);
+    $stmt->send_long_data(0, $image_data);
     $stmt->execute();
-     echo 1;
+
+    if ($stmt->affected_rows > 0) {
+      echo "Data updated successfully!";
+    } else {
+      echo "Error: " . $stmt->error;
+    }
     $stmt->close();
-    $conn->close();
-    // header("Location:memberBio7.php");
-    
+  } else {
+    echo "Error: file is not an image file";
   }
-  catch(Exception $e){
-    echo $e;
-      
+}
+
+
+
+
+
+
+
+
+
+function insertPDF($staffID, $column)
+{
+  global $conn, $tmp;
+
+  //check if file is pdf file before inserting
+  $finfo = new finfo(FILEINFO_MIME_TYPE);
+  $file_type = $finfo->file($tmp);
+  if (strpos($file_type, 'application/pdf') !== false) {
+    //Read pdf file content
+    $pdf_data = file_get_contents($tmp, true);
+
+    //update staff pdf in filetable
+    $query = "UPDATE `filetable` SET $column = ? WHERE staffID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("bs", $pdf_data, $staffID);
+    $stmt->send_long_data(0, $pdf_data);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+      echo "Data updated successfully!";
+    } else {
+      echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+  } else {
+    echo "Error: file is not a pdf file";
   }
-  
-
-  
-  
+}
 
 
 
 
 
-  function getFilepath_doc($unique){
-    global $fileName,$tmp,$ext_doc,$fileD,$_path;
-    
-  
-    try {
-         // get uploaded file's extension
-         $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-         // can upload same image using rand function
-         $final_image = rand(1000,1000000).$unique.$fileD.$fileName;
-        // $final_image =$fileD.$fileName;
-         // check's valid format
-  
-         if(!(in_array($ext, $ext_doc))){
-          exit;
-         }
-         $final_path = $_path. '/'.strtolower($final_image); 
-         move_uploaded_file($tmp,$final_path);
-         
-         return  $final_path;
-    } catch (\Throwable $th) {
-      throw $th;
+
+function getImageFromDB($staffID, $column)
+{
+  global $conn, $_path;
+  //Retrieve image data from filetable
+  $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param("s", $staffID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $image_data = $row[$column];
+
+    //Write image data to file
+    $folder = $_path;
+    if (!file_exists($folder)) {
+      mkdir($folder);
     }
-     
-       
+    $IDD = generateUniqueID();
+    $file_path = $folder . "/" . $staffID . $IDD . ".jpg";
+    file_put_contents($file_path, $image_data);
+    echo "Image saved successfully to " . $file_path;
+  } else {
+    echo "Error: staffID not found or no image found for the staff";
   }
-  
-  function deleteFile($folder,$fileID){
-    $files = glob($folder.'/*'); // get all file names
-    $id = $fileID; // specific ID to search for
-    foreach($files as $file){ // iterate files
-      if(is_file($file) && strpos($file, $id) !== false) {
-        unlink($file); // delete file
-  
-      }
-  
+
+
+  $stmt->close();
+  $conn->close();
+  return $file_path;
+}
+
+
+
+
+function getPdfFromDB($staffID, $column)
+{
+  global $conn, $_path;
+  //Retrieve pdf data from filetable
+  $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param("s", $staffID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $pdf_data = $row[$column];
+
+    //Write pdf data to file
+    $folder = $_path;
+    if (!file_exists($folder)) {
+      mkdir($folder);
     }
+    $IDD = generateUniqueID();
+    $file_path = $folder . "/" . $staffID . $IDD . ".pdf";
+    file_put_contents($file_path, $pdf_data);
+    echo "PDF saved successfully to " . $file_path;
+  } else {
+    echo "Error: staffID not found or no pdf found for the staff";
+  }
+
+  $stmt->close();
+  $conn->close();
+  return $file_path;
+}
+
+function generateUniqueID()
+{
+  // Get current timestamp
+  $time = microtime(true);
+  // Convert timestamp to a unique ID
+  $id = uniqid($time, true);
+  return $id;
+}
+
+
+
+
+
+
+
+
+
+
+function aeTrim($var)
+{
+  try {
+    // aeTrim the variable
+    if ($var !== null && $var !== '') {
+      $var = trim($var);
     }
-    
+
+
+    // Check if the variable is null or empty
+    if (is_null($var) || $var === "") {
+      return "";
+    }
+
+    return $var;
+  } catch (Exception $e) {
+    return "";
+  }
+}

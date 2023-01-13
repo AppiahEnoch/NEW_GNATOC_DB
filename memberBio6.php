@@ -117,7 +117,7 @@ include "verifyCode.php"
             cache: false,
             processData: false,
             success: function (data) {
-             //  alert("folder: "+data)
+              // alert("folder: "+data)
                
               location.href = "memberBio7.php";
             },
@@ -150,6 +150,12 @@ include "verifyCode.php"
         6 of 8
 
     
+        <style>
+                #memberImage:hover {
+            transform: scale(2.1);
+            transition: transform 0.2s ease-in-out;
+          }
+        </style>
 
         <div class="roundImage">
           <img id="memberImage" src="devImage/user2.png" alt="" />

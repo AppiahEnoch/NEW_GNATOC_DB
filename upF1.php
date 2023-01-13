@@ -1,164 +1,160 @@
 <?php
-$passport_unique="passportx@23UaG52_x-@@k3";
-$matricula_unique="matriculax@23UaG52_x-@@k3";
-$studyleave_unique="studyleavex@23UaG52_x-@@k3";
-$masterlist_unique="masterlistx@23UaG52_x-@@k3";
-$ssnit_unique="ssnitx@23UaG52_x-@@k3";
-$ghanaCard_unique="ghanacardx@23UaG52_x-@@k3";
-$admission_unique="admissionx@23UaG52_x-@@k3";
 
-$ext_doc = array('pdf' , 'doc' ); // valid extensions PDF ONLY
- 
-    include_once 'config.php';
-    session_start();
-   // $_SESSION["staffID"]=1220016;
-    $fileD=$_SESSION["staffID"];
-    $staffID=$_SESSION["staffID"];
+include_once 'config.php';
+session_start();
+//
+$fileD = $_SESSION["staffID"];
+$staffID = $_SESSION["staffID"];
 
-    try {
-        $id=  trim($staffID);
+try {
+  $id = trim($staffID);
 
-        if(strlen($id)<1){
-            exit();
-        }
-    } catch (\Throwable $th) {
-        //throw $th;
-    }
-
-  
-    
-    $v1="file";
-    $v2="text";
-
-    $col=$_POST[$v2];
-
-   
-
-
-    $_path="file";
-    $folder=$_path;
-    $fileID="";
+  if (strlen($id) < 1) {
+    exit();
+  }
+} catch (\Throwable $th) {
+  //throw $th;
+}
 
 
 
-    $fileID=$studyleave_unique;
-    find_and_delete_file($col,"study");
+$v1 = "file";
+$v2 = "text";
 
-    $fileID=$admission_unique;
-    find_and_delete_file($col,"admission");
+$col = $_POST[$v2];
 
-    $fileID=$passport_unique;
-    find_and_delete_file($col,"passport");
 
-    $fileID=$matricula_unique;
-    find_and_delete_file($col,"matricula");
 
-    $fileID=$masterlist_unique;
-    find_and_delete_file($col,"master");
 
-    $fileID=$ssnit_unique;
-    find_and_delete_file($col,"ssnit");
+$_path = "file";
+$folder = $_path;
+$fileID = "";
 
-    $fileID=$ghanaCard_unique;
-    find_and_delete_file($col,"ghana");
-
+$newFilePath = null;
 
 
 
 //  copy paste session
 $fileName = $_FILES[$v1]['name'];
 $tmp = $_FILES[$v1]['tmp_name'];
-$newPath=getFilepath_doc();
+
+insertPDF($staffID, $col);
+
+$newFilePath = getPdfFromDB($staffID, $col);
+echo $newFilePath;
+$conn->close();
+
+exit;
 
 
-    
-
-    
 
 
 
 
-    
 
- 
-  
-      
-// prepare and bind
-try{
-    $sql = "UPDATE `file` SET $col=? WHERE staffID=?";
-    $stmt = $conn->prepare($sql); 
-    $stmt->bind_param("ss", $newPath,$staffID);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function insertPDF($staffID, $column)
+{
+  global $conn, $tmp;
+
+  //check if file is pdf file before inserting
+  $finfo = new finfo(FILEINFO_MIME_TYPE);
+  $file_type = $finfo->file($tmp);
+  if (strpos($file_type, 'application/pdf') !== false) {
+    //Read pdf file content
+    $pdf_data = file_get_contents($tmp, true);
+
+    //update staff pdf in filetable
+    $query = "UPDATE `filetable` SET $column = ? WHERE staffID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("bs", $pdf_data, $staffID);
+    $stmt->send_long_data(0, $pdf_data);
     $stmt->execute();
 
-     echo $newPath;
- 
-  
+    if ($stmt->affected_rows > 0) {
+      // echo "Data updated successfully!";
+    } else {
+      /// echo "Error: " . $stmt->error;
+    }
+    $stmt->close();
+  } else {
+    //echo "Error: file is not a pdf file";
+  }
+}
+
+
+
+function getPdfFromDB($staffID, $column)
+{
+  global $conn, $_path;
+  //Retrieve pdf data from filetable
+  $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param("s", $staffID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $pdf_data = $row[$column];
+
+    //Write pdf data to file
+    $folder = $_path;
+    if (!file_exists($folder)) {
+      mkdir($folder);
+    }
+    $IDD = generateUniqueID();
+    $file_path = $folder . "/" . $staffID . $IDD . ".pdf";
+    file_put_contents($file_path, $pdf_data);
+    // echo "PDF saved successfully to " . $file_path;
+  } else {
+    //echo "Error: staffID not found or no pdf found for the staff";
+  }
+
   $stmt->close();
-  $conn->close();
 
+  return $file_path;
+}
 
- // header("Location:memberBio7.php");
-      
-  }
-  catch(Exception $e){
-    echo $e;
-      
-  }
-  
-
-  
-  
-
-
-
-
-
-
-  function getFilepath_doc(){
-    global $fileName,$tmp,$ext_doc,$fileD,$_path;
-  
-    try {
-         // get uploaded file's extension
-         $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-         // can upload same image using rand function
-         $final_image = rand(1000,1000000).$fileD.$fileName;
-        // $final_image =$fileD.$fileName;
-         // check's valid format
-  
-         if(!(in_array($ext, $ext_doc))){
-          exit;
-         }
-         $final_path = $_path. '/'.strtolower($final_image); 
-         move_uploaded_file($tmp, $final_path);
-         
-         return  $final_path;
-    } catch (\Throwable $th) {
-      throw $th;
-    }
-     
-       
-  }
-
-    
-  function deleteFile($folder,$fileID){
-    $files = glob($folder.'/*'); // get all file names
-    $id = $fileID; // specific ID to search for
-    foreach($files as $file){ // iterate files
-      if(is_file($file) && strpos($file, $id) !== false) {
-        unlink($file); // delete file
-  
-      }
-  
-  
-    }
-    }
-
-
-
-    function find_and_delete_file($original_string,$containStr){
-              global $folder,$fileID;
-       if (strpos($original_string, $containStr) !== false) {
-             deleteFile($folder,$fileID);
-
-      }
-    }
+function generateUniqueID()
+{
+  // Get current timestamp
+  $time = microtime(true);
+  // Convert timestamp to a unique ID
+  $id = uniqid($time, true);
+  return $id;
+}

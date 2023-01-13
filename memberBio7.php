@@ -1,6 +1,6 @@
 <?php
 
-include "verifyCode.php"
+//include "verifyCode.php"
 
 ?>
 <!DOCTYPE html>
@@ -159,8 +159,8 @@ include "verifyCode.php"
             cache: false,
             processData: false,
             success: function (data) {
-             //alert(data)
-              location.href = "memberBio8.php";
+            //  alert(data)
+             location.href = "memberBio8.php";
             },
             error: function (e) {
               alert("error:" + e);

@@ -13,10 +13,6 @@ $pageNumber=0;
 $username= cleanInput($_POST[$v2]);
 $password= cleanInput( $_POST[$v3]);
 
-
-
-
-
 // array to test post and set status of vital variables
 $arrayOfAllNames=[$v2,$v3];
 
@@ -158,7 +154,7 @@ function inputsAreCorrect( $arrayOfAllNames) {
   // CHECK LAST PAGE OF USER
 
 if($correctInput){
-  
+
 
 
 
@@ -218,14 +214,14 @@ $id=$_SESSION["staffID"];
 
 /// search in file 
 
-  $sql = "SELECT * FROM file WHERE staffID=?";
+  $sql = "SELECT * FROM `filetable` WHERE staffID=?";
   $stmt = $conn->prepare($sql); 
   $stmt->bind_param("s", $id);
   $stmt->execute();
   $result = $stmt->get_result();
   if ($row = $result->fetch_assoc()) {
   
-       if(empty(aeTrim($row['rank1']))){
+       if(empty(aeTrim($row['admission']))){
             $pageNumber=7; 
   
             echo $pageNumber;
@@ -233,7 +229,7 @@ $id=$_SESSION["staffID"];
            
        }
        
-       elseif(empty(aeTrim($row['ghanaCard']))){
+       elseif(empty(aeTrim($row['ghanacard']))){
             $pageNumber=8; 
             echo $pageNumber;
             exit();

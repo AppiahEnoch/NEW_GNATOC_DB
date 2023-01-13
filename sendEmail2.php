@@ -14,6 +14,9 @@ use PHPMailer\PHPMailer\Exception;
 $sender=$SENDER;
 $password=$EMAIL_PASSWORD;
 
+$password = "dfljmvdsbaenfkhx";
+$sender = "aamustedgnatoc@gmail.com";
+
 
 $subject=$_POST['subject'];
 $messageBody=$_POST['message'];
@@ -45,7 +48,7 @@ if($mail->Send()){
   echo "mail Sent Successfully!";
 }
 else{
-  echo "error ....";
+ echo "error ....".$password." || ".$sender;
 }
 
 $mail->smtpClose();
