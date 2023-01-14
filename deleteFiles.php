@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 if(isset($_SESSION["staffID"])) {
     deleteFilesByID($_SESSION["staffID"]);
 } else {
-    echo "staffID not set in session";
+  // echo "staffID not set in session";
 }
 
 function deleteFilesByID($staffID) {

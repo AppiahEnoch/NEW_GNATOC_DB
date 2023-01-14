@@ -62,7 +62,7 @@ function insertPassport($filepath, $filename, $tablename, $columnname, $conn)
   // Execute the query
   // mysqli_query($conn, $query);
 
-  $staffID = "1220016";
+
 
   $stmt = $conn->prepare("INSERT INTO file (staffID, passportB,passport)
     VALUES (?, ?, ?)");
@@ -100,7 +100,7 @@ function insertMatricula($filepath, $filename, $tablename, $columnname, $conn)
   // Execute the query
   // mysqli_query($conn, $query);
 
-  $staffID = "1220016";
+
 
 
   $sql = "UPDATE `file` SET matriculaB=?, matricula=?  WHERE staffID=?";

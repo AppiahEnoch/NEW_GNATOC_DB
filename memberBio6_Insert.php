@@ -1,8 +1,8 @@
 <?php
 
-
-
 include_once 'config.php';
+
+
 session_start();
 //$_SESSION["staffID"] = 1220016;
 $fileD = $_SESSION["staffID"];
@@ -21,14 +21,14 @@ $_path = "file";
 $tmp = $_FILES[$v1]['tmp_name'];
 insertID($staffID);
 insertImage($staffID, "passport");
-getImageFromDB($staffID, "passport");
+//getImageFromDB($staffID, "passport");
 
 
 
 
 $tmp = $_FILES[$v2]['tmp_name'];
 insertPDF($staffID, "matricula");
-getPdfFromDB($staffID, "matricula");
+//getPdfFromDB($staffID, "matricula");
 
 
 $conn->close();

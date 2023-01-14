@@ -47,10 +47,6 @@ include "checkSession.php";
     </style>
 
     <style>
-
-
-
-
       body,
       h1,
       h2,
@@ -65,7 +61,6 @@ include "checkSession.php";
     <style>
       table {
         font-family: arial, sans-serif;
-
         width: 100%;
       }
 
@@ -1059,7 +1054,6 @@ include "checkSession.php";
             >
             Your message was sent successfully!
           </div>
-
           <h1 id="memberName1">APPIAH ENOCH</h1>
           <div class="w3-section w3-bottombar w3-padding-16 w3-blue"></div>
         </div>
@@ -1592,9 +1586,8 @@ include "checkSession.php";
         }
       }
 
- 
 
-      function updatePassportPicture(){
+    function updatePassportPicture(){
     var file = $("#fileInput")[0].files[0];
     var formData = new FormData();
     formData.append("image", file);
@@ -1608,9 +1601,8 @@ include "checkSession.php";
           //alert(response);
         }
     });
-
-
       }
+
     </script>
   </body>
 </html>

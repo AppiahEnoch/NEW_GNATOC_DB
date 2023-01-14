@@ -14,9 +14,6 @@ use PHPMailer\PHPMailer\Exception;
 $sender=$SENDER;
 $password=$EMAIL_PASSWORD;
 
-$password = "dfljmvdsbaenfkhx";
-$sender = "aamustedgnatoc@gmail.com";
-
 
 $subject=$_POST['subject'];
 $messageBody=$_POST['message'];

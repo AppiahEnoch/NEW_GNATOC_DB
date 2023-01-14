@@ -1,7 +1,7 @@
 <?php
 require_once 'config.php';
-session_start();
-$_SESSION["staffID"] = "1220016";
+include_once 'globals.php';
+
 $staffID = $_SESSION["staffID"];
 
 
@@ -10,15 +10,16 @@ $return_arr[] = null;
 
 $_path = "file";
 
-$fPassport =getImageFromDB($staffID, "passport");
+
+$fPassport = selectFile($passportUnique);
+$fStudyLeave = selectFile($studyLeaveUnique);
+$fMasterList = selectFile($masterListUnique);
+$fMatricula =  selectFile($matriculaUnique);
+$fGhana =  selectFile($ghanaCardUnique );
+$fSsnit = selectFile($ssnitUnique);
+$fAdmission = selectFile($admissionUnique);
 
 
-$fStudyLeave = getPdfFromDB($staffID, "studyLeave");
-$fMasterList =getPdfFromDB($staffID, "masterlist");
-$fMatricula = getPdfFromDB($staffID, "matricula");
-$fGhana = getPdfFromDB($staffID, "ghanacard");
-$fSsnit =getPdfFromDB($staffID, "ssnitcard");
-$fAdmission =getPdfFromDB($staffID, "admission");
 
 
 
@@ -184,84 +185,20 @@ function insertPDF($staffID, $column)
 
 
 
-function getImageFromDB($staffID, $column)
-{
-  global $conn, $_path;
-  //Retrieve image data from filetable
-  $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
-  $stmt = $conn->prepare($query);
-  $stmt->bind_param("s", $staffID);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $image_data = $row[$column];
 
-    //Write image data to file
-    $folder = $_path;
 
-    $IDD = generateUniqueID();
-    $file_path = $folder . "/" . $staffID . $IDD . ".jpg";
-    file_put_contents($file_path, $image_data);
-   // echo "Image saved successfully to " . $file_path;
-  } else {
-    //echo "Error: staffID not found or no image found for the staff";
+function selectFile($uniqueID) {
+  $directory = "file/";
+  $files = scandir($directory);
+  foreach($files as $file) {
+      if(strpos($file, $uniqueID) === 0) {
+          $path = $directory . $file;
+          if(is_file($path)) {
+              return $path;
+          }
+      }
   }
-
-
-  $stmt->close();
- 
-  return $file_path;
+  return null;
 }
 
 
-
-
-function getPdfFromDB($staffID, $column)
-{
-  global $conn, $_path;
-  //Retrieve pdf data from filetable
-  $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
-  $stmt = $conn->prepare($query);
-  $stmt->bind_param("s", $staffID);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $pdf_data = $row[$column];
-
-    //Write pdf data to file
-    $folder = $_path;
-    $IDD = generateUniqueID();
-    $file_path = $folder . "/" . $staffID . $IDD . ".pdf";
-    file_put_contents($file_path, $pdf_data);
-   // echo "PDF saved successfully to " . $file_path;
-  } else {
-   // echo "Error: staffID not found or no pdf found for the staff";
-  }
-
-  $stmt->close();
-
-  return $file_path;
-}
-
-function generateUniqueID()
-{
-  // Get current timestamp
-  $time = microtime(true);
-  // Convert timestamp to a unique ID
-  $id = uniqid($time, true);
-  return $id;
-}
-
-
-
-function deleteFilesByID($staffID) {
-    $dir = "file/";
-    $files = scandir($dir);
-    foreach($files as $file) {
-        if(strpos($file, $staffID) !== false) {
-            unlink($dir.$file);
-        }
-    }
-}
