@@ -1,338 +1,312 @@
 <?php
-include "verifyAdmin.php";
+//include "verifyAdmin.php";
 
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
-    <script
-      src="https://kit.fontawesome.com/c1db89cf54.js"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://kit.fontawesome.com/c1db89cf54.js" crossorigin="anonymous"></script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-      integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <title>Records</title>
-    <style>
-      body {
-        background-color: #009edf;
-        height: 100%;
-        margin: 0;
-        color: white;
-      }
+  <title>Records</title>
+  <style>
+    body {
+      background-color: #009edf;
+      height: 100%;
+      margin: 0;
+      color: white;
+    }
 
-      table {
-        background-color: white;
-      }
+    table {
+      background-color: white;
+    }
 
-      #board {
-        background-color: transparent;
-        height: auto;
+    #board {
+      background-color: transparent;
+      height: auto;
 
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-items: center;
-        justify-content: center;
-      }
-    </style>
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-items: center;
+      justify-content: center;
+    }
+  </style>
 
 
 
 
-  </head>
-  <body>
+</head>
+<body>
 
-    <script>
-      var sex = "";
-      var from = "";
-      var to = "";
-      var level = "";
-      var rank = "";
+  <script>
+    var sex = "";
+    var from = "";
+    var to = "";
+    var level = "";
+    var rank = "";
 
-      function getData() {
-        $("#table1 tbody").empty();
+    function getData() {
+      $("#table1 tbody").empty();
 
-        if (aeEmpty(sex) && aeEmpty(from) && aeEmpty(to) && aeEmpty(level) && aeEmpty(rank)) {
-          hideSpin();
-          return;
-        }
-
-        $.ajax({
-          url: "getData.php",
-          type: "post",
-          data: {
-            sex: sex,
-            to: to,
-            from: from,
-            level: level,
-            rank1: rank,
-          },
-
-          dataType: "JSON",
-          success: function (response) {
-            var len = response.length;
-            hideSpin();
-
-         
-
-            for (var i = 0; i < len; i++) {
-              var mobile = response[i].mobile;
-              var fullName = response[i].fullName;
-              var staffID = response[i].staffID;
-
-              var tr_str =
-                "<tr>" +
-                "<td >" +
-                staffID +
-                "</td>" +
-                "<td >" +
-                fullName +
-                "</td>" +
-                "<td>" +
-                mobile +
-                "</td>" +
-                "</tr>";
-
-              $("#table1 tbody").append(tr_str);
-              $("#total_records").text(len);
-            }
-          },
-          error: function (jqXHR, textStatus, errorThrown) {
-            console.error(textStatus + ": " + errorThrown);
-            alert("An error occurred: " + errorThrown);
-          },
-        });
-      }
-
-      $(document).ready(function () {
+      if (aeEmpty(sex) && aeEmpty(from) && aeEmpty(to) && aeEmpty(level) && aeEmpty(rank)) {
         hideSpin();
-        getInput();
+        return;
+      }
 
-        $("#tf_sex").keyup(function () {
-          showSpin();
-          getInput();
-          getData();
-        });
+      $.ajax({
+        url: "getData.php",
+        type: "post",
+        data: {
+          sex: sex,
+          to: to,
+          from: from,
+          level: level,
+          rank1: rank,
+        },
 
-        $("#tf_from").keyup(function () {
-          showSpin();
-          getInput();
-          getData();
-        });
-
-        $("#tf_to").keyup(function () {
-          showSpin();
-          getInput();
-          getData();
-        });
-
-        $("#tf_level").keyup(function () {
-          showSpin();
-          getInput();
-          getData();
-        });
-
-        $("#tf_rank").keyup(function () {
-          showSpin();
-          getInput();
-          getData();
-        });
+        dataType: "JSON",
+        success: function (response) {
+          var len = response.length;
+          hideSpin();
 
 
 
-      });
-    </script>
+          for (var i = 0; i < len; i++) {
+            var mobile = response[i].mobile;
+            var fullName = response[i].fullName;
+            var staffID = response[i].staffID;
 
-    <div class="container mt-1">
-      <div class="row">
-        <div class="col">
-          <form>
-            <div class="form-group">
-              <input
-                placeholder="e.g. Male"
-                type="text"
-                class="form-control"
-                id="tf_sex"
-                aria-describedby="search1Help"
-              />
-              <small style="text-align: left; color: #fff" class="form-text"
-                >Search By Sex</small
-              >
-            </div>
-          </form>
-        </div>
+            var tr_str =
+              "<tr>" +
+              "<td >" +
+              staffID +
+              "</td>" +
+              "<td >" +
+              fullName +
+              "</td>" +
+              "<td>" +
+              mobile +
+              "</td>" +
+              "</tr>";
 
-        <div class="col">
-          <form>
-            <div class="form-group">
-              <div class="col d-inline-flex justify-content-center p-0 m-0">
-                <input
-                  placeholder="From"
-                  type="text"
-                  class="form-control"
-                  id="tf_from"
-                  aria-describedby="search2Help"
-                />
-                <input
-                  type="text"
-                  placeholder="To"
-                  class="form-control ml-3"
-                  id="tf_to"
-                  aria-describedby="search2Help"
-                />
-              </div>
-
-              <small style="text-align: left; color: #fff" class="form-text"
-                >Search From Year To Year</small
-              >
-            </div>
-          </form>
-        </div>
-
-
-        <div class="col">
-          <form>
-            <div class="form-group">
-              <div class="col d-inline-flex justify-content-center p-0 m-0">
-                <input
-                  placeholder="Level"
-                  type="text"
-                  class="form-control"
-                  id="tf_level"
-                  aria-describedby="search2Help"
-                />
-                <input
-                  type="text"
-                  placeholder="Rank"
-                  class="form-control ml-3"
-                  id="tf_rank"
-                  aria-describedby="search2Help"
-                />
-              </div>
-
-              <small style="text-align: left; color: #fff" class="form-text"
-                >Search By Level and Rank</small
-              >
-            </div>
-          </form>
-        </div>
-
-
-
-
-
-
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div id="board" class="col-12 m-auto">
-          <a href="Records.xlsx" download>
-            <img
-              style="width: 3rem; margin: auto; position: absolute; right: 0"
-              src="devImage/excel.png"
-              alt=""
-            />
-          </a>
-
-          <i
-            id="spin"
-            style="color: white; margin-bottom: 1rem"
-            class="fas fa-spinner fa-pulse fa-2x"
-          ></i>
-
-          <label style="text-align: left"
-            >Total Records &nbsp; <span id="total_records"> 00</span></label
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <table id="table1" class="table table-bordered table-sm">
-        <thead>
-          <tr>
-            <th scope="col">STAFF ID</th>
-            <th scope="col">FULL NAME</th>
-            <th scope="col">MOBILE</th>
-          </tr>
-        </thead>
-
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <script>
-      function aeEmpty(e) {
-        var ee = "";
-        try {
-          ee = e.trim();
-        } catch (error) {
-          return true;
-        }
-        try {
-          switch (e) {
-            case "":
-            case 0:
-            case "0":
-            case null:
-            case false:
-            case undefined:
-              return true;
-            default:
-              return false;
+            $("#table1 tbody").append(tr_str);
+            $("#total_records").text(len);
           }
-        } catch (error) {
-          return true;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.error(textStatus + ": " + errorThrown);
+          alert("An error occurred: " + errorThrown);
+        },
+      });
+    }
+
+    $(document).ready(function () {
+      hideSpin();
+      getInput();
+
+      $("#tf_sex").keyup(function () {
+        showSpin();
+        getInput();
+        getData();
+      });
+
+      $("#tf_from").keyup(function () {
+        showSpin();
+        getInput();
+        getData();
+      });
+
+      $("#tf_to").keyup(function () {
+        showSpin();
+        getInput();
+        getData();
+      });
+
+      $("#tf_level").keyup(function () {
+        showSpin();
+        getInput();
+        getData();
+      });
+
+      $("#tf_rank").keyup(function () {
+        showSpin();
+        getInput();
+        getData();
+      });
+
+
+
+    });
+  </script>
+
+  <div class="container mt-1">
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="form-group">
+            <input placeholder="e.g. Male" type="text" class="form-control" id="tf_sex"
+              aria-describedby="search1Help" />
+            <small style="text-align: left; color: #fff" class="form-text">Search By Sex</small>
+          </div>
+        </form>
+      </div>
+
+      <div class="col">
+        <form>
+          <div class="form-group">
+            <div class="col d-inline-flex justify-content-center p-0 m-0">
+              <input placeholder="From" type="text" class="form-control" id="tf_from" aria-describedby="search2Help" />
+              <input type="text" placeholder="To" class="form-control ml-3" id="tf_to" aria-describedby="search2Help" />
+            </div>
+
+            <small style="text-align: left; color: #fff" class="form-text">Search From Year To Year</small>
+          </div>
+        </form>
+      </div>
+
+
+      <div class="col">
+        <form>
+
+          <div class="form-group">
+            <div class="col d-inline-flex justify-content-center p-0 m-0">
+              <input placeholder="Level" type="text" class="form-control" id="tf_level"
+                aria-describedby="search2Help" />
+              <input type="text" placeholder="Rank" class="form-control ml-3" id="tf_rank"
+                aria-describedby="search2Help" />
+
+            </div>
+
+            <div id="rank-dropdown" class="d-none" style="float: right;">
+              <select id="rank-list">
+              <option>Senior Superintendent II</option>
+              <option>Senior Superintendent I</option>
+              <option>Principal Superintendent</option>
+              <option>Assistant Director I</option>
+              <option>Superintendent II</option>
+              <option>Superintendent I</option>
+              <option>Teacher</option>
+              </select>
+            </div>
+
+
+            <small style="text-align: left; color: #fff" class="form-text">Search By Level and Rank</small>
+          </div>
+        </form>
+      </div>
+
+
+
+      <script>
+        var rankInput = document.getElementById("tf_rank");
+        var rankDropdown = document.getElementById("rank-dropdown");
+        rankInput.addEventListener("click", function () {
+          rankDropdown.classList.remove("d-none");
+        });
+      </script>
+
+<script>
+    $("#rank-list").change(function(){
+        $("#tf_rank").val($("#rank-list option:selected").text());
+        $("#tf_rank").keyup();
+    });
+</script>
+
+
+
+
+
+
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div id="board" class="col-12 m-auto">
+        <a href="Records.xlsx" download>
+          <img style="width: 3rem; margin: auto; position: absolute; right: 0" src="devImage/excel.png" alt="" />
+        </a>
+
+        <i id="spin" style="color: white; margin-bottom: 1rem" class="fas fa-spinner fa-pulse fa-2x"></i>
+
+        <label style="text-align: left">Total Records &nbsp; <span id="total_records"> 00</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <table id="table1" class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th scope="col">STAFF ID</th>
+          <th scope="col">FULL NAME</th>
+          <th scope="col">MOBILE</th>
+        </tr>
+      </thead>
+
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    function aeEmpty(e) {
+      var ee = "";
+      try {
+        ee = e.trim();
+      } catch (error) {
+        return true;
+      }
+      try {
+        switch (e) {
+          case "":
+          case 0:
+          case "0":
+          case null:
+          case false:
+          case undefined:
+            return true;
+          default:
+            return false;
         }
+      } catch (error) {
+        return true;
       }
+    }
 
-      function getInput() {
-        sex = $("#tf_sex").val();
-        sex = sex.trim();
-        from = $("#tf_from").val();
-        from = from.trim();
-        to = $("#tf_to").val();
-        to = to.trim();
-        level = $("#tf_level").val();
-        level = level.trim();
+    function getInput() {
+      sex = $("#tf_sex").val();
+      sex = sex.trim();
+      from = $("#tf_from").val();
+      from = from.trim();
+      to = $("#tf_to").val();
+      to = to.trim();
+      level = $("#tf_level").val();
+      level = level.trim();
 
-        rank = $("#tf_rank").val();
-        rank = rank.trim();
+      rank = $("#tf_rank").val();
+      rank = rank.trim();
 
 
 
-        $("#total_records").text("0");
-      }
-      function hideSpin() {
-        $("#spin").hide();
-      }
-      function showSpin() {
-        $("#spin").show();
-      }
-    </script>
-  </body>
+      $("#total_records").text("0");
+    }
+    function hideSpin() {
+      $("#spin").hide();
+    }
+    function showSpin() {
+      $("#spin").show();
+    }
+  </script>
+</body>
 </html>

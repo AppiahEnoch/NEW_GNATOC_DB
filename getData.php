@@ -81,7 +81,7 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 
 
 
-$query = "SELECT * FROM memberfile WHERE ";
+$query = "SELECT * FROM memberbio WHERE ";
 
 if (!empty($sex)) {
     $query .= "(gender LIKE '%$sex%' OR yearOfAdmission LIKE '%$sex%' OR yearOfCompletion LIKE '%$sex%' OR level LIKE '%$sex%') AND ";
@@ -100,7 +100,7 @@ if (!empty($level)) {
 }
 
 if (!empty($rank1)) {
-    $query .= "(gender LIKE '%$rank1%' OR yearOfAdmission LIKE '%$rank1%' OR yearOfCompletion LIKE '%$rank1%' OR level LIKE '%$rank1%' OR rank1 LIKE '%$rank1%') AND ";
+    $query .= "(gender LIKE '%$rank1%' OR yearOfAdmission LIKE '%$rank1%' OR yearOfCompletion LIKE '%$rank1%' OR level LIKE '%$rank1%' OR rank = '$rank1') AND ";
 }
 
 // Remove the extra AND at the end of the query
@@ -133,7 +133,7 @@ if ($result->num_rows > 0) {
     $region=$row["region"];
     $yearOfAdmission=$row["yearOfAdmission"];
     $yearOfCompletion=$row["yearOfCompletion"];
-    $rank1=$row["rank1"];
+    $rank1=$row["rank"];
 
 
 

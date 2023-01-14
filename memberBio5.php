@@ -252,7 +252,7 @@
     </button>
 
     <span>
-      <a style="margin-right: 2rem; color: white" href="#!">Go Home</a>
+      <a style="margin-right: 2rem; color: white" href="index.php">Go Home</a>
       <br />
     </span>
   </form>
