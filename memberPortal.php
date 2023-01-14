@@ -854,6 +854,11 @@ include "checkSession.php";
               },
             });
 
+
+            $("#memberImage").attr("src", imagePath);
+            $("#memberImageSmall").attr("src", imagePath);
+
+
             // alert(fSsnit)
             // loadFile("fStudyLeave", fStudy);
             setEmbedSrc("fStudyLeave", fStudy);
@@ -871,9 +876,7 @@ include "checkSession.php";
 
             // alert("image:path : "+imagePath)
 
-            $("#memberImage").attr("src", imagePath);
-            $("#memberImageSmall").attr("src", imagePath);
-
+        
             $("#memberEmail1").text(email);
             $("#memberName1").text(fullName);
             $("#memberName1").css({
