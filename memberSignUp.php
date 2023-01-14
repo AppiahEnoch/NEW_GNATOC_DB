@@ -1,5 +1,5 @@
 <?php
-  include "checkSession.php";
+ // include "checkSession.php";
   ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -248,9 +248,14 @@
 
         // FORM SUBMIT BEGINS
         $("#form").submit(function (e) {
+         // alert(3)
           e.preventDefault();
 
           if (usernameExist) {
+
+           // alert("exisy")
+
+
             $("#username").val("");
             $("#username").focus();
 
