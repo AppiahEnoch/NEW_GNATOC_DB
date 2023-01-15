@@ -1,0 +1,189 @@
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container {
+  padding: 60px 15px 0;
+}
+
+#nav1,
+#myFooter {
+  background-color: #271770;
+  color: #f1f1f1;
+}
+
+#nav1 a {
+  color: #f1f1f1;
+}
+
+#logo {
+  width: 3rem;
+  border-radius: 50%;
+}
+
+#hambergerButton {
+  border-color: white;
+}
+
+#logout {
+  margin-right: 3rem;
+  color: yellow !important;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: bold;
+}
+
+#logout:hover {
+  text-decoration: underline;
+  font-size: larger;
+}
+
+#ll1 {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+#ll1:hover {
+  color: #7836f9 !important;
+  color: white;
+  text-decoration: underline;
+  font-size: larger;
+}
+
+#ll2 {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+#ll2:hover {
+  color: #7836f9 !important;
+  color: white;
+  text-decoration: underline;
+  font-size: larger;
+}
+
+#ll3 {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+#ll3:hover {
+  color: #7836f9 !important;
+  color: white;
+  text-decoration: underline;
+  font-size: larger;
+}
+
+#card1 {
+  position: absolute;
+  left: 0;
+}
+
+#card2 {
+  position: absolute;
+  right: 0;
+}
+
+.list-group-item {
+  color: #271770;
+  background-color: #e9ecef;
+}
+
+.list-group-item.active {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.list-group-item:hover {
+  color: #fff;
+  background-color: #0056b3;
+}
+
+.badge {
+  color: white !important;
+  background-color: green;
+}
+.form-control {
+  border: 2px solid #007bff;
+  border-radius: 4px;
+ 
+  color: #271770;
+  font-weight: bold;
+}
+
+.form-control:focus {
+  border-color: #0069d9;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn {
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #271770;
+  width: 100%;
+  margin-top: .5rem;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #0069d9;
+}
+
+
+#lb-code{
+  color:  #271770;
+  font-weight: bold;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+.card-body{
+  border: none;
+  border-width: 0 !important;
+  
+}
+
+
+input{
+  margin: 1rem 0 0 0;
+}
+
+#tfGenCode{
+  box-shadow: 2px 2px 5px #271770;
+  transform: rotateX(5deg) translateZ(5px);
+
+}
+
+
+
+#aeMsucces{
+  background-color: #271770;
+  color: white;
+}
+
+#aeMsuccesw{
+  background-color: #271770;
+  color: white;
+}
+
+.btn-close{
+  background-color: #fff;
+  color: white !important;
+}
+
+#aeMerro{
+  background-color:red;
+  color: white;
+}
+
+
+#error_message{
+  display: none;
+  color:red;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: italic;
+ 
+}
+

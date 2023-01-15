@@ -232,7 +232,7 @@ document.getElementById("confirmation-modal").style.display = "none";
               </a>
             </li>
             <li class="nav-item">
-              <a id="adue" class="nav-link" href="#">Receive Dues
+              <a id="adue" class="nav-link" href="receiveDues.php">Receive Dues
 
                 <i class="fa fa-money fa-2x" aria-hidden="true"></i>
               </a>
