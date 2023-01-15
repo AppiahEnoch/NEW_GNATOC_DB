@@ -184,8 +184,8 @@
     <div class="row m-0">
       <div class="scrolling-text">
         <h3>
-          All continuing students (level 200-400 students) must complete their
-          registration on our new database before school resumes. Thank you.
+          All Gnatoc members must complete their
+          registration on our new database Thank you.
         </h3>
       </div>
     </div>
