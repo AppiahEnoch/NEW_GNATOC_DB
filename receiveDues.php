@@ -268,11 +268,11 @@
                         type="text"
                         class="form-control"
                         id="tf_actualAmount"
-                        placeholder="Actual Amount= GHS 200"
+                        placeholder="Dues Amount= GHS 200"
                         required
                       />
                       <label for="tf_actualAmount"
-                        >Actual Amount= GHS 200</label
+                        >Dues Amount= GHS 200</label
                       >
                     </div>
                   </div>
@@ -746,10 +746,10 @@
             $("#tf_actualAmount").val(data);
             $("#tf_actualAmount").attr(
               "placeholder",
-              "Actual Amount= GHS " + data
+              "Dues Amount= GHS " + data
             );
             $("label[for='tf_actualAmount']").text(
-              "Actual Amount= GHS " + data
+              "Dues Amount= GHS " + data
             );
           },
           error: function (xhr, status, error) {
