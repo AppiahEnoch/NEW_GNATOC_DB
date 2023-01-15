@@ -76,7 +76,7 @@
     7;
     $(document).ready(function () {
       $("#course").blur(function () {
-        $("#suggestion").hide();
+     
       });
 
 
