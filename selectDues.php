@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
     $payedamount =$row["payedamount"];
     $actualamount =$row["actualamount"];
     $debt=$row["debt"];
-    $paydate=$row["paydate"];
+    $paydate=$row["paydate1"];
 
 if(!empty($staffID)){
 
