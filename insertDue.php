@@ -16,7 +16,6 @@ $staffID= cleanInput(   $_POST[$v1]);
 $payedamount= cleanInput(   $_POST[$v3]);
 $actualamount= cleanInput(   $_POST[$v4]);
 
-$_SESSION["staffID"]="1220018";
 $userID = $_SESSION["staffID"];
 
 
