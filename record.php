@@ -77,7 +77,7 @@
 
         dataType: "JSON",
         success: function (response) {
-          
+
           var len = response.length;
           hideSpin();
 
@@ -106,8 +106,8 @@
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.error(textStatus + ": " + errorThrown);
-          alert("An error occurred: " + errorThrown);
+         // console.error(textStatus + ": " + errorThrown);
+         // alert("An error occurred: " + errorThrown);
         },
       });
     }

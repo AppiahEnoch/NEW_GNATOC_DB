@@ -122,7 +122,7 @@ include "verifyCode.php"
               location.href = "memberBio7.php";
             },
             error: function (e) {
-              alert("error:" + e);
+              //alert("error:" + e);
             },
           });
         });

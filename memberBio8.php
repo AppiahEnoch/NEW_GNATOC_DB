@@ -130,7 +130,7 @@ include "verifyCode.php"
               location.href = "alertRegistrationSucess.html";
             },
             error: function (e) {
-              alert("error:" + e);
+             // alert("error:" + e);
             },
           });
         });

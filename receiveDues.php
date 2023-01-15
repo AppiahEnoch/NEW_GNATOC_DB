@@ -729,7 +729,7 @@
             }
           },
           error: function (xhr, status, error) {
-            alert(error);
+           // alert(error);
           },
         });
       }
@@ -753,7 +753,7 @@
             );
           },
           error: function (xhr, status, error) {
-            alert(error);
+           // alert(error);
           },
         });
       }
@@ -774,7 +774,7 @@
           dataType: "text",
           success: function (data, status) {},
           error: function (xhr, status, error) {
-            alert(error);
+            //alert(error);
           },
         });
       }

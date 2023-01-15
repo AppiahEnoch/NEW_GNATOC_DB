@@ -163,7 +163,7 @@
              location.href = "memberBio8.php";
             },
             error: function (e) {
-              alert("error:" + e);
+              //alert("error:" + e);
             },
           });
         });
