@@ -70,28 +70,6 @@ if ($result->num_rows > 0) {
     $debt=$row["debt"];
     $paydate=$row["paydate"];
 
-
-
-
-
-
-
-
-
-;
-
-
-
-
-
-
-
-
-
-
-
-
-
 if(!empty($staffID)){
 
   $return_arr[] = array(
@@ -114,7 +92,7 @@ if(!empty($staffID)){
 
     // CREATE Excel
 
-    if(!empty($staffID)){
+   
       $activeSheet->setCellValue('A' .$row2, $row2-1);
       $activeSheet->setCellValue('B' .$row2, $userID);
       $activeSheet->setCellValue('C' .$row2, $staffID);
@@ -123,10 +101,10 @@ if(!empty($staffID)){
       $activeSheet->setCellValue('F' .$row2, $debt);
       $activeSheet->setCellValue('G' .$row2, $paydate);
 
-  
 
+        $row2++;
 
-    }
+    
  
 
 
