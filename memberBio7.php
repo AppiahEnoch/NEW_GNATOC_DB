@@ -65,6 +65,12 @@
       var aeModelBody = "";
 
       $(document).ready(function () {
+
+
+  
+        $("#admission").change(function(){
+
+        })
   
 
         aeModelTitle = "CONGRATS!";
@@ -77,6 +83,8 @@
           const oFile = document.getElementById("admission").files[0];
           if (fileTooBig(oFile)) {
             document.getElementById("admission").value = "";
+
+            isFilePDF("admission")
             return;
           }
 
@@ -98,6 +106,7 @@
           const oFile = document.getElementById("studyLeave").files[0];
           if (fileTooBig(oFile)) {
             document.getElementById("studyLeave").value = "";
+            isFilePDF("studyLeave");
             return;
           }
 
@@ -118,6 +127,7 @@
           const oFile = document.getElementById("masterList").files[0];
           if (fileTooBig(oFile)) {
             document.getElementById("masterList").value = "";
+            isFilePDF("masterList")
             return;
           }
 
@@ -262,6 +272,7 @@
             name="studyLeave"
             id="studyLeave"
             placeholder="Study Leave"
+           
           />
         </div>
       </div>
@@ -348,6 +359,85 @@
           return true;
         }
       }
+    </script>
+
+    <script>
+      
+    function isFilePDF(fileId) {
+      var input = document.getElementById(fileId);
+      if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var size = file.size / 1024 / 1024; // size in MB
+        var type = file.type;
+
+        if (type !== "application/pdf") {
+          aeModelTitle = "CHOOSE PDF ONLY";
+          aeModelBody =
+            "ONLY PDF FILES ARE ALLOWED";
+
+
+          $("#aeMBody").text(aeModelBody);
+          $("#aeMTitle").text(aeModelTitle);
+          $("#aeModelPassive").modal("show");
+
+          document.getElementById(fileId).value = "";
+          return false;
+          return false;
+        } else if (size > 2) {
+          aeModelTitle = "PICTURE SIZE TOO LARGE";
+          aeModelBody =
+            "Your picture size is too large." +
+            "we can only accept pictures that are not more than 2mb";
+
+          $("#aeMBody").text(aeModelBody);
+          $("#aeMTitle").text(aeModelTitle);
+          $("#aeModelPassive").modal("show");
+          document.getElementById(fileId).value = "";
+
+          return false;
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+
+
+
+
+    function isFileImage(fileId) {
+      var input = document.getElementById(fileId);
+      if (input.files && input.files[0]) {
+        var file = input.files[0];
+        var size = file.size / 1024 / 1024; // size in MB
+        var type = file.type;
+        if (!type.startsWith("image")) {
+
+          aeModelTitle = "ONLY IMAGE FILE ALLOWED";
+          aeModelBody =
+            "Please Choose Image File";
+          $("#aeMBody").text(aeModelBody);
+          $("#aeMTitle").text(aeModelTitle);
+          $("#aeModelPassive").modal("show");
+          document.getElementById(fileId).value = "";
+       
+          return false;
+        } else if (size > 2) {
+          aeModelTitle = "FILE TOO LARGE";
+          aeModelBody =
+            "Please Your file is too large";
+          $("#aeMBody").text(aeModelBody);
+          $("#aeMTitle").text(aeModelTitle);
+          $("#aeModelPassive").modal("show");
+          document.getElementById(fileId).value = "";
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+
+
     </script>
 
     <script

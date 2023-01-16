@@ -65,6 +65,8 @@ include "verifyCode.php"
       var aeModelBody = "";
 
       $(document).ready(function () {
+
+        
     
 
         aeModelTitle = "CONGRATS!";
@@ -77,6 +79,8 @@ include "verifyCode.php"
           const oFile = document.getElementById("ghanaCard").files[0];
           if (fileTooBig(oFile)) {
             document.getElementById("ghanaCard").value = "";
+
+            isFilePDF("ghanaCard");
             return;
           }
 
@@ -97,6 +101,7 @@ include "verifyCode.php"
           const oFile = document.getElementById("ssnitCard").files[0];
           if (fileTooBig(oFile)) {
             document.getElementById("ssnitCard").value = "";
+            isFilePDF("ssnitCard");
             return;
           }
 

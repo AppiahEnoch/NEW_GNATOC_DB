@@ -1129,7 +1129,7 @@ include "checkSession.php";
         <div class="w3-row-padding">
           <div class="w3-third w3-container w3-margin-bottom">
             <div class="w3-container w3-aqua">
-              <p><b>StudyLeave Approval Letter</b></p>
+              <p><b>Study Leave Approval Letter</b></p>
 
               <div class="w3-card">
                 <embed id="fStudyLeave" src="" type="application/pdf" />

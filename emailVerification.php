@@ -511,7 +511,7 @@
             receiver: receiver,
           },
           function (data, status) {
-            //alert(data)
+            alert(data)
           }
         );
       }

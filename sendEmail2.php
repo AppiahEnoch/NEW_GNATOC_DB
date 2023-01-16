@@ -19,9 +19,9 @@ $subject=$_POST['subject'];
 $messageBody=$_POST['message'];
 $receiver=$_POST['receiver'];
 
-
-
-
+//$subject = "tttttt";
+//$messageBody = "tttttt";
+//$receiver = "trolligold@gmail.com";
 
 
 
@@ -45,11 +45,9 @@ if($mail->Send()){
   echo "mail Sent Successfully!";
 }
 else{
- echo "error ....".$password." || ".$sender;
+  echo "error ....";
 }
 
 $mail->smtpClose();
-
-
 
 ?>
