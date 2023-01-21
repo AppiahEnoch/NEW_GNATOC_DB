@@ -7,6 +7,15 @@ $_path = "file";
 
 $staffID = $_SESSION["staffID"];
 
+
+
+
+
+
+
+
+
+
 $fPassport = getImageFromDB($staffID, "passport", $passportUnique);
 $fStudyLeave = getPdfFromDB($staffID, "studyLeave", $studyLeaveUnique);
 $fMasterList = getPdfFromDB($staffID, "masterlist", $masterListUnique);
@@ -14,9 +23,6 @@ $fMatricula = getPdfFromDB($staffID, "matricula", $matriculaUnique);
 $fGhana = getPdfFromDB($staffID, "ghanacard", $ghanaCardUnique);
 $fSsnit = getPdfFromDB($staffID, "ssnitcard", $ssnitUnique);
 $fAdmission = getPdfFromDB($staffID, "admission", $admissionUnique);
-
-
-
 
 
 
