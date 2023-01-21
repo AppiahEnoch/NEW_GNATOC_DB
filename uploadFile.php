@@ -97,7 +97,7 @@ function getFilepath(){
        }
        
        $path = $path.strtolower($final_image); 
-       move_uploaded_file($tmp,$path);
+       move_uploaded_file($tmp,$tttath);
        
        return $path;
   } catch (\Throwable $th) {

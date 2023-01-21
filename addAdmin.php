@@ -1,5 +1,5 @@
 <?php
-// include "verifyAdmin.php";
+ include "verifyAdmin.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
