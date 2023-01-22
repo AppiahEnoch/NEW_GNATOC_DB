@@ -92,11 +92,6 @@ if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
 
-    $staffID=$row["staffID"];
-    $fName=$row["fName"];
-    $mName=$row["mName"];
-    $lName=$row["lName"];
-    $mobile=$row["mobile"];
 
 
 
@@ -106,7 +101,8 @@ if ($result->num_rows > 0) {
 
 
 
-  $fullName=$fName." ".$mName." ".$lName;
+
+  //$fullName=$fName." ".$mName." ".$lName;
 
 
 
@@ -126,6 +122,8 @@ if ($result->num_rows > 0) {
   $staffID = "123";
   $fullName = "wwwww";
   $mobile = "0000";
+
+
   $return_arr[] = array(
     "staffID" => $staffID,
     "fullName" => $fullName,
