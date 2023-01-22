@@ -102,8 +102,8 @@
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-         // console.error(textStatus + ": " + errorThrown);
-         alert("An error occurred: " + errorThrown);
+          console.error(textStatus + ": " + errorThrown);
+         alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
         },
       });
     }
