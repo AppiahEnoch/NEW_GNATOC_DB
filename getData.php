@@ -156,8 +156,7 @@ if ($result->num_rows > 0) {
   $fullName=$fName." ".$mName." ".$lName;
     $fullName = "APPIAH";
   $return_arr[] = array(
-    "fullName" => $fullName,
-    "mobile" => $mobile
+
 );
 
 
