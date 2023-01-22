@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 $_path = "file";
-
+$staffID = "";
 
 
 
@@ -18,7 +18,7 @@ if ($staffIDs) {
     foreach ($staffIDs as $staffID) {
 
         $_SESSION["staffID"] = $staffID;
-
+     
 $passportUnique = $staffD . "passportAECleanCodes";
 $studyLeaveUnique = $staffD . "studyLeaveAECleanCodes";
 $masterListUnique = $staffD . "masterListAECleanCodes";
