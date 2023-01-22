@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 $_path = "file";
-$staffID = "";
+
 
 
 
@@ -19,13 +19,13 @@ if ($staffIDs) {
 
         $_SESSION["staffID"] = $staffID;
      
-$passportUnique = $staffD . "passportAECleanCodes";
-$studyLeaveUnique = $staffD . "studyLeaveAECleanCodes";
-$masterListUnique = $staffD . "masterListAECleanCodes";
-$matriculaUnique = $staffD . "matriculaAECleanCodes";
-$ssnitUnique = $staffD . "ssnitCardAECleanCodes";
-$ghanaCardUnique = $staffD . "ghanaCardAECleanCodes";
-$admissionUnique = $staffD . "admissionAECleanCodes";
+$passportUnique = $staffID . "passportAECleanCodes";
+$studyLeaveUnique = $staffID . "studyLeaveAECleanCodes";
+$masterListUnique = $staffID . "masterListAECleanCodes";
+$matriculaUnique = $staffID . "matriculaAECleanCodes";
+$ssnitUnique = $staffID . "ssnitCardAECleanCodes";
+$ghanaCardUnique = $staffID . "ghanaCardAECleanCodes";
+$admissionUnique = $staffID . "admissionAECleanCodes";
     
      
 
