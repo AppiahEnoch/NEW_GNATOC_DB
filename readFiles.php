@@ -4,6 +4,8 @@ include "config.php";
 $_path = "file";
 
 
+$file_path = "";
+
 $staffIDs = selectAllStaffID();
 if ($staffIDs) {
 
