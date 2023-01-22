@@ -107,12 +107,12 @@ include "verifyCode.php"
           cache: false,
           processData: false,
           success: function (data) {
-            alert("folder: " + data)
+          //  alert("folder: " + data)
 
             location.href = "memberBio7.php";
           },
           error: function (e) {
-            alert("error:" + e);
+          //  alert("error:" + e);
           },
         });
       });

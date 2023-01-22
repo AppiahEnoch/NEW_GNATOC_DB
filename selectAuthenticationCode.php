@@ -6,7 +6,7 @@ $v3="code";
 // declare all fields
 
 $code= cleanInput( $_POST[$v3]);
-$staffID="1220016";
+
 
 // array to test post and set status of vital variables
 $arrayOfAllNames=[$v3];
@@ -81,10 +81,15 @@ function inputsAreCorrect( $arrayOfAllNames) {
 // prepare and bind
 try{
 
-  session_start();
-  $staffID=$_SESSION["staffID"];
+  
+  if (!isset($_SESSION)) {
+    session_start();
+}
 
-  $stmt = $conn->prepare("SELECT * FROM authentication WHERE 
+  //$_SESSION["staffID"] = "1220016";
+
+  $staffID = $_SESSION["staffID"];
+  $stmt = $conn->prepare("SELECT * FROM `authentication` WHERE 
   staffID = ? AND code = ?");
   $stmt->bind_param("ss", $staffID,$code);
   $stmt->execute();
@@ -100,6 +105,8 @@ try{
   }
   else{
 
+    echo $staffID."|".$code;
+    
   }
 
   
@@ -110,7 +117,7 @@ try{
     
 }
 catch(Exception $e){
-    
+  echo $e;
 }
 
 

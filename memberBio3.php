@@ -84,7 +84,9 @@
             },
             function (data, status) {
 
-              //alert(data)
+            //  alert(data)
+             // return
+           
 
               if (aeEmpty(data)) {
                 aeModelTitle = "INVALID AUTHENTICATION CODE!";
@@ -111,8 +113,10 @@
                   voter: voter,
                 },
                 function (data, status) {
+
+           
           
-                  // window.open("memberBio4.php","_self")
+               
                   location.href = "memberBio4.php";
                 }
               );

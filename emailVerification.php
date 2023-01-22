@@ -65,7 +65,6 @@
       $(document).ready(function () {
 
           getVcode();
-   
 
         $("#mdSuccessAlert").on("click", "#goNext", function (e) {
           window.location = "memberSignUp.php";
@@ -154,7 +153,7 @@
         });
 
         $("btResend").click(function () {
-          alert(1)
+         // alert(1)
           // staffID=$("#resendID").val();
           $("#myModal").modal("hidden");
         });
@@ -188,6 +187,8 @@
             },
             success: function (data, status) {
              // alert(data)
+
+           //   return;
           
               $("#mdSuccessAlert").modal("show");
             },
@@ -511,7 +512,7 @@
             receiver: receiver,
           },
           function (data, status) {
-            alert(data)
+          //  alert(data)
           }
         );
       }

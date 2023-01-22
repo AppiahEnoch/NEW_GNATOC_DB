@@ -5,12 +5,11 @@ include_once 'globals.php';
 $staffID = $_SESSION["staffID"];
 
 
-
 $return_arr[] = null;
 
 $_path = "file";
 
-
+/*
 $fPassport = selectFile($passportUnique);
 $fStudyLeave = selectFile($studyLeaveUnique);
 $fMasterList = selectFile($masterListUnique);
@@ -18,6 +17,19 @@ $fMatricula =  selectFile($matriculaUnique);
 $fGhana =  selectFile($ghanaCardUnique );
 $fSsnit = selectFile($ssnitUnique);
 $fAdmission = selectFile($admissionUnique);
+*/
+
+ $DBfile= selectFileByStaffID($staffID);
+
+ if ($DBfile) {
+  $fPassport=  $DBfile['passport'];
+  $fStudyLeave=  $DBfile['studyLeave'];
+  $fMasterList=  $DBfile['masterList'];
+  $fMatricula=  $DBfile['matricula'];
+  $fGhana=  $DBfile['ghanaCard'];
+  $fSsnit=  $DBfile['ssnitCard'];
+  $fAdmission=  $DBfile['admission'];
+} 
 
 
 
@@ -200,5 +212,29 @@ function selectFile($uniqueID) {
   }
   return null;
 }
+
+
+function selectFileByStaffID($staffID) {
+  global $conn;
+  $sql = "SELECT * FROM `file` WHERE staffID = ?";
+  $stmt = $conn->prepare($sql); 
+  $stmt->bind_param("s", $staffID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+   if ($result->num_rows > 0) {
+      $file = $result->fetch_assoc();
+      $stmt->close();
+      return $file;
+  } else {
+    $stmt->close();
+    echo 0;
+    return false;
+  }
+}
+
+
+
+
+
 
 

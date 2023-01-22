@@ -1,5 +1,6 @@
 <?php
 include "checkSession.php";
+include "verifyCode.php"
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@ include "checkSession.php";
     <title>GNATOC-AAMUSTED-K</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Raleway"
@@ -33,6 +34,7 @@ include "checkSession.php";
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="w3css.css" />
+
     <style>
       #success-alert {
         position: fixed;
@@ -97,6 +99,22 @@ include "checkSession.php";
         border: 3px solid blue;
       }
     </style>
+
+
+
+<style>
+a{
+    border-bottom: 5px;
+    border-bottom: solid;
+    border-color: #b0dbee;
+    border-radius: 10%;
+    border-right: 5px;
+    margin-bottom: .5rem;
+    box-shadow: 3px 3px 5px #b0dbee;
+}
+
+
+</style>
   </head>
   <body class="w3-aqua w3-content" style="max-width: 1600px">
     <script>
@@ -459,12 +477,10 @@ include "checkSession.php";
       }
 
       function update1File(fileID, frameID, col) {
-        var file = $("#" + fileID + "").prop("files")[0];
-        if (fileTooBig(file)) {
-          return;
-        }
+        var fileInput = document.getElementById(fileID);
+        var file = fileInput.files[0];
 
-        if (!(file.type == "application/pdf")) {
+        if (!isFilePDF(fileID)) {
           return;
         }
 
@@ -481,15 +497,15 @@ include "checkSession.php";
           data: form_data,
           type: "post",
           success: function (response) {
-            //  alert(response)
+            // alert(response)
 
             if (!aeEmpty(frameID)) {
-              //  alert(response);
+              // alert(response);
               setEmbedSrc(frameID, response);
               resetUrl(col, response);
             }
           },
-        });        NaN
+        });
       }
 
       // functions end
@@ -511,8 +527,6 @@ include "checkSession.php";
                 $("#memberImage").attr("src", e.target.result);
                 $("#memberImageSmall").attr("src", e.target.result);
                 updatePassportPicture();
-
-
               };
               reader.readAsDataURL(this.files[0]);
             }
@@ -623,7 +637,7 @@ include "checkSession.php";
             dataType: "text",
             error: function (xhr, status, error) {
               var err = eval("(" + xhr.responseText + ")");
-              alert(err.Message);
+              // alert(err.Message);
             },
 
             success: function (data, status) {
@@ -854,10 +868,8 @@ include "checkSession.php";
               },
             });
 
-
             $("#memberImage").attr("src", imagePath);
             $("#memberImageSmall").attr("src", imagePath);
-
 
             // alert(fSsnit)
             // loadFile("fStudyLeave", fStudy);
@@ -876,7 +888,6 @@ include "checkSession.php";
 
             // alert("image:path : "+imagePath)
 
-        
             $("#memberEmail1").text(email);
             $("#memberName1").text(fullName);
             $("#memberName1").css({
@@ -941,12 +952,11 @@ include "checkSession.php";
             transform: scale(2.1);
             transition: transform 0.2s ease-in-out;
           }
+
           #memberImageSmall:hover {
             transform: scale(2.1);
             transition: transform 0.2s ease-in-out;
           }
-
-          
         </style>
         <input
           type="file"
@@ -955,7 +965,7 @@ include "checkSession.php";
           style="display: none"
         />
 
-        <div style="position:relative; max-width: 90%; ")>
+        <div style="position: relative; max-width: 90%" )>
           <img
             id="memberImage"
             src="devImage/l2.png"
@@ -1129,39 +1139,43 @@ include "checkSession.php";
         <div class="w3-row-padding">
           <div class="w3-third w3-container w3-margin-bottom">
             <div class="w3-container w3-aqua">
-              <p><b>Study Leave Approval Letter</b></p>
+              <p><b>Study Leave</b></p>
 
-              <div class="w3-card">
+              <div class="w3-card w3-center">
                 <embed id="fStudyLeave" src="" type="application/pdf" />
               </div>
 
-              <p>
+
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
+
+
                     id="d1"
                     href=""
                     target="_blank"
                     class="w3-button w3-deep-purple"
                     >Download
-                    <i class="fa fa-download" aria-hidden="true"></i>
+                    <i class="fa fa-download" aria-hidden="true"> </i>
                   </a>
                   <a id="ch1" class="w3-button w3-deep-purple"
                     >change
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
+
             </div>
           </div>
 
-          <div class="w3-third w3-container w3-margin-bottom">
+          <div class="w3-third w3-container w3-margin-bottom w3-aqua">
             <div class="w3-container w3-aqua">
               <p><b>Admission Letter</b></p>
-              <div class="w3-card">
+              <div class="w3-card w3-center">
                 <embed id="fAdmission" src="" type="application/pdf" />
               </div>
 
-              <p>
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
                     id="d2"
@@ -1176,17 +1190,17 @@ include "checkSession.php";
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
             </div>
           </div>
-          <div class="w3-third w3-container">
+          <div class="w3-third w3-container ">
             <div class="w3-container w3-aqua">
               <p><b>Master List</b></p>
-              <div class="w3-card w3-aqua">
+              <div class="w3-card w3-center">
                 <embed id="fMasterList" src="" type="application/pdf" />
               </div>
 
-              <p>
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
                     id="d3"
@@ -1201,7 +1215,7 @@ include "checkSession.php";
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1211,11 +1225,11 @@ include "checkSession.php";
           <div class="w3-third w3-container w3-margin-bottom">
             <div class="w3-container w3-aqua">
               <p><b>Matricula Page</b></p>
-              <div class="w3-card">
+              <div class="w3-card w3-center">
                 <embed id="fMatricula" src="" type="application/pdf" />
               </div>
 
-              <p>
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
                     id="d4"
@@ -1230,18 +1244,18 @@ include "checkSession.php";
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
             </div>
           </div>
 
           <div class="w3-third w3-container w3-margin-bottom">
             <div class="w3-container w3-aqua">
               <p><b>Ghana Card</b></p>
-              <div class="w3-card">
+              <div class="w3-card w3-center">
                 <embed id="fGhana" src="" type="application/pdf" />
               </div>
 
-              <p>
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
                     id="d5"
@@ -1256,17 +1270,17 @@ include "checkSession.php";
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
             </div>
           </div>
           <div class="w3-third w3-container">
-            <div class="w3-container w3-aqua">
+            <div class="w3-container w3-aqua w3-margin">
               <p><b>SSNIT Card</b></p>
-              <div class="w3-card">
+              <div class="w3-card w3-center">
                 <embed id="fSsnit" src="" type="application/pdf" />
               </div>
 
-              <p>
+              <div class="w3-card w3-padding w3-center">
                 <span
                   ><a
                     id="d6"
@@ -1281,7 +1295,7 @@ include "checkSession.php";
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </a>
                 </span>
-              </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1302,7 +1316,7 @@ include "checkSession.php";
             <div class="w3-container w3-white">
               <h4><strong>My Gnatoc Dues Payment history</strong></h4>
               <p>
-            All your dues payment information will be available here soon
+                All your dues payment information will be available here soon
               </p>
               <p><button class="w3-button w3-deep-purple">Print</button></p>
             </div>
@@ -1559,7 +1573,7 @@ include "checkSession.php";
 
         if (text.indexOf("studyleave") !== -1) {
           fStudy = response;
-          alert(fStudy);
+          // alert(fStudy);
           setEmbedSrc("fStudyLeave", fStudy);
           document.getElementById("d1").setAttribute("href", fStudy);
         } else if (text.indexOf("admission") !== -1) {
@@ -1589,23 +1603,313 @@ include "checkSession.php";
         }
       }
 
+      function updatePassportPicture() {
+        var file = $("#fileInput")[0].files[0];
+        var formData = new FormData();
+        formData.append("image", file);
+        $.ajax({
+          url: "updatePassport.php",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            // alert(response);
+          },
+        });
+      }
+    </script>
 
-    function updatePassportPicture(){
-    var file = $("#fileInput")[0].files[0];
-    var formData = new FormData();
-    formData.append("image", file);
-    $.ajax({
-        url: "updatePassport.php",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          //alert(response);
-        }
-    });
+    <script>
+      function myAjax1() {
+        $.ajax({
+          type: "post",
+          data: {
+            id: id,
+          },
+          cache: false,
+          url: "",
+          dataType: "text",
+          success: function (data, status) {
+            //alert(data);
+          },
+          error: function (xhr, status, error) {
+            // alert(error);
+          },
+        });
       }
 
+      function getInput() {
+        email = $("#tf_email").val();
+        mobile = $("#tf_mobile").val();
+        ghanaCard = $("#tf_ghanaCard").val();
+
+        email = trimV(email);
+        mobile = trimV(mobile);
+        ghanaCard = trimV(ghanaCard);
+      }
+
+      function validate_mobile_g(mobile) {
+        var phoneRe = /^[0-9]{10}$/;
+        var digits = mobile.replace(/\D/g, "");
+        return phoneRe.test(digits);
+      }
+
+      const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
+
+      function aeEmpty(e) {
+        var ee = "";
+        try {
+          ee = e.trim();
+        } catch (error) {
+          return true;
+        }
+        try {
+          switch (e) {
+            case "":
+            case 0:
+            case "0":
+            case null:
+            case false:
+            case undefined:
+              return true;
+            default:
+              return false;
+          }
+        } catch (error) {
+          return true;
+        }
+      }
+
+      function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+      }
+
+      function showErrorText(message) {
+        $("#error_message").text(message);
+        $("#error_message").show();
+      }
+
+      function hideErrorText() {
+        $("#error_message").text("");
+        $("#error_message").hide();
+      }
+
+      function showSpin() {
+        $("#spin").show();
+      }
+      function hideSpin() {
+        $("#spin").hide();
+      }
+
+      function openPage_blank(url) {
+        window.open(url, "_blank");
+      }
+      function openPage(url) {
+        window.open(url);
+      }
+
+      function showAEMsuccess(aeBody, aeTitle) {
+        if (!aeEmpty(aeTitle)) {
+          $("#aeAlertTitle").text(aeTitle);
+        }
+
+        if (!aeEmpty(aeBody)) {
+          $("#aeAlertBody").text(aeBody);
+        }
+        $("#aeMsuccess").modal("show");
+      }
+
+      function showAEMsuccessw(aeBody, aeTitle) {
+        if (!aeEmpty(aeTitle)) {
+          $("#aeAlertTitlew").text(aeTitle);
+        }
+
+        if (!aeEmpty(aeBody)) {
+          $("#aeAlertBodyw").text(aeBody);
+        }
+        $("#aeMsuccessw").modal("show");
+      }
+
+      function showAEMerror(aeBody, aeTitle) {
+        if (!aeEmpty(aeTitle)) {
+          $("#aeMerrorTitle").text(aeTitle);
+        }
+
+        if (!aeEmpty(aeBody)) {
+          $("#aeMerrorBody").text(aeBody);
+        }
+        $("#aeMerror").modal("show");
+      }
+
+      function showMYesNo(aeBody) {
+        if (!aeEmpty(aeBody)) {
+          $("#aeMBody").text(aeBody);
+        }
+        $("#aeMyesNo").modal("show");
+      }
+
+      function passwordConfirm(a, b) {
+        return a == b;
+      }
+
+      function trimV(a) {
+        try {
+          a = a.trim();
+        } catch (error) {}
+        return a;
+      }
+
+      function refreshPage() {
+        location.reload();
+      }
+
+      function showCodeField() {
+        $("#codeHide").show();
+      }
+      function hideCodeField() {
+        $("#codeHide").hide();
+      }
+
+      function validateGhanaCard(ghanaCard) {
+        if (aeEmpty(ghanaCard)) {
+          return false;
+        }
+        ghanaCard = ghanaCard.toUpperCase();
+        var i = ghanaCard.length;
+
+        if (i < 8) {
+          return false;
+        }
+
+        if (i > 20) {
+          return false;
+        }
+
+        ii = ghanaCard.substring(0, 4);
+
+        if (!passwordConfirm(ii, "GHA-")) {
+          return false;
+        }
+
+        return true;
+      }
+
+      function openPageReplace(url) {
+        location.href = url;
+      }
+
+      function validatePassword(password) {
+        var passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+        var m =
+          "must be at least 8 characters long " +
+          " and contains at least one lowercase letter, one " +
+          "uppercase letter, one number, and one special character";
+
+        return passwordRegex.test(password);
+      }
+
+      function checkImageFileSize(id) {
+        var file = document.getElementById(id).files[0];
+        if (file.size > 1258291) {
+          showAEMerror("FILE TOO LARGE");
+
+          return false;
+        }
+        if (!file.type.startsWith("image/")) {
+          showAEMerror("CHOOSE IMAGE FILE ONLY");
+          return false;
+        }
+        return true;
+      }
+
+      function changeImageSRC(fileID, imageTagID) {
+        var file = document.getElementById(fileID).files[0];
+        document.getElementById(imageTagID).src = URL.createObjectURL(file);
+      }
+
+      function isFilePDF(fileId) {
+        var input = document.getElementById(fileId);
+        if (input.files && input.files[0]) {
+          var file = input.files[0];
+          var size = file.size / 1024 / 1024; // size in MB
+          var type = file.type;
+
+          if (type !== "application/pdf") {
+            aeModelTitle = "CHOOSE PDF ONLY";
+            aeModelBody = "ONLY PDF FILES ARE ALLOWED";
+
+            var mdText = "ONLY PDF FILES ARE ALLOWED";
+            $("#aeMtext").text(mdText);
+            document.getElementById("aeModelPassive").style.display = "block";
+
+            document.getElementById(fileId).value = "";
+            return false;
+            return false;
+          } else if (size > 2) {
+            var mdText = "PICTURE SIZE TOO LARGE";
+            $("#aeMtext").text(mdText);
+            document.getElementById("aeModelPassive").style.display = "block";
+            document.getElementById(fileId).value = "";
+
+            return false;
+            return false;
+          } else {
+            return true;
+          }
+        }
+      }
+
+      function isFileImage(fileId) {
+        var input = document.getElementById(fileId);
+        if (input.files && input.files[0]) {
+          var file = input.files[0];
+          var size = file.size / 1024 / 1024; // size in MB
+          var type = file.type;
+          if (!type.startsWith("image")) {
+            var mdText = "ONLY IMAGE FILE ALLOWED";
+            $("#aeMtext").text(mdText);
+
+            document.getElementById("aeModelPassive").style.display = "block";
+
+            document.getElementById(fileId).value = "";
+
+            return false;
+          } else if (size > 2) {
+            aeModelBody = "Please Your file is too large";
+            var mdText =
+              "Please Your File Size  is above 2mb.  Use a smaller file.";
+            $("#aeMtext").text(aeModelBody);
+            document.getElementById("aeModelPassive").style.display = "block";
+            document.getElementById(fileId).value = "";
+            return false;
+          } else {
+            return true;
+          }
+        }
+      }
     </script>
+
+    <!-- BEGIN AEMODEL-->
+    <div id="aeModelPassive" class="w3-modal">
+      <div class="w3-modal-content">
+        <header class="w3-container w3-deep-purple">
+          <span
+            onclick="document.getElementById('aeModelPassive').style.display='none'"
+            class="w3-button w3-display-topright"
+            >&times;</span
+          >
+          <h2 id="aeMtext">Modal Header</h2>
+        </header>
+      </div>
+    </div>
+    <!-- END AEMODEL-->
   </body>
 </html>

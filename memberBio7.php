@@ -1,6 +1,5 @@
 <?php
-
-//include "verifyCode.php"
+include "verifyCode.php"
 
 ?>
 <!DOCTYPE html>
@@ -169,11 +168,11 @@
             cache: false,
             processData: false,
             success: function (data) {
-            //  alert(data)
+             // alert(data)
              location.href = "memberBio8.php";
             },
             error: function (e) {
-              //alert("error:" + e);
+             // alert("error:" + e);
             },
           });
         });

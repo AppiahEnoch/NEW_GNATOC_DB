@@ -1,5 +1,5 @@
 <?php
- // include "checkSession.php";
+ include "verifyEmail.php";
   ?>
 <!DOCTYPE html>
 <html lang="en">

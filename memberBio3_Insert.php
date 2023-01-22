@@ -94,8 +94,9 @@ function inputsAreCorrect( $arrayOfAlvoters) {
 try{
 
 
-
+  if (!isset($_SESSION)) {
     session_start();
+}
  
   
   //
@@ -109,6 +110,7 @@ try{
   $stmt = $conn->prepare($sql); 
   $stmt->bind_param("ss", $n, $staffID);
   $stmt->execute();
+  
 
     $sql = "UPDATE memberbio SET admissionNumber=?, ssnitNumber=?, voterNumber=?
     WHERE staffID=?";
@@ -117,7 +119,7 @@ try{
 
     $stmt->execute();
     $stmt->close();
-    $conn->close();
+ 
 
     echo 1;
 

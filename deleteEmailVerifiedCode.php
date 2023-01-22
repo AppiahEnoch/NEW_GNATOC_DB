@@ -15,13 +15,15 @@ try{
     $stmt->bind_param("ss", $staffID, $n);
      $stmt->execute();
     $stmt->close();
+
+    echo 1;
  
         
     }
     catch(Exception $e){
-    
-    
-      
+
+
+    echo $e;
     
        
         

@@ -1,6 +1,6 @@
 <?php
 
-//include "verifyCode.php"
+include "verifyCode.php"
 
 ?>
 <!DOCTYPE html>
@@ -78,6 +78,19 @@
       $("#course").blur(function () {
      
       });
+
+
+
+      $("#region").on("focus", function(){
+
+        $("#suggestion").hide();
+ 
+});
+
+
+
+
+
 
 
 
@@ -182,7 +195,9 @@
           </div>
           <input type="text" id="course" placeholder="Course eg. BSc. Information Tectnology Education" required />
         </div>
-        <div id="suggestion" class="suggestion"></div>
+        <div id="suggestion" class="suggestion">
+
+        </div>
       </div>
     </div>
     <!-- end -->

@@ -1,7 +1,5 @@
 <?php
-
 include "verifyCode.php"
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

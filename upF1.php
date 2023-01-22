@@ -1,8 +1,13 @@
 <?php
+require_once 'config.php';
+include_once 'globals.php';
 
-include_once 'config.php';
-session_start();
-//
+if (!isset($_SESSION)) {
+  session_start();
+}
+$_path = "file";
+
+
 $fileD = $_SESSION["staffID"];
 $staffID = $_SESSION["staffID"];
 
@@ -23,12 +28,14 @@ $v2 = "text";
 
 $col = $_POST[$v2];
 
+$string = $col;
 
 
 
 $_path = "file";
 $folder = $_path;
 $fileID = "";
+$unique = "";
 
 $newFilePath = null;
 
@@ -38,18 +45,60 @@ $newFilePath = null;
 $fileName = $_FILES[$v1]['name'];
 $tmp = $_FILES[$v1]['tmp_name'];
 
+
+
+
+
+
+if(aeStringContains($string, "study")){
+  $unique=$studyLeaveUnique;
+}
+elseif( aeStringContains($string, "matricu") ){
+  $unique=$matriculaUnique ;
+}
+elseif( aeStringContains($string, "ssnit") ){
+  $unique=$ssnitUnique;
+}
+elseif( aeStringContains($string, "ghana") ){
+  $unique=$ghanaCardUnique;
+}
+elseif( aeStringContains($string, "admission") ){
+  $unique=$admissionUnique;
+}
+
+
+
+//echo $col." un:".$unique;
 insertPDF($staffID, $col);
 
-$newFilePath = getPdfFromDB($staffID, $col);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$newFilePath = getPdfFromDB($staffID, $col,$unique);
 echo $newFilePath;
+
+
+
+insertStaffID($staffID);
+updateFileTB($col, $newFilePath, $staffID);
+
+
+
+
+
+
 $conn->close();
-
-exit;
-
-
-
-
-
 
 
 
@@ -119,7 +168,9 @@ function insertPDF($staffID, $column)
 
 
 
-function getPdfFromDB($staffID, $column)
+
+
+function getPdfFromDB($staffID, $column,$unique)
 {
   global $conn, $_path;
   //Retrieve pdf data from filetable
@@ -138,7 +189,7 @@ function getPdfFromDB($staffID, $column)
       mkdir($folder);
     }
     $IDD = generateUniqueID();
-    $file_path = $folder . "/" . $staffID . $IDD . ".pdf";
+    $file_path = $folder . "/" . $unique . ".pdf";
     file_put_contents($file_path, $pdf_data);
     // echo "PDF saved successfully to " . $file_path;
   } else {
@@ -157,4 +208,75 @@ function generateUniqueID()
   // Convert timestamp to a unique ID
   $id = uniqid($time, true);
   return $id;
+}
+
+
+
+
+function insertStaffID($staffID)
+{
+  global $conn;
+  $updateResult = false;
+  $insertResult = false;
+
+  // Prepare statement to prevent SQL injection
+  $selectStmt = mysqli_prepare($conn, "SELECT staffID FROM file WHERE staffID = ?");
+  mysqli_stmt_bind_param($selectStmt, "s", $staffID);
+  mysqli_stmt_execute($selectStmt);
+  mysqli_stmt_store_result($selectStmt);
+
+  if (mysqli_stmt_num_rows($selectStmt) > 0) {
+    // StaffID already exists, update it
+    $updateStmt = mysqli_prepare($conn, "UPDATE file SET staffID = ? WHERE staffID = ?");
+    mysqli_stmt_bind_param($updateStmt, "ss", $staffID, $staffID);
+    $updateResult = mysqli_stmt_execute($updateStmt);
+    mysqli_stmt_close($updateStmt);
+  } else {
+    // StaffID doesn't exist, insert it
+    $insertStmt = mysqli_prepare($conn, "INSERT INTO file (staffID) VALUES (?)");
+    mysqli_stmt_bind_param($insertStmt, "s", $staffID);
+    $insertResult = mysqli_stmt_execute($insertStmt);
+    mysqli_stmt_close($insertStmt);
+  }
+  mysqli_stmt_close($selectStmt);
+  if ($updateResult || $insertResult) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+function updateFileTB($col, $fPassport, $staffID)
+{
+  global $conn;
+
+  try {
+    // Sanitize the column name
+    $col = mysqli_real_escape_string($conn, $col);
+    // Sanitize the value
+    $fPassport = mysqli_real_escape_string($conn, $fPassport);
+    // Sanitize the staffID
+    $staffID = mysqli_real_escape_string($conn, $staffID);
+    $updateQuery = "UPDATE `file` SET $col = '$fPassport' WHERE staffID = '$staffID'";
+    $updateResult = mysqli_query($conn, $updateQuery);
+    if ($updateResult) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (\Throwable $th) {
+    //throw $th;
+  }
+
+}
+
+
+
+function aeStringContains($string, $ID) {
+  if (strpos($string, $ID) !== false) {
+      return true;
+  } else {
+      return false;
+  }
 }

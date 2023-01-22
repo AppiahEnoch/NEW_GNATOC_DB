@@ -131,6 +131,7 @@ include "verifyCode.php"
             cache: false,
             processData: false,
             success: function (data) {
+             // alert(data)
 
               location.href = "alertRegistrationSucess.html";
             },

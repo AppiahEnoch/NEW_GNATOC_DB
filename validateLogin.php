@@ -287,12 +287,7 @@ $id=$_SESSION["staffID"];
     }
 }
 
-if (isset($_SESSION["staffID"]) && strlen($_SESSION["staffID"]) > 2) {
-  include "readFiles.php";
- 
-} else {
 
-}
 
 
 
