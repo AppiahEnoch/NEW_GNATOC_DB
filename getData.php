@@ -198,7 +198,7 @@ if ($result->num_rows > 0) {
 
 
   }
-  echo json_encode($return_arr);
+
   // Save the spreadsheet to a file
   $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
@@ -206,6 +206,7 @@ if ($result->num_rows > 0) {
   $writer->save('Records.xlsx');
 
   $conn->close();
+  echo json_encode($return_arr);
   exit;
 
 } else {
