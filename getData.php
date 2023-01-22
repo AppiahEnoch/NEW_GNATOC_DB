@@ -126,8 +126,14 @@ if ($result->num_rows > 0) {
 
 
   }
-  echo json_encode($return_arr);
-  // Save the spreadsheet to a file
+
+  $json = json_encode($return_arr);
+  if(json_last_error() === JSON_ERROR_NONE){
+      echo $json;
+  }else{
+      echo json_encode(array("error"=>"An error occurred while encoding data to json"));
+  }
+  
   $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
 
@@ -137,8 +143,6 @@ if ($result->num_rows > 0) {
   exit;
 
 } else {
-  $return_arr[] =null;
-  echo json_encode($return_arr);
   $conn->close();
  exit;
 }
