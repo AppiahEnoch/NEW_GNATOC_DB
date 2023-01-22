@@ -72,7 +72,7 @@
           to: to,
           from: from,
           level: level,
-          rank1: rank,
+          rank1: rank
         },
         dataType: "JSON",
         success: function (response) {
