@@ -74,7 +74,6 @@
           level: level,
           rank1: rank,
         },
-
         dataType: "JSON",
         success: function (response) {
           alert(response);
