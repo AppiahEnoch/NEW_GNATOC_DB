@@ -78,7 +78,7 @@
         dataType: "JSON",
         success: function (response) {
 
-          alert("success: "+response)
+        
 
           var len = response.length;
           hideSpin();
