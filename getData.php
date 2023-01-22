@@ -154,6 +154,7 @@ if ($result->num_rows > 0) {
 
 
   $fullName=$fName." ".$mName." ".$lName;
+    $fullName = "APPIAH";
   $return_arr[] = array(
     "staffID" => $staffID,
     "fullName" => $fullName,
