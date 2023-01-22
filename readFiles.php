@@ -1,16 +1,9 @@
 <?php
 include "config.php";
-
+include_once 'globals.php';
 $_path = "file";
 
-check_dir_permissions($_path);
-function check_dir_permissions($dir) {
-    if (is_readable($dir) && is_writable($dir)) {
-      echo "Directory is readable and writable";
-    } else {
-      echo "Directory is not readable and writable";
-    }
-  }
+
 
 
 $file_path = "";
@@ -22,9 +15,9 @@ if ($staffIDs) {
         if (!isset($_SESSION)) {
             session_start();
         }
-        $_SESSION["staffID"] = $staffID;
+     
 
-        include_once 'globals.php';
+     
 
 
 
@@ -60,7 +53,7 @@ if ($staffIDs) {
 
 function getImageFromDB($staffID, $column, $unique)
 {
-    global $conn, $_path;
+    global $conn, $_path, $file_path;
     //Retrieve image data from filetable
     $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
     $stmt = $conn->prepare($query);
@@ -93,7 +86,7 @@ function getImageFromDB($staffID, $column, $unique)
 
 function getPdfFromDB($staffID, $column, $unique)
 {
-    global $conn, $_path;
+    global $conn, $_path, $file_path;
     //Retrieve pdf data from filetable
     $query = "SELECT $column FROM `filetable` WHERE staffID = ?";
     $stmt = $conn->prepare($query);

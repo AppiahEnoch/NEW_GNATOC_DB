@@ -1,5 +1,6 @@
 <?php
 $_path = "file";
+$file_path = "";
 if ((isFolderEmpty($_path))) {
   include "readFiles.php";
 }
@@ -7,8 +8,7 @@ if ((isFolderEmpty($_path))) {
 if (isset($_SESSION)) {
   session_destroy();
 }
-session_start();
-session_destroy();
+
 
 function isFolderEmpty($_path)
 {
