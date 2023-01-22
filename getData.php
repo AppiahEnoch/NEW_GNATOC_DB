@@ -81,30 +81,8 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 
 
 
-$query = "SELECT * FROM memberbio WHERE ";
+$query = "SELECT * FROM memberbio";
 
-if (!empty($sex)) {
-    $query .= "(gender LIKE '%$sex%' OR yearOfAdmission LIKE '%$sex%' OR yearOfCompletion LIKE '%$sex%' OR level LIKE '%$sex%') AND ";
-}
-
-if (!empty($from)) {
-    $query .= "(gender LIKE '%$from%' OR yearOfAdmission LIKE '%$from%' OR yearOfCompletion LIKE '%$from%' OR level LIKE '%$from%') AND ";
-}
-
-if (!empty($to)) {
-    $query .= "(gender LIKE '%$to%' OR yearOfAdmission LIKE '%$to%' OR yearOfCompletion LIKE '%$to%' OR level LIKE '%$to%') AND ";
-}
-
-if (!empty($level)) {
-    $query .= "(gender LIKE '%$level%' OR yearOfAdmission LIKE '%$level%' OR yearOfCompletion LIKE '%$level%' OR level LIKE '%$level%') AND ";
-}
-
-if (!empty($rank1)) {
-    $query .= "(gender LIKE '%$rank1%' OR yearOfAdmission LIKE '%$rank1%' OR yearOfCompletion LIKE '%$rank1%' OR level LIKE '%$rank1%' OR rank = '$rank1') AND ";
-}
-
-// Remove the extra AND at the end of the query
-$query = rtrim($query, " AND ");
 
 // Execute the query
 $result = mysqli_query($conn, $query);
@@ -154,9 +132,10 @@ if ($result->num_rows > 0) {
 
 
   $fullName=$fName." ".$mName." ".$lName;
-    $fullName = "APPIAH";
   $return_arr[] = array(
-
+    "staffID" => $staffID,
+    "fullName" => $fullName,
+    "mobile" => $mobile
 );
 
 
@@ -196,7 +175,7 @@ if ($result->num_rows > 0) {
 
 
   }
-
+  echo json_encode($return_arr);
   // Save the spreadsheet to a file
   $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
@@ -204,7 +183,6 @@ if ($result->num_rows > 0) {
   $writer->save('Records.xlsx');
 
   $conn->close();
-  echo json_encode($return_arr);
   exit;
 
 } else {

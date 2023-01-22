@@ -77,14 +77,7 @@
 
         dataType: "JSON",
         success: function (response) {
-
-        
-
           var len = response.length;
-          hideSpin();
-
-
-
           for (var i = 0; i < len; i++) {
             var mobile = response[i].mobile;
             var fullName = response[i].fullName;
@@ -105,6 +98,7 @@
 
             $("#table1 tbody").append(tr_str);
             $("#total_records").text(len);
+            hideSpin();
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
