@@ -1,6 +1,4 @@
 <?php
-
-
 include "config.php";
 require_once 'vendor/autoload.php';
 
@@ -124,7 +122,7 @@ if ($result->num_rows > 0) {
   $mobile = "0000";
 
 
-  $return_arr[] = array(
+  $return_arr[]= array(
     "staffID" => $staffID,
     "fullName" => $fullName,
     "mobile" => $mobile
@@ -142,13 +140,10 @@ if ($result->num_rows > 0) {
 
  // $writer->save('Records.xlsx');
 
-  $conn->close();
-  exit;
+  //$conn->close();
 
-} else {
-  $conn->close();
- exit;
-}
+
+
 
 
 
