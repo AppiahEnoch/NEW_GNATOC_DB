@@ -107,11 +107,7 @@ if ($result->num_rows > 0) {
 
 
   $fullName=$fName." ".$mName." ".$lName;
-  $return_arr[] = array(
-    "staffID" => $staffID,
-    "fullName" => $fullName,
-    "mobile" => $mobile
-);
+
 
 
   
@@ -126,6 +122,15 @@ if ($result->num_rows > 0) {
 
 
   }
+
+  $staffID = "123";
+  $fullName = "wwwww";
+  $mobile = "0000";
+  $return_arr[] = array(
+    "staffID" => $staffID,
+    "fullName" => $fullName,
+    "mobile" => $mobile
+);
 
   $json = json_encode($return_arr);
   if(json_last_error() === JSON_ERROR_NONE){
