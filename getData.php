@@ -4,7 +4,7 @@
 include "config.php";
 require_once 'vendor/autoload.php';
 
-
+/*
 $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
 $spreadsheet->setActiveSheetIndex(0);
 $activeSheet = $spreadsheet->getActiveSheet();
@@ -118,7 +118,7 @@ if ($result->num_rows > 0) {
 
 
   }
-
+*/
   $staffID = "123";
   $fullName = "wwwww";
   $mobile = "0000";
@@ -137,10 +137,10 @@ if ($result->num_rows > 0) {
       echo json_encode(array("error"=>"An error occurred while encoding data to json"));
   }
   
-  $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+  //$writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
 
-  $writer->save('Records.xlsx');
+ // $writer->save('Records.xlsx');
 
   $conn->close();
   exit;
