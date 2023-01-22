@@ -98,31 +98,6 @@ if ($result->num_rows > 0) {
     $lName=$row["lName"];
     $mobile=$row["mobile"];
 
-    $gender=$row["gender"];
-    $ghanaCard=$row["ghanaCard"];
-    $email=$row["email"];
-    $ssnit=$row["ssnitNumber"];
-    $studyLeaveStatus=$row["studyLeaveStatus"];
-    $admissionNumber=$row["admissionNumber"];
-    $regNumber=$row["regNumber"];
-    $level=$row["level"];
-    $dob=$row["dob"];
-    $course=$row["course"];
-    $region=$row["region"];
-    $yearOfAdmission=$row["yearOfAdmission"];
-    $yearOfCompletion=$row["yearOfCompletion"];
-    $rank1=$row["rank"];
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -147,30 +122,6 @@ if ($result->num_rows > 0) {
 
     // CREATE Excel
 
-    if(!empty($staffID)){
-      $activeSheet->setCellValue('A' .$row2, $row2-1);
-      $activeSheet->setCellValue('B' .$row2, $staffID);
-      $activeSheet->setCellValue('C' .$row2, $fName);
-      $activeSheet->setCellValue('D' .$row2, $mName);
-      $activeSheet->setCellValue('E' .$row2, $lName);
-      $activeSheet->setCellValue('F' .$row2, $gender);
-      $activeSheet->setCellValue('G' .$row2, $mobile);
-      $activeSheet->setCellValue('H' .$row2, $ghanaCard);
-      $activeSheet->setCellValue('I' .$row2, $email);
-      $activeSheet->setCellValue('J' .$row2, $ssnit);
-      $activeSheet->setCellValue('K' .$row2, $studyLeaveStatus);
-      $activeSheet->setCellValue('L' .$row2, $admissionNumber);
-      $activeSheet->setCellValue('M' .$row2, $regNumber);
-      $activeSheet->setCellValue('N' .$row2, $level);
-      $activeSheet->setCellValue('O' .$row2, $dob);
-      $activeSheet->setCellValue('P' .$row2, $course);
-      $activeSheet->setCellValue('Q' .$row2, $region);
-      $activeSheet->setCellValue('R' .$row2, $yearOfAdmission);
-      $activeSheet->setCellValue('S' .$row2, $yearOfCompletion);
-      $activeSheet->setCellValue('T' .$row2, $rank1);
-
-
-    }
  
 
 
