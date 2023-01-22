@@ -153,7 +153,6 @@ if ($result->num_rows > 0) {
 
 
 
-if(!empty($staffID)){
   $fullName=$fName." ".$mName." ".$lName;
   $return_arr[] = array(
     "staffID" => $staffID,
@@ -161,7 +160,7 @@ if(!empty($staffID)){
     "mobile" => $mobile
 );
 
-}
+
   
 
 
@@ -205,18 +204,19 @@ if(!empty($staffID)){
 
   $writer->save('Records.xlsx');
 
-
-
+  $conn->close();
+  exit;
 
 } else {
   $return_arr[] =null;
   echo json_encode($return_arr);
+  $conn->close();
  exit;
 }
-$conn->close();
 
 
-?>
+
+
 
 
 
