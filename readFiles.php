@@ -1,6 +1,5 @@
 <?php
 include "config.php";
-include_once 'globals.php';
 $_path = "file";
 
 
@@ -9,14 +8,25 @@ $_path = "file";
 $file_path = "";
 
 $staffIDs = selectAllStaffID();
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
 if ($staffIDs) {
-
+ 
     foreach ($staffIDs as $staffID) {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
-     
 
+        $_SESSION["staffID"] = $staffID;
+
+$passportUnique = $staffD . "passportAECleanCodes";
+$studyLeaveUnique = $staffD . "studyLeaveAECleanCodes";
+$masterListUnique = $staffD . "masterListAECleanCodes";
+$matriculaUnique = $staffD . "matriculaAECleanCodes";
+$ssnitUnique = $staffD . "ssnitCardAECleanCodes";
+$ghanaCardUnique = $staffD . "ghanaCardAECleanCodes";
+$admissionUnique = $staffD . "admissionAECleanCodes";
+    
      
 
 
