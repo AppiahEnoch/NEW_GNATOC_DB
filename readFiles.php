@@ -3,6 +3,15 @@ include "config.php";
 
 $_path = "file";
 
+check_dir_permissions($_path);
+function check_dir_permissions($dir) {
+    if (is_readable($dir) && is_writable($dir)) {
+      echo "Directory is readable and writable";
+    } else {
+      echo "Directory is not readable and writable";
+    }
+  }
+
 
 $file_path = "";
 
@@ -65,7 +74,7 @@ function getImageFromDB($staffID, $column, $unique)
         //Write image data to file
         $folder = $_path;
 
-        $IDD = generateUniqueID();
+   
         $file_path = $folder . "/" . $unique . ".jpg";
         file_put_contents($file_path, $image_data);
         // echo "Image saved successfully to " . $file_path;
