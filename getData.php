@@ -155,12 +155,12 @@ if ($result->num_rows > 0) {
       echo json_encode(array("error"=>"An error occurred while encoding data to json"));
   }
   
-  //$writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+  $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
 
- // $writer->save('Records.xlsx');
+  $writer->save('Records.xlsx');
 
-  //$conn->close();
+  $conn->close();
 
 
 
