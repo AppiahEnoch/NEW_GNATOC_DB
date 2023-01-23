@@ -2,7 +2,7 @@
 include "config.php";
 require_once 'vendor/autoload.php';
 
-/*
+
 $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
 $spreadsheet->setActiveSheetIndex(0);
 $activeSheet = $spreadsheet->getActiveSheet();
@@ -116,7 +116,7 @@ if ($result->num_rows > 0) {
 
 
   }
-*/
+
   $staffID = "123";
   $fullName = "wwwww";
   $mobile = "0000";
