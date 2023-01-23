@@ -3,6 +3,8 @@ include "config.php";
 require_once 'vendor/autoload.php';
 
 
+/*
+
 $spreadsheet = new PhpOffice\PhpSpreadsheet\Spreadsheet();
 $spreadsheet->setActiveSheetIndex(0);
 $activeSheet = $spreadsheet->getActiveSheet();
@@ -57,7 +59,7 @@ $activeSheet->setCellValue('T1', 'RANK');
 // Start at row 2 (row 1 is the header)
 
 
-
+*/
 
 
 
