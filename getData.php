@@ -100,6 +100,24 @@ if ($result->num_rows > 0) {
     $fullName=$fName." ".$mName." ".$lName;
 
 
+    
+    $gender=$row["gender"];
+    $ghanaCard=$row["ghanaCard"];
+    $email=$row["email"];
+    $ssnit=$row["ssnitNumber"];
+    $studyLeaveStatus=$row["studyLeaveStatus"];
+    $admissionNumber=$row["admissionNumber"];
+    $regNumber=$row["regNumber"];
+    $level=$row["level"];
+    $dob=$row["dob"];
+    $course=$row["course"];
+    $region=$row["region"];
+    $yearOfAdmission=$row["yearOfAdmission"];
+    $yearOfCompletion=$row["yearOfCompletion"];
+    $rank1=$row["rank"];
+
+
+
 
 
 
@@ -121,7 +139,7 @@ if ($result->num_rows > 0) {
       "fullName" => $fullName,
       "mobile" => $mobile
   );
-  
+
   }
 }
 
