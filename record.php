@@ -113,30 +113,35 @@
       getInput();
 
       $("#tf_sex").keyup(function () {
+        $("#table1 tbody").empty();
         showSpin();
         getInput();
         getData();
       });
 
       $("#tf_from").keyup(function () {
+        $("#table1 tbody").empty();
         showSpin();
         getInput();
         getData();
       });
 
       $("#tf_to").keyup(function () {
+        $("#table1 tbody").empty();
         showSpin();
         getInput();
         getData();
       });
 
       $("#tf_level").keyup(function () {
+        $("#table1 tbody").empty();
         showSpin();
         getInput();
         getData();
       });
 
       $("#tf_rank").keyup(function () {
+        $("#table1 tbody").empty();
         showSpin();
         getInput();
         getData();
