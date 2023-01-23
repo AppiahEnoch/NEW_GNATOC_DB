@@ -83,14 +83,17 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 
 $query = "SELECT * FROM memberbio";
 
-
 // Execute the query
 $result = mysqli_query($conn, $query);
 
 $row2=2;
 if ($result->num_rows > 0) {
   // output data of each row
-  while($row = $result->fetch_assoc()) {
+  while ($row = $result->fetch_assoc()) {
+
+
+
+    //$fullName=$fName." ".$mName." ".$lName;
 
 
 
@@ -99,25 +102,14 @@ if ($result->num_rows > 0) {
 
 
 
-
-
-
-  //$fullName=$fName." ".$mName." ".$lName;
-
-
-
-  
-
-
-
-  
 
     // CREATE Excel
 
- 
+
 
 
   }
+}
 
   $staffID = "123";
   $fullName = "wwwww";
