@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 require_once 'vendor/autoload.php';
-
+ob_start();
 
 
 
@@ -156,7 +156,7 @@ if ($result->num_rows > 0) {
   $conn->close();
 
 
-  
+  header("Content-Type: application/json");
   $json = json_encode($return_arr);
   if(json_last_error() === JSON_ERROR_NONE){
       echo $json;
@@ -164,7 +164,11 @@ if ($result->num_rows > 0) {
       echo json_encode(array("error"=>"An error occurred while encoding data to json"));
   }
   
-
+  ob_end_clean();
+  
+  header("Content-Type: application/octet-stream");
+  header("Content-Disposition: attachment; filename='Records.xlsx'");
+  readfile("Records.xlsx");
 
 
 
