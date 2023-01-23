@@ -154,7 +154,7 @@ if ($result->num_rows > 0) {
   $writer->save('Records.xlsx');
 
   $conn->close();
-
+  ob_end_clean();
 
   header("Content-Type: application/json");
   $json = json_encode($return_arr);
@@ -164,11 +164,9 @@ if ($result->num_rows > 0) {
       echo json_encode(array("error"=>"An error occurred while encoding data to json"));
   }
   
-  ob_end_clean();
   
-  header("Content-Type: application/octet-stream");
-  header("Content-Disposition: attachment; filename='Records.xlsx'");
-  readfile("Records.xlsx");
+
+
 
 
 
