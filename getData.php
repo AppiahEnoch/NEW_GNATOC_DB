@@ -1,7 +1,7 @@
 <?php
 include "config.php";
 require_once 'vendor/autoload.php';
-ob_start();
+//ob_start();
 
 
 
@@ -148,13 +148,13 @@ if ($result->num_rows > 0) {
 
 
 
-  $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+  //$writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
 
-  $writer->save('Records.xlsx');
+  //$writer->save('Records.xlsx');
 
   $conn->close();
-  ob_end_clean();
+  //ob_end_clean();
 
   header("Content-Type: application/json");
   $json = json_encode($return_arr);
