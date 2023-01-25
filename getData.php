@@ -88,7 +88,6 @@ if($program=="none"){
 }
 
 
-
 $filters = array();
 if (!empty($sex)) {
     $filters[] = "gender = '$sex'";
@@ -110,6 +109,7 @@ if (!empty($program)) {
 }
 
 $query = "SELECT * FROM memberbio";
+
 if (!empty($filters)) {
     $query .= " WHERE " . implode(" AND ", $filters);
 }
