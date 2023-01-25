@@ -93,16 +93,16 @@ if (!empty($sex)) {
     $filters[] = "gender = '$sex'";
 }
 if (!empty($from)) {
-    $filters[] = "yearOfAdmission = '$from' ";
+    $filters[] = "yearOfAdmission = '$from'";
 }
 if (!empty($to)) {
-    $filters[] = "yearOfCompletion = '$to' ";
+    $filters[] = "yearOfCompletion = '$to'";
 }
 if (!empty($level)) {
     $filters[] = "level = '$level'";
 }
 if (!empty($rank1)) {
-    $filters[] = " rank = '$rank1'";
+    $filters[] = "rank =   '$rank1'";
 }
 
 if (!empty($program)) {
@@ -115,6 +115,7 @@ if (!empty($filters)) {
     $query .= " WHERE " . implode(" AND ", $filters);
 }
 
+//echo $query;
 
 
 
