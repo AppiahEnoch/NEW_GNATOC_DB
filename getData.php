@@ -117,7 +117,10 @@ if (!empty($filters)) {
 
 //echo $query;
 
-
+echo $query;
+$query = "SELECT * FROM memberbio where rank= '$rank1'";
+echo "|||||";
+echo $query;
 
 // Execute the query
 $result = mysqli_query($conn, $query);
