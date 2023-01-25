@@ -79,8 +79,8 @@
          // alert(response);
           var len = response.length;
 
-         // alert(len)
-         // return
+          hideSpin();
+         
 
           for (var i = 0; i < len; i++) {
             var mobile = response[i].mobile;
