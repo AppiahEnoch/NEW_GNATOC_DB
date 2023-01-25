@@ -78,6 +78,10 @@
         success: function (response) {
          // alert(response);
           var len = response.length;
+
+         // alert(len)
+         // return
+
           for (var i = 0; i < len; i++) {
             var mobile = response[i].mobile;
             var fullName = response[i].fullName;
@@ -102,8 +106,9 @@
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.error(textStatus + ": " + errorThrown);
-         alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
+        //  console.error(textStatus + ": " + errorThrown);
+        // alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
+        $("#table1 tbody").empty();
         },
       });
     }
