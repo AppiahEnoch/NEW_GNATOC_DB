@@ -127,6 +127,7 @@ $query = " SELECT * FROM memberbio WHERE rank = '$rank1' ";
 $result = mysqli_query($conn, "SELECT * FROM memberbio WHERE rank = '$rank1'");
 
 $row2=2;
+
 if ($result->num_rows > 0) {
   // output data of each row
   while ($row = $result->fetch_assoc()) {
@@ -190,21 +191,7 @@ if ($result->num_rows > 0) {
 
     }
 
-
-
-
-
     $row2++;
-
-
-
-
-
-
-
-
-
-
 
 
     $return_arr[]= array(
