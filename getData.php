@@ -221,7 +221,7 @@ $json = json_encode($return_arr);
 if(json_last_error() === JSON_ERROR_NONE){
     echo $json;
 }else{
-    echo json_encode(array("error"=>"An error occurred while encoding data to json"));
+   // echo json_encode(array("error"=>"An error occurred while encoding data to json"));
 }
 
 
