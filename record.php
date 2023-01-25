@@ -97,8 +97,10 @@
           },
           dataType: "JSON",
           success: function (response) {
-             alert(response);
+            // alert(response);
+             
             var len = response.length;
+           // alert(len)
 
             hideSpin();
 
@@ -127,7 +129,7 @@
           },
           error: function (jqXHR, textStatus, errorThrown) {
             //  console.error(textStatus + ": " + errorThrown);
-             alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
+            // alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
             $("#table1 tbody").empty();
             hideSpin();
           },
@@ -174,7 +176,7 @@
           getData();
         });
 
-        $("#tf_rank").keyup(function () {
+        $("#tf_rank").change(function () {
           $("#table1 tbody").empty();
           showSpin();
           getInput();
@@ -196,6 +198,7 @@
                   id="tf_sex"
                   aria-describedby="search1Help"
                 />
+
                 <select
                   class="form-control ml-1"
                   id="tf_program"
@@ -246,6 +249,7 @@
 
         <div class="col">
           <form>
+
             <div class="form-group">
               <div class="col d-inline-flex justify-content-center p-0 m-0">
                 <input
@@ -255,26 +259,25 @@
                   id="tf_level"
                   aria-describedby="search2Help"
                 />
-                <input
-                  type="text"
-                  placeholder="Rank"
-                  class="form-control ml-1"
-                  id="tf_rank"
-                  aria-describedby="search2Help"
-                />
+                <select
+                class="form-control ml-1"
+                id="tf_rank"
+                aria-describedby="search1Help"
+              >
+                <option value="none" selected>Rank?</option>
+                <option value="Senior Superintendent II">Senior Superintendent II</option>
+                <option value="Senior Superintendent I">Senior Superintendent I</option>
+                <option value="Principal Superintendent">Principal Superintendent</option>
+                <option value="Assistant Director I">Assistant Director I</option>
+                <option value="Superintendent II">Superintendent II</option>
+                <option value="Superintendent I">Superintendent I</option>
+                <option value="Teacher">Teacher</option>
+          
+              </select>
+
               </div>
 
-              <div id="rank-dropdown" class="d-none" style="float: right">
-                <select id="rank-list">
-                  <option>Senior Superintendent II</option>
-                  <option>Senior Superintendent I</option>
-                  <option>Principal Superintendent</option>
-                  <option>Assistant Director I</option>
-                  <option>Superintendent II</option>
-                  <option>Superintendent I</option>
-                  <option>Teacher</option>
-                </select>
-              </div>
+      
 
               <small style="text-align: left; color: #fff" class="form-text"
                 >Search By Level and Rank</small
@@ -291,12 +294,6 @@
           });
         </script>
 
-        <script>
-          $("#rank-list").change(function () {
-            $("#tf_rank").val($("#rank-list option:selected").text());
-            $("#tf_rank").keyup();
-          });
-        </script>
       </div>
     </div>
     <div class="container-fluid">
@@ -375,6 +372,7 @@
         rank = $("#tf_rank").val();
 
         rank = rank.trim();
+       // alert(rank)
 
         program = $("#tf_program").val();
 
@@ -394,7 +392,7 @@
         $("#tf_program").append(
           $("<option>", {
             value: "none",
-            text: "Not Needed?",
+            text: "Program?",
           })
         );
 
