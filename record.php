@@ -105,8 +105,10 @@
           dataType: "text",
           success: function (response) {
             if (response.trim() === "") {
+              hideSpin();
               return;
             }
+            hideSpin();
             alert(response);
             var jsonResponse = JSON.parse(response);
             response = jsonResponse;
@@ -140,6 +142,7 @@
             }
           },
           error: function (jqXHR, textStatus, errorThrown) {
+            hideSpin();
             //  console.error(textStatus + ": " + errorThrown);
             alert(
               "An error occurred: " +
