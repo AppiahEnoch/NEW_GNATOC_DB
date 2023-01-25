@@ -118,13 +118,13 @@ if (!empty($filters)) {
 //echo $query;
 
 ///echo $query;
-$query = "SELECT * FROM memberbio WHERE rank = '$rank1'";
+$query = " SELECT * FROM memberbio WHERE rank = '$rank1' ";
 
 //echo "|||||";
 //echo $query;
 
 // Execute the query
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, "SELECT * FROM memberbio WHERE rank = '$rank1'");
 
 $row2=2;
 if ($result->num_rows > 0) {
