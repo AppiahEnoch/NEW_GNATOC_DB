@@ -93,17 +93,18 @@ if (!empty($sex)) {
     $filters[] = "gender = '$sex'";
 }
 if (!empty($from)) {
-    $filters[] = "yearOfAdmission LIKE '%$from%'";
+    $filters[] = "yearOfAdmission LIKE '%$from%' ";
 }
 if (!empty($to)) {
-    $filters[] = "yearOfCompletion LIKE '%$to%'";
+    $filters[] = "yearOfCompletion LIKE '%$to%' ";
 }
 if (!empty($level)) {
     $filters[] = "level = '$level'";
 }
 if (!empty($rank1)) {
-    $filters[] = "rank = '$rank1'";
+    $filters[] = " rank = '$rank1'";
 }
+
 if (!empty($program)) {
     $filters[] = "course = '$program'";
 }
