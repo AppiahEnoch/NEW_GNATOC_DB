@@ -84,8 +84,9 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 $query = "SELECT * FROM memberbio WHERE ";
 
 if (!empty($sex)) {
-    $query .= "(gender LIKE '%$sex%' OR yearOfAdmission LIKE '%$sex%' OR yearOfCompletion LIKE '%$sex%' OR level LIKE '%$sex%') AND ";
-}
+    $query .= "(gender = '$sex' OR yearOfAdmission = '%$sex%' OR yearOfCompletion LIKE '%$sex%' OR level LIKE '%$sex%') AND ";
+
+  }
 
 if (!empty($from)) {
     $query .= "(gender LIKE '%$from%' OR yearOfAdmission LIKE '%$from%' OR yearOfCompletion LIKE '%$from%' OR level LIKE '%$from%') AND ";
