@@ -80,11 +80,11 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 $program = mysqli_real_escape_string($conn, $program);
 
 if($rank1=="none"){
-  $rank1 = null;
+  $rank1 = "";
 }
 
 if($program=="none"){
-  $program =null;
+  $program ="";
 }
 
 

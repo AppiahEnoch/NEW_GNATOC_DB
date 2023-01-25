@@ -107,7 +107,7 @@
             if (response.trim() === "") {
               return;
             }
-            //alert(response);
+            alert(response);
             var jsonResponse = JSON.parse(response);
             response = jsonResponse;
 
