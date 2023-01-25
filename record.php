@@ -97,7 +97,7 @@
           },
           dataType: "JSON",
           success: function (response) {
-            // alert(response);
+             alert(response);
             var len = response.length;
 
             hideSpin();
@@ -127,7 +127,7 @@
           },
           error: function (jqXHR, textStatus, errorThrown) {
             //  console.error(textStatus + ": " + errorThrown);
-            // alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
+             alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
             $("#table1 tbody").empty();
             hideSpin();
           },
