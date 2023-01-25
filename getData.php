@@ -93,10 +93,10 @@ if (!empty($sex)) {
     $filters[] = "gender = '$sex'";
 }
 if (!empty($from)) {
-    $filters[] = "yearOfAdmission LIKE '%$from%' ";
+    $filters[] = "yearOfAdmission = '$from' ";
 }
 if (!empty($to)) {
-    $filters[] = "yearOfCompletion LIKE '%$to%' ";
+    $filters[] = "yearOfCompletion = '$to' ";
 }
 if (!empty($level)) {
     $filters[] = "level = '$level'";
