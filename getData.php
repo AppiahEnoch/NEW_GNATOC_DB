@@ -100,6 +100,10 @@ if (!empty($level)) {
     $query .= "(gender LIKE '%$level%' OR yearOfAdmission LIKE '%$level%' OR yearOfCompletion LIKE '%$level%' OR level LIKE '%$level%') AND ";
 }
 
+if (!empty($rank1)) {
+    $query .= "(rank LIKE '%$rank1%' OR yearOfAdmission LIKE '%$rank1%' OR yearOfCompletion LIKE '%$rank1%' OR level LIKE '%$rank1%') AND ";
+}
+
 // Remove the extra AND at the end of the query
 $query = rtrim($query, " AND ");
 
