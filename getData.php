@@ -80,45 +80,42 @@ $rank1 = mysqli_real_escape_string($conn, $rank1);
 $program = mysqli_real_escape_string($conn, $program);
 
 if($rank1=="none"){
-  $rank1 = "";
+  $rank1 = null;
 }
 
 if($program=="none"){
-  $program = "";
+  $program =null;
 }
 
 
 
-
-$query = "SELECT * FROM memberbio WHERE ";
-
+$filters = array();
 if (!empty($sex)) {
-    $query .= "(gender = '$sex' OR yearOfAdmission = '%$sex%' OR yearOfCompletion LIKE '%$sex%' OR level LIKE '%$sex%') AND ";
-
-  }
-
+    $filters[] = "gender = '$sex'";
+}
 if (!empty($from)) {
-    $query .= "(gender LIKE '%$from%' OR yearOfAdmission LIKE '%$from%' OR yearOfCompletion LIKE '%$from%' OR level LIKE '%$from%') AND ";
+    $filters[] = "yearOfAdmission LIKE '%$from%'";
 }
-
 if (!empty($to)) {
-    $query .= "(gender LIKE '%$to%' OR yearOfAdmission LIKE '%$to%' OR yearOfCompletion LIKE '%$to%' OR level LIKE '%$to%') AND ";
+    $filters[] = "yearOfCompletion LIKE '%$to%'";
 }
-
 if (!empty($level)) {
-    $query .= "(gender LIKE '%$level%' OR yearOfAdmission LIKE '%$level%' OR yearOfCompletion LIKE '%$level%' OR level LIKE '%$level%') AND ";
+    $filters[] = "level = '$level'";
 }
-
 if (!empty($rank1)) {
-    $query .= "(rank = '$rank1') AND ";
+    $filters[] = "rank = '$rank1'";
 }
-
 if (!empty($program)) {
-    $query .= "(course = '$program') AND ";
+    $filters[] = "course = '$program'";
 }
 
-// Remove the extra AND at the end of the query
-$query = rtrim($query, " AND ");
+$query = "SELECT * FROM memberbio";
+if (!empty($filters)) {
+    $query .= " WHERE " . implode(" AND ", $filters);
+}
+
+
+
 
 // Execute the query
 $result = mysqli_query($conn, $query);
@@ -156,6 +153,8 @@ if ($result->num_rows > 0) {
 
 
 
+   // echo $staffID;
+   // exit;
 
 
     // CREATE Excel

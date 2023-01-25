@@ -71,6 +71,13 @@
       function getData() {
         $("#table1 tbody").empty();
 
+        if(program=="none"){
+          program="";
+        }
+        if(rank=="none"){
+          rank="";
+        }
+
         if (
           aeEmpty(sex) &&
           aeEmpty(from) &&
@@ -95,9 +102,14 @@
             rank1: rank,
             program: program,
           },
-          dataType: "JSON",
+          dataType: "text",
           success: function (response) {
-             alert(response);
+            if (response.trim() === "") {
+              return
+            }
+            var jsonResponse = JSON.parse(response);
+            response=jsonResponse;
+
              
             var len = response.length;
            // alert(len)
