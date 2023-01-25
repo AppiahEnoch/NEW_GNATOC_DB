@@ -147,22 +147,25 @@ if ($result->num_rows > 0) {
 
 
 
+$json = json_encode($return_arr);
+if(json_last_error() === JSON_ERROR_NONE){
+    echo $json;
+}else{
+    echo json_encode(array("error"=>"An error occurred while encoding data to json"));
+}
 
-  //$writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
 
 
-  //$writer->save('Records.xlsx');
+
+  $writer = new PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+
+
+  $writer->save('file/Records.xlsx');
 
   $conn->close();
-  //ob_end_clean();
 
-  header("Content-Type: application/json");
-  $json = json_encode($return_arr);
-  if(json_last_error() === JSON_ERROR_NONE){
-      echo $json;
-  }else{
-      echo json_encode(array("error"=>"An error occurred while encoding data to json"));
-  }
+
+
   
   
 

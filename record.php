@@ -236,7 +236,7 @@
   <div class="container-fluid">
     <div class="row">
       <div id="board" class="col-12 m-auto">
-        <a href="Records.xlsx" download>
+        <a href="file/Records.xlsx" download>
           <img style="width: 3rem; margin: auto; position: absolute; right: 0" src="devImage/excel.png" alt="" />
         </a>
 
