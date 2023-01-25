@@ -129,7 +129,7 @@
           },
           error: function (jqXHR, textStatus, errorThrown) {
             //  console.error(textStatus + ": " + errorThrown);
-             alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
+             alert("An error occurred: " + errorThrown+"| |"+jqXHR+"| | "+textStatus);
             $("#table1 tbody").empty();
             hideSpin();
           },
