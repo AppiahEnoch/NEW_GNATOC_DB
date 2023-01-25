@@ -66,7 +66,7 @@
       var to = "";
       var level = "";
       var rank = "";
-   var program="";
+      var program = "";
 
       function getData() {
         $("#table1 tbody").empty();
@@ -76,7 +76,7 @@
           aeEmpty(from) &&
           aeEmpty(to) &&
           aeEmpty(level) &&
-          aeEmpty(rank)&&
+          aeEmpty(rank) &&
           aeEmpty(program)
         ) {
           hideSpin();
@@ -93,7 +93,7 @@
             from: from,
             level: level,
             rank1: rank,
-            program:program
+            program: program,
           },
           dataType: "JSON",
           success: function (response) {
@@ -129,11 +129,13 @@
             //  console.error(textStatus + ": " + errorThrown);
             // alert("An error occurred: " + errorThrown+"||"+jqXHR+" "+textStatus);
             $("#table1 tbody").empty();
+            hideSpin();
           },
         });
       }
 
       $(document).ready(function () {
+        fillCourseList();
         hideSpin();
         getInput();
 
@@ -142,7 +144,6 @@
           showSpin();
           getInput();
           getData();
-     
         });
 
         $("#tf_sex").keyup(function () {
@@ -201,7 +202,9 @@
                   aria-describedby="search1Help"
                 >
                   <option value="none" selected>By Programme?</option>
-                  <option value="BSC. INFORMATION TECNOLOGY">BSC. INFORMATION TECNOLOGY</option>
+                  <option value="BSC. INFORMATION TECNOLOGY">
+                    BSC. INFORMATION TECNOLOGY
+                  </option>
                   <option value="Programme2">Programme2</option>
                   <option value="Programme3">Programme3</option>
                 </select>
@@ -370,7 +373,7 @@
         level = level.trim();
 
         rank = $("#tf_rank").val();
-        
+
         rank = rank.trim();
 
         program = $("#tf_program").val();
@@ -384,6 +387,40 @@
       }
       function showSpin() {
         $("#spin").show();
+      }
+
+      function fillCourseList() {
+        $("#tf_program").empty();
+        $("#tf_program").append(
+          $("<option>", {
+            value: "none",
+            text: "Not Needed?",
+          })
+        );
+
+        $.ajax({
+          url: "selectAllCourses.php",
+          type: "GET",
+          dataType: "json",
+
+          success: function (data) {
+            hideSpin();
+            var select = $("#tf_program");
+            $.each(data, function (key, value) {
+              select.append(
+                $("<option>", {
+                  value: value.course,
+                  text: value.course,
+                })
+              );
+            });
+          },
+          error: function (xhr, status, error) {
+            hideSpin()
+          },
+        });
+
+        hideSpin();
       }
     </script>
   </body>
