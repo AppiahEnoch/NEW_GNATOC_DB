@@ -119,7 +119,7 @@ if (!empty($filters)) {
 }
 
 
-//echo $query;
+echo $query;
 
 //$query = "SELECT * FROM memberbio where l='$level'";
 // Execute the query
