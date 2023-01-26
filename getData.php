@@ -98,19 +98,19 @@ if (isset($sex) && $sex != "") {
 }
 
 if (isset($from) && $from != "") {
-  $query .= " AND yearOfAdmission >= '$from'";
+  $query .= " AND yearOfAdmission = '$from'";
 }
 
 if (isset($to) && $to != "") {
-  $query .= " AND yearOfCompletion <= '$to'";
+  $query .= " AND yearOfCompletion = '$to'";
 }
 
 if (isset($level) && $level != "") {
-  $query .= " AND level = '$level'";
+  $query .= " AND level1 = '$level'";
 }
 
 if (isset($rank1) && $rank1 != "") {
-  $query .= " AND rank = '$rank1'";
+  $query .= " AND rank1 = '$rank1'";
 }
 
 if (isset($program) && $program != "") {
@@ -147,13 +147,13 @@ if ($result->num_rows > 0) {
     $studyLeaveStatus = $row["studyLeaveStatus"];
     $admissionNumber = $row["admissionNumber"];
     $regNumber = $row["regNumber"];
-    $level = $row["level"];
+    $level = $row["level1"];
     $dob = $row["dob"];
     $course = $row["course"];
     $region = $row["region"];
     $yearOfAdmission = $row["yearOfAdmission"];
     $yearOfCompletion = $row["yearOfCompletion"];
-    $rank1 = $row["rank"];
+    $rank1 = $row["rank1"];
     $program = $row["course"];
 
 

@@ -19,17 +19,17 @@ $fSsnit = selectFile($ssnitUnique);
 $fAdmission = selectFile($admissionUnique);
 */
 
- $DBfile= selectFileByStaffID($staffID);
+$DBfile = selectFileByStaffID($staffID);
 
- if ($DBfile) {
-  $fPassport=  $DBfile['passport'];
-  $fStudyLeave=  $DBfile['studyLeave'];
-  $fMasterList=  $DBfile['masterList'];
-  $fMatricula=  $DBfile['matricula'];
-  $fGhana=  $DBfile['ghanaCard'];
-  $fSsnit=  $DBfile['ssnitCard'];
-  $fAdmission=  $DBfile['admission'];
-} 
+if ($DBfile) {
+  $fPassport = $DBfile['passport'];
+  $fStudyLeave = $DBfile['studyLeave'];
+  $fMasterList = $DBfile['masterList'];
+  $fMatricula = $DBfile['matricula'];
+  $fGhana = $DBfile['ghanaCard'];
+  $fSsnit = $DBfile['ssnitCard'];
+  $fAdmission = $DBfile['admission'];
+}
 
 
 
@@ -57,7 +57,7 @@ try {
       $mName = $row['mName'];
       $lName = $row['lName'];
       $mobile = $row['mobile'];
-      $rank = $row["rank"];
+      $rank = $row["rank1"];
 
 
       $staffID = $row['staffID'];
@@ -78,9 +78,9 @@ try {
       $ghanaCardNumber = $row['ghanaCard'];
 
 
-  
 
-      
+
+
       $return_arr[] = array(
         "mobile" => $mobile,
         "fullName" => $fullName,
@@ -199,42 +199,37 @@ function insertPDF($staffID, $column)
 
 
 
-function selectFile($uniqueID) {
+function selectFile($uniqueID)
+{
   $directory = "file/";
   $files = scandir($directory);
-  foreach($files as $file) {
-      if(strpos($file, $uniqueID) === 0) {
-          $path = $directory . $file;
-          if(is_file($path)) {
-              return $path;
-          }
+  foreach ($files as $file) {
+    if (strpos($file, $uniqueID) === 0) {
+      $path = $directory . $file;
+      if (is_file($path)) {
+        return $path;
       }
+    }
   }
   return null;
 }
 
 
-function selectFileByStaffID($staffID) {
+function selectFileByStaffID($staffID)
+{
   global $conn;
   $sql = "SELECT * FROM `file` WHERE staffID = ?";
-  $stmt = $conn->prepare($sql); 
+  $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $staffID);
   $stmt->execute();
   $result = $stmt->get_result();
-   if ($result->num_rows > 0) {
-      $file = $result->fetch_assoc();
-      $stmt->close();
-      return $file;
+  if ($result->num_rows > 0) {
+    $file = $result->fetch_assoc();
+    $stmt->close();
+    return $file;
   } else {
     $stmt->close();
     echo 0;
     return false;
   }
 }
-
-
-
-
-
-
-
