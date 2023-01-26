@@ -106,11 +106,11 @@ if (isset($to) && $to != "") {
 }
 
 if (isset($level) && $level != "") {
-  $query .= " AND level1 = '$level'";
+  $query .= " AND level = '$level'";
 }
 
 if (isset($rank1) && $rank1 != "") {
-  $query .= " AND rank1 = '$rank1'";
+  $query .= " AND rank = '$rank1'";
 }
 
 if (isset($program) && $program != "") {
