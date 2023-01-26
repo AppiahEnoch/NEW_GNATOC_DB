@@ -121,7 +121,7 @@ if (!empty($filters)) {
 
 //echo $query;
 
-//$query = "SELECT * FROM memberbio";
+$query = "SELECT * FROM memberbio";
 // Execute the query
 $result = mysqli_query($conn, $query);
 
