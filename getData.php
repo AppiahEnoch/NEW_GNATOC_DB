@@ -110,7 +110,7 @@ if (isset($level) && $level != "") {
 }
 
 if (isset($rank1) && $rank1 != "") {
-  $query .= " AND rank = '$rank1'";
+  $query .= " AND rank1 = '$rank1'";
 }
 
 if (isset($program) && $program != "") {
@@ -153,7 +153,7 @@ if ($result->num_rows > 0) {
     $region = $row["region"];
     $yearOfAdmission = $row["yearOfAdmission"];
     $yearOfCompletion = $row["yearOfCompletion"];
-    $rank1 = $row["rank"];
+    $rank1 = $row["rank1"];
     $program = $row["course"];
 
 
