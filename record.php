@@ -100,7 +100,7 @@
             sex: sex,
             to: to,
             from: from,
-            level: level,
+            level1: level,
             rank1: rank,
             program: program,
           },
@@ -113,7 +113,7 @@
             }
 
             hideSpin();
-            alert("2__" + response);
+           // alert("2__" + response);
             // return
             var jsonResponse = JSON.parse(response);
             response = jsonResponse;

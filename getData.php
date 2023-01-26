@@ -71,7 +71,7 @@ $activeSheet->setCellValue('T1', 'RANK');
 $sex = $_POST["sex"];
 $from = $_POST["from"];
 $to = $_POST["to"];
-$level = $_POST["level"];
+$level = $_POST["level1"];
 $rank1 = $_POST["rank1"];
 $program = $_POST["program"];
 
@@ -106,7 +106,7 @@ if (isset($to) && $to != "") {
 }
 
 if (isset($level) && $level != "") {
-  $query .= " AND level = '$level'";
+  $query .= " AND level1 = '$level'";
 }
 
 if (isset($rank1) && $rank1 != "") {
@@ -147,7 +147,7 @@ if ($result->num_rows > 0) {
     $studyLeaveStatus = $row["studyLeaveStatus"];
     $admissionNumber = $row["admissionNumber"];
     $regNumber = $row["regNumber"];
-    $level = $row["level"];
+    $level = $row["level1"];
     $dob = $row["dob"];
     $course = $row["course"];
     $region = $row["region"];

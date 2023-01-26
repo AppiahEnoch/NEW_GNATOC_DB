@@ -13,18 +13,10 @@ $v2 = "studyLeave";
 $v3 = "masterList";
 $_path = "file";
 
-
-
-
-
-
 $admission = "";
 $studyLeave = "";
 $masterList = "";
 $rank = cleanInput($_POST["rank"]);
-
-
-
 
 //  copy paste session
 
@@ -77,7 +69,7 @@ updateFileTB("masterList", $fMasterList, $staffID);
 
 // prepare and bind
 try {
-  $sql = " UPDATE memberbio SET `rank`=?  WHERE staffID=?";
+  $sql = " UPDATE memberbio SET rank1=?  WHERE staffID=?";
 
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ss", $rank, $staffID);
