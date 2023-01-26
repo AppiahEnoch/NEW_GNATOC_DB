@@ -121,8 +121,7 @@ if (!empty($filters)) {
 //echo $query;
 
 ///echo $query;
-$query = " SELECT * FROM memberbio WHERE `rank` = '$rank1' ";
-
+$query = " SELECT * FROM memberbio WHERE `rank` = '$rank1'";
 //echo $query;
 
 //echo "||||||||||";
