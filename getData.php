@@ -206,11 +206,10 @@ if ($result->num_rows > 0) {
 
   }
 
- echo   json_encode($return_arr);
-}
-else{
+  echo json_encode($return_arr);
+} else {
 
- // $return_arr = null;
+  // $return_arr = null;
   exit;
 }
 
