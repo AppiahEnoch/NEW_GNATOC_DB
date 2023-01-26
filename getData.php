@@ -102,14 +102,14 @@ if (!empty($to)) {
     $filters[] = "yearOfCompletion = '$to'";
 }
 if (!empty($level)) {
-    $filters[] = "level = '$level'";
+    $filters[] = " `level` = '$level'";
 }
 if (!empty($rank1)) {
     $filters[] = "rank =   '$rank1'";
 }
 
 if (!empty($program)) {
-    $filters[] = "course = '$program'";
+    $filters[] = "`course` = '$program'";
 }
 
 $query = "SELECT * FROM memberbio";
@@ -121,7 +121,7 @@ if (!empty($filters)) {
 //echo $query;
 
 ///echo $query;
-$query = " SELECT * FROM memberbio WHERE rank = '$rank1' ";
+$query = " SELECT * FROM memberbio WHERE `rank` = '$rank1' ";
 
 //echo $query;
 
