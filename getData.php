@@ -2,6 +2,9 @@
 include "config.php";
 require_once 'vendor/autoload.php';
 //ob_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 
 
@@ -126,7 +129,11 @@ $query = " SELECT * FROM memberbio WHERE rank = '$rank1' ";
 //exit;
 
 // Execute the query
-$result = mysqli_query($conn, "SELECT * FROM memberbio WHERE rank = '$rank1'");
+$result = mysqli_query($conn,$query);
+if (!$result) {
+  die("Error: " . mysqli_error($conn));
+}
+
 
 $row2=2;
 
