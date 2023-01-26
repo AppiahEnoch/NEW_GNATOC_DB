@@ -149,7 +149,8 @@
           error: function (jqXHR, textStatus, errorThrown) {
             hideSpin();
             //  console.error(textStatus + ": " + errorThrown);
-            alert(
+           
+           /* alert(
               "An error occurred: " +
                 errorThrown +
                 "| |" +
@@ -157,6 +158,9 @@
                 "| | " +
                 textStatus
             );
+            */
+
+
             $("#table1 tbody").empty();
             hideSpin();
           },
