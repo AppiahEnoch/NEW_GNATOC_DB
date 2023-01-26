@@ -91,39 +91,32 @@ if ($program == "none") {
 }
 
 
-$filters = array();
-if (!empty($sex)) {
-  $filters[] = "gender = '$sex'";
-}
-if (!empty($from)) {
-  $filters[] = "yearOfAdmission = '$from'";
-}
-if (!empty($to)) {
-  $filters[] = "yearOfCompletion = '$to'";
-}
-if (!empty($level)) {
-  $filters[] = " `level` = '$level'";
-}
-if (!empty($rank1)) {
-  $filters[] = " `rank` =   '$rank1'";
+$query = "SELECT * FROM memberbio WHERE 1=1";
+
+if(isset($sex) && $sex != "") {
+    $query .= " AND gender = '$sex'";
 }
 
-if (!empty($program)) {
-
-  $filters[] = "`course` = '$program'";
+if(isset($from) && $from != "") {
+    $query .= " AND yearOfAdmission >= '$from'";
 }
 
-$query = "SELECT * FROM memberbio";
-
-if (!empty($filters)) {
-  $query .= " WHERE " . implode(" AND ", $filters);
+if(isset($to) && $to != "") {
+    $query .= " AND yearOfCompletion <= '$to'";
 }
 
-$query = "SELECT * FROM memberbio";
-//echo $query;
+if(isset($level) && $level != "") {
+    $query .= " AND `level` = '$level'";
+}
 
-//$query = "SELECT * FROM memberbio where l='$level'";
-// Execute the query
+if(isset($rank1) && $rank1 != "") {
+    $query .= " AND `rank` = '$rank1'";
+}
+
+if(isset($program) && $program != "") {
+    $query .= " AND course = '$program'";
+}
+
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
