@@ -71,7 +71,7 @@ $activeSheet->setCellValue('T1', 'RANK');
 $sex = $_POST["sex"];
 $from = $_POST["from"];
 $to = $_POST["to"];
-$level = $_POST["level1"];
+$level = $_POST["level"];
 $rank1 = $_POST["rank1"];
 $program = $_POST["program"];
 
