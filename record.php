@@ -108,12 +108,12 @@
           success: function (response) {
             if (aeEmpty(response)) {
               hideSpin();
-              alert("1__" + response);
+              // alert("1__" + response);
               return;
             }
 
             hideSpin();
-            alert("2__" + response);
+            // alert("2__" + response);
             // return
             var jsonResponse = JSON.parse(response);
             response = jsonResponse;
