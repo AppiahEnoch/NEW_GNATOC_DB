@@ -119,7 +119,7 @@ if (!empty($filters)) {
 }
 
 
-
+//echo $query;
 
 //$query = "SELECT * FROM memberbio";
 // Execute the query
@@ -133,7 +133,7 @@ if (!$result) {
 $row2 = 2;
 
 if ($result->num_rows > 0) {
-  // output data of each row
+  //echo ">0";
   while ($row = $result->fetch_assoc()) {
 
 
@@ -205,6 +205,13 @@ if ($result->num_rows > 0) {
     );
 
   }
+
+ echo   json_encode($return_arr);
+}
+else{
+
+ // $return_arr = null;
+  exit;
 }
 
 
@@ -213,12 +220,8 @@ if ($result->num_rows > 0) {
 
 
 
-$json = json_encode($return_arr);
-if (json_last_error() === JSON_ERROR_NONE) {
-  echo $json;
-} else {
-  // echo json_encode(array("error"=>"An error occurred while encoding data to json"));
-}
+
+
 
 
 
