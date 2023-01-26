@@ -126,7 +126,7 @@ $query = "SELECT * FROM memberbio";
 $result = mysqli_query($conn,$query);
 
 if (!$result) {
-  die("Error: " . mysqli_error($conn));
+ // die("Error: " . mysqli_error($conn));
 }
 
 
