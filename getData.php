@@ -93,28 +93,28 @@ if ($program == "none") {
 
 $query = "SELECT * FROM memberbio WHERE 1=1";
 
-if(isset($sex) && $sex != "") {
-    $query .= " AND gender = '$sex'";
+if (isset($sex) && $sex != "") {
+  $query .= " AND gender = '$sex'";
 }
 
-if(isset($from) && $from != "") {
-    $query .= " AND yearOfAdmission >= '$from'";
+if (isset($from) && $from != "") {
+  $query .= " AND yearOfAdmission >= '$from'";
 }
 
-if(isset($to) && $to != "") {
-    $query .= " AND yearOfCompletion <= '$to'";
+if (isset($to) && $to != "") {
+  $query .= " AND yearOfCompletion <= '$to'";
 }
 
-if(isset($level) && $level != "") {
-    $query .= " AND `level` = '$level'";
+if (isset($level) && $level != "") {
+  $query .= " AND `level` = '$level'";
 }
 
-if(isset($rank1) && $rank1 != "") {
-    $query .= " AND `rank` = '$rank1'";
+if (isset($rank1) && $rank1 != "") {
+  $query .= " AND rank = '$rank1'";
 }
 
-if(isset($program) && $program != "") {
-    $query .= " AND course = '$program'";
+if (isset($program) && $program != "") {
+  $query .= " AND course = '$program'";
 }
 
 $result = mysqli_query($conn, $query);
