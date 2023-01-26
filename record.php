@@ -104,10 +104,12 @@
           },
           dataType: "text",
           success: function (response) {
-            if (response.trim() === "") {
+            if(aeEmpty(response)){
               hideSpin();
+              alert(response)
               return;
             }
+       
             hideSpin();
             alert(response);
             var jsonResponse = JSON.parse(response);
