@@ -106,7 +106,7 @@ if (isset($to) && $to != "") {
 }
 
 if (isset($level) && $level != "") {
-  $query .= " AND `level` = '$level'";
+  $query .= " AND level = '$level'";
 }
 
 if (isset($rank1) && $rank1 != "") {
