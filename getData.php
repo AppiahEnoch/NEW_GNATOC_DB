@@ -105,7 +105,7 @@ if (!empty($level)) {
     $filters[] = " `level` = '$level'";
 }
 if (!empty($rank1)) {
-    $filters[] = "rank =   '$rank1'";
+    $filters[] = " `rank` =   '$rank1'";
 }
 
 if (!empty($program)) {
@@ -117,15 +117,6 @@ $query = "SELECT * FROM memberbio";
 if (!empty($filters)) {
     $query .= " WHERE " . implode(" AND ", $filters);
 }
-
-//echo $query;
-
-///echo $query;
-$query = " SELECT * FROM memberbio WHERE `rank` = '$rank1'";
-//echo $query;
-
-//echo "||||||||||";
-//exit;
 
 // Execute the query
 $result = mysqli_query($conn,$query);
