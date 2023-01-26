@@ -121,7 +121,7 @@ if (!empty($filters)) {
 
 //echo $query;
 
-$query = "SELECT * FROM memberbio where level='$level'";
+//$query = "SELECT * FROM memberbio where l='$level'";
 // Execute the query
 $result = mysqli_query($conn, $query);
 
