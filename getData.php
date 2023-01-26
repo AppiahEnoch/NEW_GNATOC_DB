@@ -147,13 +147,13 @@ if ($result->num_rows > 0) {
     $studyLeaveStatus = $row["studyLeaveStatus"];
     $admissionNumber = $row["admissionNumber"];
     $regNumber = $row["regNumber"];
-    $level = $row["level1"];
+    $level = $row["level"];
     $dob = $row["dob"];
     $course = $row["course"];
     $region = $row["region"];
     $yearOfAdmission = $row["yearOfAdmission"];
     $yearOfCompletion = $row["yearOfCompletion"];
-    $rank1 = $row["rank1"];
+    $rank1 = $row["rank"];
     $program = $row["course"];
 
 
