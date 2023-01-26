@@ -109,6 +109,7 @@ if (!empty($rank1)) {
 }
 
 if (!empty($program)) {
+
   $filters[] = "`course` = '$program'";
 }
 
@@ -118,7 +119,7 @@ if (!empty($filters)) {
   $query .= " WHERE " . implode(" AND ", $filters);
 }
 
-
+$query = "SELECT * FROM memberbio";
 //echo $query;
 
 //$query = "SELECT * FROM memberbio where l='$level'";

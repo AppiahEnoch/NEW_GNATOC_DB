@@ -72,9 +72,11 @@
         $("#table1 tbody").empty();
 
         if (program == "none") {
+          alert(1)
           program = "";
         }
         if (rank == "none") {
+          alert(1)
           rank = "";
         }
 
