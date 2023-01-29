@@ -1,5 +1,5 @@
 {
-    "$schema": "https://railway.app/railway.schema.json",
+    "$schema": "https://gnatock.com/railway.schema.json",
     "build": {
       "builder": "NIXPACKS",
       "buildCommand": "sudo mkdir -p output && sudo chmod -R 0777 output/;sudo mkdir -p file && sudo chmod -R 0777 file/"
